@@ -1,0 +1,99 @@
+.header_section header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+
+}
+.header_section{ box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;}
+
+.header_section header nav ul {
+  display: flex;
+  /* align-items: center; */
+  list-style: none;
+}
+
+.header_section header .menu_links {
+  display: flex;
+  align-items: center;
+  transition: none;
+  gap: 20px;
+}
+
+.header_section header nav ul li a {
+  font-weight: 600;
+}
+
+.header_section header nav ul li:not(:last-child) {
+  margin-right: 28px;
+}
+
+.banner_slider .swiper-button-prev,
+.banner_slider .swiper-button-next {
+  display: none !important;
+}
+
+.banner_slider .swiper-pagination-bullet .swiper-pagination-bullet-active {
+  color: aqua !important;
+  background-color: aqua !important;
+}
+
+.swiper-pagination-bullet {
+  background-color: #4d3ccf !important;
+}
+
+
+
+/*  commonpoints css here */
+
+.points_section {
+  padding: 70px 0;
+}
+
+.points_icon {
+  text-align: center;
+  margin: 20px;
+}
+
+.points_icon .title {
+  padding: 20px 0 10px 0;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.points_icon .subtitle {
+  font-size: 15px;
+  font-weight: 600;
+  ;
+}
+
+.points_icon .icon_img {
+  width: 100px;
+  height: 100px;
+  background-color: #ffedf4;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.points_icon .icon_img img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+/*  user profile css here */
+
+.user_profile{ cursor: pointer; position: relative;}
+.user_profile:hover .user_lists{ display: block; transition: all .5s ease-in; z-index: 10000;}
+.user_profile .user_lists{ position: absolute; width: 150px; padding-top: 30px; display: none; transition: all .5s ease-in;} 
+.user_profile .user_lists ul{  background-color: #ffedf4; }
+.user_profile .user_lists ul li{ padding: 5px; }
+.user_profile .user_lists ul li a{line-height: 30px; align-items: center; display: flex; gap: 10px;}
+.user_profile .user_lists ul li:hover{ background-color: #ddd;}
+.user_profile .user_lists ul li:hover .icon{ color: #bf2cb1;}
+
+
+.goog-te-gadget-simple{ border: 1.6px solid #a67c8c!important; border-radius: 5px ; }

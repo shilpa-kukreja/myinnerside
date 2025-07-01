@@ -1,0 +1,733 @@
+ .login_container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   background-color: #ddd;
+ }
+
+ .login_section {
+   display: flex;
+   flex-wrap: wrap;
+   background-color: #fff;
+   justify-content: space-between;
+   align-items: center;
+   max-width: 800px;
+   margin: 0 auto;
+ }
+
+ .react-datepicker-wrapper {
+   width: 100%;
+ }
+
+ .login_section .login_contant {
+   color: #000;
+   padding: 25px;
+   overflow-y: auto;
+   scroll-behavior: smooth;
+   max-height: 570px;
+ }
+
+ .login_contant::-webkit-scrollbar {
+   width: 3px;
+ }
+
+ .login_contant::-webkit-scrollbar-thumb {
+   background-color: rgba(0, 0, 0, 0.2);
+   border-radius: 3px;
+ }
+
+ .login_section .login_contant h2 {
+   font-size: 25px;
+   margin: 10px 0;
+ }
+
+ .login_contant .new_user {
+   font-size: 14px;
+ }
+
+ .login_contant .new_user span {
+   color: rgb(80, 120, 231);
+   cursor: pointer;
+   text-decoration: underline;
+ }
+
+
+
+
+ .login_contant .login_form form {
+   margin-top: 15px;
+ }
+
+ .login_form .form_group {
+   margin-bottom: 10px;
+   position: relative;
+ }
+
+ .login_form .form_group .icon {
+   position: absolute;
+   right: 10px;
+   top: 36px;
+ }
+
+ .login_form .login_btn {
+   padding: 10px;
+   cursor: pointer;
+   display: inline;
+   border-radius: 8px;
+   margin-top: 5px;
+   background-color: #5883e8;
+   color: #fff;
+   border: none;
+ }
+
+ .login_form .login_btn:hover {
+   background-color: #4578f0;
+ }
+
+ .login_form .form_group label {
+   font-size: 14px;
+ }
+
+ .login_section .login_form .form_control {
+   width: 100%;
+   padding: 8px;
+   border-radius: 8px;
+   margin-top: 7px;
+   background-color: transparent;
+   font-size: 15px;
+
+   border: 1px solid #ddd;
+ }
+
+ .login_section .login_img {
+   height: 100%;
+ }
+
+ .login_section .login_img img {
+   height: 525px;
+   border-radius: 20px 0 0 20px;
+ }
+
+ .login_section .signup_img img {
+   height: 450px;
+   border-radius: 0 20px 20px 0;
+ }
+
+
+ .left {
+   order: 1;
+ }
+
+ .right {
+   order: 2;
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /*  my profile css  */
+
+
+
+ .profile_container {
+   /* padding: 50px 0; */
+   background-color: #f0f4f7;
+ }
+
+ .profile_section {
+   display: flex;
+   flex-wrap: wrap;
+   /* justify-content: space-between; */
+ }
+ 
+ .profile_section .aside_left {
+   flex: 0 0 24%;
+   width: 24%;
+   height: 100vh;
+   border-right: 2px solid #ddd;
+   background-color: #1a227d;
+   padding: 20px;
+   color: #fff;
+ }
+ .profile_section .aside_left h2 {
+   align-items: center;
+   display: flex;
+   gap: 20px;
+ }
+
+ .profile_section .aside_left h2 .icon {
+   width: 30px;
+   height: 30px;
+   align-items: center;
+   display: flex;
+   justify-content: center;
+   background-color: #fff;
+   border-radius: 50%;
+ }
+
+ .profile_section .aside_left h2 svg {
+   color: #1a227d;
+ }
+
+ .profile_section .profile_information {
+   flex: 0 0 76%;
+   width: 76%;
+
+ }
+
+ .profile_section .user_icons {
+   margin-top: 30px;
+ }
+
+ .profile_section .user_icons ul li {
+   cursor: pointer;
+   padding: 10px 7px;
+   align-items: center;
+   display: flex;
+   margin-bottom: 10px;
+   gap: 15px;
+ }
+
+ .profile_section .user_icons ul li .icon {
+   font-size: 20px;
+ }
+
+ .profile_section .user_icons ul .active {
+   /* background-color: #4578f0; */
+   /* background-color: #bf2cb1; */
+   background-color: #bdb8b851;
+   border-radius: 5px;
+   /* border-right: 3px solid #bf2cb1; */
+ }
+
+ .profile_section .user_icons ul li:hover {
+   background-color: #bdb8b851;
+   border-radius: 5px;
+   transition: all .5s ease-in-out;
+
+ }
+
+ .profile_section .user_icons ul li:hover .icon {
+   color: #bf2cb1;
+   transition: all .3s ease-in-out;
+ }
+
+
+ /*  */
+ /* .dashboard_header{ background-color: #fff; padding: 20px; border: 1px solid #ddd;} */
+ .profile_form {
+   padding: 30px 20px;
+   background-color: #fff;
+   margin: 30px;
+   border-radius: 10px;
+ }
+
+ .profile_information .appointment {
+   padding: 30px 20px;
+   background-color: #fff;
+   margin: 30px;
+   border-radius: 10px;
+ }
+
+ .profile_information .profile_img {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+ }
+
+ .profile_information .profile_img .profile_name {
+   width: 80%;
+ }
+
+ .profile_information .profile_img .image {
+   position: relative;
+ }
+
+ .profile_information .profile_img img {
+   width: 100px;
+   height: 100px;
+   border-radius: 50%;
+   position: relative;
+ }
+
+ .profile_information .profile_img .image .icon {
+   position: absolute;
+   cursor: pointer;
+   right: 0;
+   top: 70px;
+   font-size: 30px
+ }
+
+ .cursor-disabled {
+   cursor: not-allowed;
+   background-color: #f5f5f5;
+ }
+
+ .general_profile_info {
+   border: 1px solid #ccc;
+   /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; border: 1px solid #ccc; */
+   border-radius: 6px;
+   padding: 30px;
+   margin-top: 40px;
+ }
+
+ .general_profile_info form {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+ }
+
+ .general_profile_info .form_group {
+   display: grid;
+ }
+
+ .general_profile_info .form_control {
+   width: 100%;
+   padding: 10px;
+   border-radius: 5px;
+   border: none;
+   margin: 7px 0 10px 0;
+   border: 1px solid #ccc;
+ }
+
+ .general_profile_info .profile_btn {
+   padding: 8px 10px;
+   border: 1px solid #3a363600;
+   font-size: 14px;
+   border-radius: 10px;
+   cursor: pointer;
+   margin-top: 20px;
+   background-color: #cf3c70;
+   box-shadow: 2px 8px 9px -3px #ccc;
+   color: #fff;
+ }
+
+
+ /*   appointment table  */
+ .no_appointment {
+   margin-top: 30px;
+   font-weight: 600;
+ }
+
+ .appointment_table {
+   width: 100%;
+   border-collapse: collapse;
+   background-color: #fff;
+   border-radius: 8px;
+   overflow: hidden;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   scroll-behavior: smooth;
+   overflow-x: auto;
+   margin-top: 30px;
+
+ }
+
+ .appointment_table::-webkit-scrollbar {
+   /* width: 3px; */
+ }
+
+ .appointment_table::-webkit-scrollbar-thumb {
+   background-color: rgba(0, 0, 0, 0.2);
+   border-radius: 3px;
+ }
+
+ .appointment_table table {
+   width: 1500px;
+   border-collapse: collapse;
+ }
+
+ .appointment_table th,
+ .appointment_table td {
+   padding: 12px 16px;
+   text-align: left;
+   border-bottom: 1px solid #cecccc;
+   border-right: 1px solid #ccc;
+ }
+
+ .appointment_table th {
+   background-color: #dedfe0;
+   font-weight: 600;
+   color: #333;
+ }
+
+ .cancel_btn,
+ .reschedule_btn,
+ .video_call_btn {
+   margin-right: 8px;
+   padding: 6px 12px;
+   border: none;
+   border-radius: 6px;
+   cursor: pointer;
+ }
+ .video_call_btn{ background-color: rgb(5, 136, 5) ; color: white;  display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+
+  .cancel_btn {
+   background-color: #f87171;
+   color: white;
+ }
+
+ .reschedule_btn {
+   background-color: #60a5fa;
+   color: white;
+ }
+
+
+ /* add payment details css */
+
+ .payment_details {
+   padding: 30px 20px;
+ }
+
+ .payment_details .payment_form {
+   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+   border: 1px solid #ccc;
+   padding: 15px;
+   border-radius: 10px;
+   width: 100%;
+   display: flex;
+   flex-wrap: wrap;
+   margin-top: 20px;
+   justify-content: space-between;
+ }
+
+ .payment_details .payment_form .form_group {
+   display: grid;
+ }
+
+ .payment_details .payment_form .form_group .form_control {
+   width: 100%;
+   padding: 10px;
+   border-radius: 5px;
+   border: none;
+   /* margin-bottom: 10px; */
+   margin: 7px 0 10px 0;
+
+   border: 1px solid #ccc;
+ }
+
+ .payment_details .payment_btn {
+   padding: 8px 10px;
+   border: 1px solid #3a363600;
+   font-size: 14px;
+   border-radius: 10px;
+   cursor: pointer;
+   margin-top: 20px;
+   background-color: #cf3c70;
+   box-shadow: 2px 8px 9px -3px #ccc;
+   color: #fff;
+ }
+
+ /*  */
+
+ .payment-container {
+   display: flex;
+   /* justify-content: center; */
+   align-items: center;
+   gap: 2rem;
+   padding: 2rem;
+   font-family: Arial, sans-serif;
+   background-color: #fff;
+   margin: 30px;
+   border-radius: 10px;
+ }
+
+ .payment-container .card-preview {
+   width: 320px;
+   height: 200px;
+   perspective: 1000px;
+ }
+
+ .payment-container .card {
+   width: 100%;
+   height: 100%;
+   border-radius: 15px;
+   padding: 1rem;
+   color: white;
+   background: linear-gradient(135deg, #667eea, #764ba2);
+   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+   position: absolute;
+   backface-visibility: hidden;
+   transition: transform 0.6s ease-in-out;
+ }
+
+ .payment-container .front {
+   z-index: 2;
+ }
+ .payment-container .back {
+   transform: rotateY(180deg);
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+ }
+
+ .payment-container .card-preview.flipped .front {
+   transform: rotateY(180deg);
+ }
+
+ .payment-container .card-preview.flipped .back {
+   transform: rotateY(360deg);
+ }
+
+ .payment-container .chip {
+   width: 50px;
+   height: 35px;
+   background: gold;
+   border-radius: 5px;
+   margin-bottom: 1rem;
+ }
+
+ .payment-container .card-number {
+   font-size: 1.2rem;
+   letter-spacing: 2px;
+   margin-bottom: 1rem;
+ }
+
+ .payment-container .card-name-expiry {
+   display: flex;
+   justify-content: space-between;
+   font-size: 0.9rem;
+ }
+
+ .payment-container .cvv-label {
+   font-size: 1rem;
+   margin-bottom: 0.5rem;
+ }
+
+ .payment-container .cvv-value {
+   font-size: 1.2rem;
+   letter-spacing: 3px;
+ }
+
+ .payment-container .payment-form {
+   display: flex;
+   flex-direction: column;
+   width: 300px;
+   justify-content: space-between;
+ }
+
+ .card_table {
+   /* width: 100%; */
+   border-collapse: collapse;
+   background-color: #fff;
+   border-radius: 8px;
+   overflow: hidden;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   scroll-behavior: smooth;
+   overflow-x: auto;
+   margin: 30px;
+ }
+
+ .card_table table {
+   width: 100%;
+   border-collapse: collapse;
+ }
+
+ .card_table th,
+ .card_table td {
+   padding: 12px 16px;
+   text-align: left;
+   border-bottom: 1px solid #cecccc;
+   border-right: 1px solid #ccc;
+ }
+
+ .card_table th {
+   background-color: #dedfe0;
+   font-weight: 600;
+   color: #333;
+ }
+
+ .payment-form .form_row {
+   display: flex;
+   justify-content: space-between;
+ }
+
+ .payment-form .form_row input {
+   max-width: 135px;
+ }
+
+ .payment-container .payment-form label {
+   margin: 0.5rem 0 0.2rem;
+   display: block !important;
+ }
+
+ .payment-container .payment-form input {
+   padding: 0.5rem;
+   margin-bottom: 0.8rem;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+ }
+
+ .payment-container .payment-form button {
+   padding: 0.6rem;
+   background: #764ba2;
+   color: white;
+   border: none;
+   border-radius: 8px;
+   cursor: pointer;
+   transition: 0.3s;
+ }
+
+ .payment-container .payment-form button:hover {
+   background: #5e3d94;
+ }
+ /*  reschedule css write here */
+
+
+ .reshedule_container {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: rgba(0, 0, 0, 0.4);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   z-index: 999;
+ }
+ .reshedule_popup {
+
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   background: #fff;
+   padding: 25px;
+   border-radius: 8px;
+   width: 950px;
+   height: 550px;
+   margin: 0 20px;
+   overflow-y: scroll;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+   
+ }
+
+ .reshedule_popup label {
+   display: block;
+   margin-top: 10px;
+   margin-bottom: 5px;
+ }
+ .modal_buttons{ margin-top: 20px;}
+
+.modal_buttons .reschedule_btn{ padding: 10px 16px;}
+   .modal_buttons  .cancel_btn { padding: 10px 16px ;}
+
+ .reshedule_popup .date-grid{ display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    margin-top: 1rem;}
+
+
+
+ .reshedule_popup  .date-box.active {
+    background: #6c63ff;
+    color: white;
+    font-weight: bold;
+}
+
+ .reshedule_popup  .date-box {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 0.5rem;
+    cursor: pointer;
+    background: #f9f9f9;
+    transition: all 0.2s ease-in-out;
+}
+
+    .reshedule_popup .date-box .active {
+    background: #6c63ff;
+    color: white;
+    font-weight: bold;
+}
+ .reshedule_popup .active .weekday {
+    color: white;
+}
+ .reshedule_popup .weekday {
+    font-size: 0.85rem;
+    color: #6c63ff;
+}
+
+ .reshedule_popup .date-box .day{
+    font-weight: 800;
+    font-size: 17px;
+}
+ .reshedule_popup .date-box:hover {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transform: scale(0.9);
+}
+
+.reshedule_popup .reschedule_rightside{ margin-top: 23px;}
+
+ .reshedule_popup .slot-grid{ display: grid
+;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-top: 1rem;   }
+
+    .reshedule_popup .disabled {
+    cursor: not-allowed!important;
+    background-color: #dedfe0!important;
+}
+
+  .reshedule_popup .slot-box {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 0.75rem;
+    cursor: pointer;
+    background: #fdfdfd;
+    transition: 0.3s;
+}
+
+  .reshedule_popup  .slot-box .timing {
+    font-size: 12px;
+}
+
+  .reshedule_popup  .status {
+    font-size: 0.75rem;
+    color: green;
+}
+   .reshedule_popup .slot-box:hover {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transform: scale(0.9);
+}
+  .reshedule_popup .slot-box.active {
+    background: #6c63ff;
+    color: white;
+}

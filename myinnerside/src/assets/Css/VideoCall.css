@@ -1,0 +1,205 @@
+.video_call_container {
+    width: 100%;
+    height: 100vh;
+    padding: 0 20px;
+    background-color: #161f30;
+    color: #fff;
+}
+
+.video_timer {
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.timer_start button{ border: .5px solid #ddd;  border-radius: 20px; display: flex; align-items: center;gap: 10px; padding: 10px 12px; background-color: transparent; color: #fff; }
+
+.video_icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #9758f5, #f58dd3);
+    border-radius: 50%;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.video_timer .video_title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.video_timer .video_title h2 {
+    background: linear-gradient(135deg, #9758f5, #f58dd3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 17px;
+}
+
+/*  */
+
+.video_section {
+    position: relative;
+    background-color: #303e52;
+    width: 100%;
+    height: 80vh;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+}
+
+
+
+.video_section.swapped {
+    /* position: unset !important; */
+    padding: 0 !important;
+    border: none !important;
+}
+
+.videoTaker_name {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    gap: 10px;
+}
+
+
+.alious_name {
+    width: 50px;
+    height: 50px;
+    align-items: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #9758f5, #f58dd3);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.video_call_container h4 {}
+
+
+.videoTaker_name1 {
+    position: absolute !important;
+    bottom: 0;
+    right: 0;
+    width: 400px;
+    height: 200px;
+    border: 2px solid #9958f5;
+    border-radius: 15px;
+    margin: 0 20px 20px 0;
+    z-index: 111;
+    text-align: center;
+     display: flex;
+     align-items: center;
+      justify-content: center;
+      gap: 10px;
+}
+  .videoTaker_name1   .alious_name{ display: flex;  justify-content: center; align-items: center;  }
+
+
+
+.my_video {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 400px;
+    height: 200px;
+    border: 2px solid #9958f5;
+    border-radius: 15px;
+    margin: 0 20px 20px 0;
+}
+
+.my_video1 {
+    position: relative;
+    background-color: #303e52;
+    width: 100%;
+    height: 80vh;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+}
+
+
+
+
+
+
+.myProfile_name {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+}
+
+.myProfile_name .me {
+    width: 50px;
+    height: 50px;
+    align-items: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #9758f5, #f58dd3);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+ .change_video {
+    position: fixed;
+    top: 63%;
+    right: 60px;
+    z-index: 1111;
+}
+
+.video_box .change_video .icon {
+    font-size: 17px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+.controls_buttons {
+    text-align: center;
+     margin-top: 10px ;
+    
+}
+
+.controls_buttons button {
+    width: 35px;
+    height: 35px;
+    background-color: #303e52;
+    cursor: pointer;
+    border-radius: 50%;
+    color: #fff;
+    border: none;
+}
+
+.controls_buttons button .icon {
+    font-size: 20px;
+    text-align: center;
+}
+
+.controls_buttons button:not(:last-child) {
+    margin-right: 20px;
+}
+
+.controls_buttons button:last-child {
+    background-color: red;
+}
+.controls_buttons button:last-child:hover{ background-color:rgb(166, 30, 30) ;}
+
+/* Swap the order when isSwapped is true */
+.video_section.swapped .my_video {
+    order: 1;
+}
+
+.video_section.swapped .videoTaker_name {
+    order: 2;
+}

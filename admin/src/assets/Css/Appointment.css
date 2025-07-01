@@ -1,0 +1,416 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.appointment_container {
+  background: #fff;
+  padding: 20px;
+  width: 900px;
+  height: 100vh;
+  overflow-y: auto;
+  position: relative;
+  z-index: 1000;
+}
+
+.appointment_box {
+  /* background:#eee0dd; */
+  padding: 20px;
+  border-radius: 15px;
+}
+.appointment_box .slot-grid .disabled { cursor: not-allowed!important; background-color: #dedfe0;}
+
+.close_btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 20px;
+  font-weight: 800;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.appointment_form {
+  margin-top: 30px;
+  justify-content: space-between;
+  width: 100%;
+  display: flex;
+  flex-flow: wrap;
+}
+
+.appointment_form .form_group {
+  display: grid;
+}
+
+.appointment_form .form_group input::placeholder {
+  color: #000;
+}
+
+.appointment_form .form_group:focus .form_control {
+  color: red;
+}
+
+.appointment_form .form_group label {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.appointment_form .form_group select option {
+  background-color: #eee0dd;
+}
+
+.appointment_form .form_group textarea {
+  padding: 10px;
+  color: #000;
+  border-radius: 5px;
+}
+.hide_identity{  display: flex; flex-wrap: wrap; margin: 20px 0;}
+.hide_identity label{ width: 100%; margin-bottom: 5px; cursor: pointer; display: inline-block;}
+
+.appointment_form .form_group textarea::placeholder {
+  color: #000;
+}
+
+.appointment_form .form_group .form_control {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 10px;
+  border: 1px solid #ccc ;
+}
+
+.appointment_form .form_btn {
+  padding: 10px 12px;
+  border: 1px solid #3a363600;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #cf3c70;
+  box-shadow: 2px 8px 9px -3px #ccc;
+  color: #fff;
+}
+
+.appointment_form .form_btn:hover {
+  background-color: #e46994;
+}
+
+.apply_coupon {
+  margin-top: 20px;
+}
+
+.apply_coupon label {
+  font-weight: 600;
+}
+
+.apply_coupon input {
+  padding: 12px !important;
+  width: 200px !important;
+  font-size: 15px !important;
+}
+
+.slot_price {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.discount_btn {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+  gap: 10px;
+}
+
+.discount_btn .ribbon {
+  background-color: #4d3ccf;
+  border-radius: 10px;
+  color: #fff;
+  padding: 10px 12px;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.discount_btn .ribbon span {
+  color: #ff8c8c;
+}
+
+
+.discount_btn .ribbon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  height: 100%;
+  width: 50%;
+  background: linear-gradient(120deg,
+      rgba(255, 255, 255, 0.3) 0%,
+      rgba(255, 255, 255, 0.6) 50%,
+      rgba(255, 255, 255, 0.3) 100%);
+  transform: skewX(-20deg);
+  animation: shine 2s infinite;
+  z-index: 2;
+}
+
+@keyframes shine {
+  0% {
+    left: -75%;
+  }
+
+  100% {
+    left: 125%;
+  }
+}
+
+
+
+
+
+
+/*   */
+
+
+
+.booking_slot h3 {
+  margin-top: 15px;
+}
+
+
+.booking_slot .date-grid,
+.slot-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.booking_slot .date-box {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0.5rem;
+  cursor: pointer;
+  background: #f9f9f9;
+  transition: all 0.2s ease-in-out;
+}
+
+
+.booking_slot .date-box .day {
+  font-weight: 800;
+  font-size: 17px;
+}
+
+.booking_slot .date-box:hover {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  transform: scale(0.9);
+}
+
+.booking_slot .slot-grid .slot-box:hover {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  transform: scale(0.9);
+}
+
+.booking_slot .date-box.active {
+  background: #6c63ff;
+  color: white;
+  font-weight: bold;
+}
+
+.booking_slot .weekday {
+  font-size: 0.85rem;
+  color: #6c63ff;
+}
+
+.booking_slot .slot-box .timing {
+  font-size: 12px;
+}
+
+.booking_slot .slot-box {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0.75rem;
+  cursor: pointer;
+  background: #fdfdfd;
+  transition: 0.3s;
+}
+
+.booking_slot .slot-box.active {
+  background: #6c63ff;
+  color: white;
+}
+
+.booking_slot .active .weekday {
+  color: white;
+}
+
+.slot-grid .active .status {
+  color: #fff;
+}
+
+.booking_slot .status {
+  font-size: 0.75rem;
+  color: green;
+}
+
+.summary {
+  margin-top: 1rem;
+  border: 1px solid #c6b6b6;
+  padding: 1rem;
+  border-radius: 8px;
+
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.summary_details {
+  display: flex;
+  margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* popUp css */
+
+.popup_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.popup_container {
+  background: white;
+  max-width: 700px;
+  margin: 0 20px;
+  position: relative;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.popup_content {
+  display: flex;
+  height: 400px;
+  align-items: center;
+
+
+}
+
+.popup_img {
+  flex: 0 0 50%;
+}
+
+.popup_img img {
+  width: 100%;
+  height: 400px;
+}
+
+.popup_content .close_btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.popup_contact_detail {
+  padding: 20px;
+  text-align: center;
+}
+
+.popup_contact_detail .logo p {
+  font-size: 16px;
+}
+
+.popup_contact_detail p {
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.popup_contact_detail .form_control {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+.popup_contact_detail button {
+  margin-top: 15px;
+  padding: 10px;
+  background: #f4cbc2;
+  color: #000;
+  border-radius: 10px;
+  font-weight: 600;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+}
+
+.coupon_popup {
+  background-color: #fff;
+  max-width: 320px;
+}
+
+.coupon_code {
+  padding: 30px;
+  text-align: center;
+}
+
+.coupon_code strong {
+  border: 2px solid #000;
+  padding: 5px;
+  border: dashed;
+}
+
+.coupon_code button {
+  margin-top: 20px;
+  padding: 10px;
+  background: #f4cbc2;
+  color: #000;
+  font-weight: 400;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
