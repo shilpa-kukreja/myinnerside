@@ -7,6 +7,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import https from 'https';
 import { Server as SocketIOServer } from 'socket.io';
+import fs from 'fs';
 
 // Routes imports (assuming these exist in your project)
 import authRouter from './routes/authRoute.js';
