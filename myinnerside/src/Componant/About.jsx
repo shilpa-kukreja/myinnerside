@@ -6,10 +6,6 @@ import { Context } from '../Context/CreateContext'
 import banner from '../assets/mainbanner/banner.jpeg'
 import '../assets/Css/Service.css'
 import { Link } from 'react-router-dom'
-import mission from '../assets/mainbanner/popupimg.jpeg'
-import vision from '../assets/mainbanner/vision.jpeg'
-import missionImg from '../assets/mainbanner/mission.jpeg'
-import coreValue from '../assets/mainbanner/core-value.jpeg'
 import servImg from '../assets/mainbanner/phone.png'
 const About = () => {
   const { setShowAppointmentForm } = useContext(Context);
