@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import popUpImg from '../assets/mainbanner/popupimg.jpeg'
+import popUpImg from '../assets/mainbanner/popupImg.jpeg'
 import '../assets/Css/Appointment.css'
 import { useState,useEffect } from 'react'
 
