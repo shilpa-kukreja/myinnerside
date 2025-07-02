@@ -51,7 +51,7 @@ const TeamMemberAppointments = () => {
     const fetchAppointments = async () => {
         try {
             setLoading(true);
-            const { data } = await axios.get('http://localhost:5000/api/appointments/my-assigned', {
+            const { data } = await axios.get('https://myinnerside.com/api/appointments/my-assigned', {
                 params: {
                     page: currentPage,
                     limit: appointmentsPerPage

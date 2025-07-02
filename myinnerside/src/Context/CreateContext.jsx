@@ -60,7 +60,7 @@ const CreateContextProvider = (props) => {
     
    const addLifeCoachBooking = async (newBooking) => {
   try {
-    const res = await fetch('http://localhost:5000/api/lifecoach/book', {
+    const res = await fetch('https://myinnerside.com/api/lifecoach/book', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json'  ,Authorization: `${token}`,},
       body: JSON.stringify(newBooking),
@@ -158,7 +158,7 @@ const CreateContextProvider = (props) => {
     console.log("Token from localStorage:", storedToken);
 
     axios.post(
-      "http://localhost:5000/api/auth/user",
+      "https://myinnerside.com/api/auth/user",
       {}, // Empty body
       {
         headers: {
@@ -189,7 +189,7 @@ useEffect(() => {
 
     axios
       .post(
-        "http://localhost:5000/api/lifecoach/slots",
+        "https://myinnerside.com/api/lifecoach/slots",
         { selectedDate }, // Send if your backend expects date filter
         {
           headers: {
@@ -228,7 +228,7 @@ useEffect(() => {
   if (selectedDate) {
     axios
       .post(
-        "http://localhost:5000/api/appointments/booked-slots",
+        "https://myinnerside.com/api/appointments/booked-slots",
         {},
         {
           headers: {
@@ -267,7 +267,7 @@ useEffect(() => {
 
 const getBookedSlotss = async (selectedDate) => {
   try {
-    const response = await fetch(`http://localhost:5000/api/appointments/booked-slots`, {
+    const response = await fetch(`https://myinnerside.com/api/appointments/booked-slots`, {
       method: 'GET',
       headers: {
         Authorization: `${token}`,
@@ -297,7 +297,7 @@ const getBookedSlotss = async (selectedDate) => {
 
 const getBookedSlotsss = async (selectedDate) => {
   try {
-    const response = await fetch(`http://localhost:5000/api/booked-slots`, {
+    const response = await fetch(`https://myinnerside.com/api/booked-slots`, {
       method: 'GET',
       headers: {
         Authorization: `${token}`,
@@ -355,7 +355,7 @@ useEffect(() => {
 
 const getBookedlifecoachSlotss = async () => {
   try {
-    const response = await fetch(`http://localhost:5000/api/lifecoach/lifecoachslot/bookedcoach-slots`, {
+    const response = await fetch(`https://myinnerside.com/api/lifecoach/lifecoachslot/bookedcoach-slots`, {
       method: 'GET',
       headers: {
         Authorization: `${token}`,

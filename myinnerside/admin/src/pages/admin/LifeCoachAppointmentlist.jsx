@@ -33,7 +33,7 @@ const LifeCoachAppointmentlist = () => {
   const fetchAppointments = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get(`http://localhost:5000/api/lifecoach/all`, {
+      const { data } = await axios.get(`https://myinnerside.com/api/lifecoach/all`, {
         params: {
           page: currentPage,
           limit: appointmentsPerPage,
@@ -53,7 +53,7 @@ const LifeCoachAppointmentlist = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this appointment?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/lifecoach/${id}`);
+        await axios.delete(`https://myinnerside.com/api/lifecoach/${id}`);
         toast.success('Appointment deleted successfully');
         fetchAppointments();
       } catch (error) {

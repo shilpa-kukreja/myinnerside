@@ -42,7 +42,7 @@ const AdminAppointments = () => {
   const fetchAppointments = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get(`http://localhost:5000/api/appointments/all`, {
+      const { data } = await axios.get(`https://myinnerside.com/api/appointments/all`, {
         params: {
           page: currentPage,
           limit: appointmentsPerPage,
@@ -73,7 +73,7 @@ const AdminAppointments = () => {
 
   const fetchTeams = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5000/api/admin/teams');
+      const { data } = await axios.get('https://myinnerside.com/api/admin/teams');
       setTeams(data.teams);
     } catch (error) {
       toast.error('Failed to fetch team members');
@@ -89,7 +89,7 @@ const AdminAppointments = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this appointment?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/appointments/${id}`);
+        await axios.delete(`https://myinnerside.com/api/appointments/${id}`);
         toast.success('Appointment deleted successfully');
         fetchAppointments();
       } catch (error) {
@@ -100,7 +100,7 @@ const AdminAppointments = () => {
 
   const handleAssignTeam = async (appointmentId, teamMemberId) => {
     try {
-      const { data } = await axios.put(`http://localhost:5000/api/appointments/${appointmentId}/assign`, {
+      const { data } = await axios.put(`https://myinnerside.com/api/appointments/${appointmentId}/assign`, {
         teamMemberId
       });
       
@@ -118,7 +118,7 @@ const AdminAppointments = () => {
 
   const handleRemoveAssignment = async (appointmentId) => {
     try {
-      await axios.put(`http://localhost:5000/api/appointments/${appointmentId}/assign`, {
+      await axios.put(`https://myinnerside.com/api/appointments/${appointmentId}/assign`, {
         teamMemberId: null
       });
       

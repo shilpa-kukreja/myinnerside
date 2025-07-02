@@ -32,7 +32,7 @@ const AdminUsers = () => {
     const fetchUsers = async () => {
         try {
             setLoading(true);
-            const { data } = await axios.get(`http://localhost:5000/api/auth/all`, {
+            const { data } = await axios.get(`https://myinnerside.com/api/auth/all`, {
                 params: {
                     page: currentPage,
                     limit: usersPerPage,
@@ -52,7 +52,7 @@ const AdminUsers = () => {
     const handleDelete = async (id) => {
         if (window.confirm('Are you sure you want to delete this user?')) {
             try {
-                await axios.delete(`http://localhost:5000/api/auth/${id}`);
+                await axios.delete(`https://myinnerside.com/api/auth/${id}`);
                 toast.success('User deleted successfully');
                 fetchUsers();
             } catch (error) {
@@ -132,7 +132,7 @@ const AdminUsers = () => {
                                                     {user.img ? (
                                                         <img
                                                             className="h-10 w-10 rounded-full"
-                                                            src={`http://localhost:5000${user.img}`}
+                                                            src={`https://myinnerside.com${user.img}`}
                                                             alt={user.name}
                                                         />
                                                     ) : (
@@ -270,7 +270,7 @@ const AdminUsers = () => {
                                 <div className="md:col-span-1 flex flex-col items-center">
                                     {selectedUser.img ? (
                                         <img
-                                            src={`http://localhost:5000${selectedUser.img}`}
+                                            src={`https://myinnerside.com${selectedUser.img}`}
                                             alt={selectedUser.name}
                                             className="h-32 w-32 rounded-full object-cover mb-4"
                                         />

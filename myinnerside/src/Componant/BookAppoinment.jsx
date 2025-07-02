@@ -48,7 +48,7 @@ const BookAppointment = () => {
 
             if (code.length >= 3) {
                 try {
-                    const res = await fetch('http://localhost:5000/api/coupons/apply', {
+                    const res = await fetch('https://myinnerside.com/api/coupons/apply', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -118,7 +118,7 @@ const BookAppointment = () => {
     const handleRazorpayPayment = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch('http://localhost:5000/api/payment/create-order', {
+            const res = await fetch('https://myinnerside.com/api/payment/create-order', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ amount: finalPrice }),
@@ -152,7 +152,7 @@ const BookAppointment = () => {
                         price: finalPrice,
                     };
 
-                    const verifyRes = await fetch('http://localhost:5000/api/payment/verify-payment', {
+                    const verifyRes = await fetch('https://myinnerside.com/api/payment/verify-payment', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json',Authorization: `${token}`, },
                         body: JSON.stringify({
@@ -196,7 +196,7 @@ const BookAppointment = () => {
     //     try {
     //         const dateOnly = dayjs(selectedDate).format('YYYY-MM-DD');
 
-    //         const res = await fetch('http://localhost:5000/api/appointments/book', {
+    //         const res = await fetch('https://myinnerside.com/api/appointments/book', {
     //             method: 'POST',
     //             headers: { 'Content-Type': 'application/json', Authorization: `${token}`, },
     //             body: JSON.stringify({

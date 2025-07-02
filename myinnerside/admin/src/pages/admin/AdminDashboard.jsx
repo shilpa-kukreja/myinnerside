@@ -40,7 +40,7 @@ const AdminDashboard = () => {
     useEffect(() => {
         const fetchDashboardData = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/admin/dashboard', {
+                const res = await axios.get('https://myinnerside.com/api/admin/dashboard', {
                     headers: { aToken }
                 });
                 setDashboardData(res.data.data);

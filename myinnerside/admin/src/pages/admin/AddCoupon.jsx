@@ -57,13 +57,13 @@ const AddCoupon = ({ token }) => {
       let response;
       if (editingCoupon) {
         response = await axios.put(
-          `http://localhost:5000/api/coupons/${editingCoupon._id}`,
+          `https://myinnerside.com/api/coupons/${editingCoupon._id}`,
           payload,
           { headers: { token } }
         );
       } else {
         response = await axios.post(
-          'http://localhost:5000/api/coupons/add',
+          'https://myinnerside.com/api/coupons/add',
           payload,
           { headers: { token } }
         );

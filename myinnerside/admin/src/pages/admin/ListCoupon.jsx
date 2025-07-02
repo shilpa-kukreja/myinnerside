@@ -12,7 +12,7 @@ const ListCoupon = ({ token }) => {
 
   const fetchCoupons = async () => {
     try {
-      const { data } = await axios.get("http://localhost:5000/api/coupons/get", {
+      const { data } = await axios.get("https://myinnerside.com/api/coupons/get", {
         headers: { token },
       });
       setCoupons(data.coupons);
@@ -25,7 +25,7 @@ const ListCoupon = ({ token }) => {
 
   const toggleStatus = async (id) => {
     try {
-      const { data } = await axios.put(`http://localhost:5000/api/coupons/${id}/toggle`, {}, {
+      const { data } = await axios.put(`https://myinnerside.com/api/coupons/${id}/toggle`, {}, {
         headers: { token },
       });
 
@@ -42,7 +42,7 @@ const ListCoupon = ({ token }) => {
   const deleteCoupon = async (id) => {
     if (!window.confirm("Are you sure you want to delete this coupon?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/coupons/${id}`, {
+      await axios.delete(`https://myinnerside.com/api/coupons/${id}`, {
         headers: { token },
       });
       setCoupons((prev) => prev.filter((c) => c._id !== id));

@@ -38,7 +38,7 @@ const AdminContextProvider = (props ) => {
 
       const getBookedSlotss = async (selectedDate) => {
       try {
-        const response = await fetch(`http://localhost:5000/api/appointments/booked-slots`, {
+        const response = await fetch(`https://myinnerside.com/api/appointments/booked-slots`, {
           method: 'GET',
         
         });
@@ -61,12 +61,12 @@ const AdminContextProvider = (props ) => {
     };
 
      const getDisabledSlots = async (date) => {
-    const res = await axios.get(`http://localhost:5000/api/slots?date=${date}`);
+    const res = await axios.get(`https://myinnerside.com/api/slots?date=${date}`);
     return res.data.disabled;
   };
 
   const toggleSlotAvailability = async (date, slot) => {
-    await axios.post('http://localhost:5000/api/slots/toggle', { date, slot });
+    await axios.post('https://myinnerside.com/api/slots/toggle', { date, slot });
   };
 
 

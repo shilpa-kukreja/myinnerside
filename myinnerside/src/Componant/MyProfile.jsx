@@ -178,7 +178,7 @@ const MyProfile = () => {
         }
 
         try {
-            const res = await fetch('http://localhost:5000/api/auth/edit', {
+            const res = await fetch('https://myinnerside.com/api/auth/edit', {
                 method: 'PATCH',
                 headers: {
                     Authorization: `${token}`,
@@ -222,7 +222,7 @@ const MyProfile = () => {
     const handleCancelAppointments = async (index) => {
         const appointmentId = appointments[index]._id;
         try {
-            const response = await axios.post('http://localhost:5000/api/appointments/cancel', {
+            const response = await axios.post('https://myinnerside.com/api/appointments/cancel', {
                 appointmentId: appointmentId
             });
             if (response.data) {
@@ -239,7 +239,7 @@ const MyProfile = () => {
     const handlecancelbooking = async (index) => {
         const appointmentId = lifeCoachBookingList[index]._id;
         try {
-            const response = await axios.post('http://localhost:5000/api/lifecoach/cancel', {
+            const response = await axios.post('https://myinnerside.com/api/lifecoach/cancel', {
                 bookingId: appointmentId
             });
             if (response.data) {
@@ -278,7 +278,7 @@ const MyProfile = () => {
         const appointmentId = appointments[rescheduleIndex]._id;
 
         try {
-            const response = await axios.post('http://localhost:5000/api/appointments/reschedule', {
+            const response = await axios.post('https://myinnerside.com/api/appointments/reschedule', {
                 appointmentId: appointmentId,
                 newDate: rescheduleData.date,
                 newTimeSlot: rescheduleData.slot
@@ -399,7 +399,7 @@ const MyProfile = () => {
                                                         image
                                                             ? image.startsWith('data:')
                                                                 ? image
-                                                                : `http://localhost:5000${image}`
+                                                                : `https://myinnerside.com${image}`
                                                             : '/default-profile.png'
                                                     }
                                                     alt="userprofile"

@@ -20,7 +20,7 @@ export const VideoCallProvider = ({ children }) => {
   const remoteVideoRef = useRef(null);
 
   const initializeSocket = (token) => {
-    socketRef.current = io('http://localhost:5000', {
+    socketRef.current = io('https://myinnerside.com', {
       auth: { token },
     });
 
