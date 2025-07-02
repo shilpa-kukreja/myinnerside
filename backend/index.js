@@ -1,13 +1,14 @@
+import fs from 'fs';
+import https from 'https';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import jwt from 'jsonwebtoken';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import https from 'https';
 import { Server as SocketIOServer } from 'socket.io';
-import fs from 'fs';
+
 
 // Routes imports (assuming these exist in your project)
 import authRouter from './routes/authRoute.js';
