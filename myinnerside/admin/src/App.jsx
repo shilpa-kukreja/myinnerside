@@ -12,7 +12,7 @@ import AddTeam from './pages/admin/AddTeam';
 import ListTeam from './pages/admin/ListTeam';
 import AdminContacts from './pages/admin/AdminContacts';
 import AdminAppointments from './pages/admin/AdminAppointments';
-import LifeCoachAppointmentlist from './pages/admin/lifeCoachAppointmentlist';
+import LifeCoachAppointmentlist from './pages/admin/LifeCoachAppointmentlist';
 import AdminUsers from './pages/admin/AdminUsers';
 import AddCoupon from './pages/admin/AddCoupon';
 import ListCoupon from './pages/admin/ListCoupon';
