@@ -22,6 +22,7 @@ export const VideoCallProvider = ({ children }) => {
   const initializeSocket = (token) => {
     socketRef.current = io('https://myinnerside.com', {
       auth: { token },
+      transports: ['websocket'],
     });
 
     socketRef.current.on('connect', () => {

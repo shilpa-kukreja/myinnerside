@@ -5,7 +5,7 @@ import cors from 'cors';
 import jwt from 'jsonwebtoken';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import http from 'http';
+import https from 'https';
 import { Server as SocketIOServer } from 'socket.io';
 
 // Routes imports (assuming these exist in your project)
@@ -28,7 +28,13 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 
 // Initialize Express and HTTP server
 const app = express();
-const server = http.createServer(app);
+
+const options = {
+  key: fs.readFileSync('/etc/letsencrypt/live/myinnerside.com/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/myinnerside.com/fullchain.pem'),
+};
+
+const server = https.createServer(options, app);
 
 // Middleware
 app.use(express.json());
@@ -37,10 +43,12 @@ app.use(cors({
   credentials: true
 }));
 
+
+
 // Socket.IO Configuration
 const io = new SocketIOServer(server, {
   cors: {
-     origin: '*',
+     origin: 'https://myinnerside.com',
     methods: ['GET', 'POST'],
     credentials: true
   }

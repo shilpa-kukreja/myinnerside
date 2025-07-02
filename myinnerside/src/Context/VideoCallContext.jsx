@@ -22,7 +22,13 @@ export const VideoCallProvider = ({ children }) => {
   const initializeSocket = (token) => {
     socketRef.current = io('https://myinnerside.com', {
       auth: { token },
-    });
+      transports: ['websocket'], 
+      
+
+    }
+  );
+
+  console.log( socketRef.current)
 
     socketRef.current.on('connect', () => {
       console.log('Connected to signaling server');
@@ -32,16 +38,19 @@ export const VideoCallProvider = ({ children }) => {
       console.error('Socket error:', error);
       setCallStatus('error');
     });
+
+
+    
   };
 
   const startCall = async (appointmentId, token) => {
    
     setAppointmentId(appointmentId);
     setCallStatus('connecting');
-    console.log('initialized Socket before' , { soket : socketRef.current , appointmentId, token} );
+    
     if (!socketRef.current) {
       initializeSocket(token);
-      console.log('initialized Socket');
+     
     }
 
    try {
