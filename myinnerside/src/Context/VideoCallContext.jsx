@@ -35,6 +35,7 @@ export const VideoCallProvider = ({ children }) => {
   };
 
   const startCall = async (appointmentId, token) => {
+    console.log('connecting to signaling server');
     setAppointmentId(appointmentId);
     setCallStatus('connecting');
     
