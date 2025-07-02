@@ -81,7 +81,11 @@ const VideoCall = () => {
     };
 
   const toggleVideo = async () => {
-    if (!localStream) return;
+    if (!localStream) {
+        
+        handleStartCall(id);
+        return;
+    };
 
     const videoTracks = localStream.getVideoTracks();
     const videoTrack = videoTracks[0];
