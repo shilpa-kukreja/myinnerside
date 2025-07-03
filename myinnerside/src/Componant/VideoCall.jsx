@@ -80,17 +80,16 @@ const VideoCall = () => {
         setCallDuration(0);
     };
 
-  const toggleVideo = async () => {
+const toggleVideo = async () => {
     if (!localStream) {
-        
         handleStartCall(id);
         return;
-    };
+    }
 
     const videoTracks = localStream.getVideoTracks();
     const videoTrack = videoTracks[0];
 
-    if (videoTrack.enabled) {
+    if (videoTrack && videoTrack.enabled) {
         // 🔇 Turn video OFF
         videoTrack.enabled = false;
         setIsVideoOn(false);
@@ -101,11 +100,12 @@ const VideoCall = () => {
             const newVideoTrack = newStream.getVideoTracks()[0];
 
             // Remove the old track and add the new one to the existing stream
-            localStream.removeTrack(videoTrack);
-            localStream.addTrack(newVideoTrack);
+            if (videoTrack) {
+                localStream.removeTrack(videoTrack);
+                videoTrack.stop();
+            }
 
-            // Stop the old video track
-            videoTrack.stop();
+            localStream.addTrack(newVideoTrack);
 
             // Update the video element
             if (localVideoRef.current) {
@@ -114,11 +114,16 @@ const VideoCall = () => {
             }
 
             setIsVideoOn(true);
+
+            // ✅ Start the call again when video is turned ON
+            handleStartCall(id);
+
         } catch (err) {
             console.error("Error restarting video:", err);
         }
     }
 };
+
 
 
     useEffect(() => {
