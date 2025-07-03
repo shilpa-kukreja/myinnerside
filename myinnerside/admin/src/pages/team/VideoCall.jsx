@@ -84,18 +84,50 @@ const VideoCall = () => {
         setCallDuration(0);
     };
 
-    const toggleVideo = () => {
-        if (localStream) {
-            const videoTracks = localStream.getVideoTracks();
-            if (videoTracks.length > 0) {
-                const newState = !videoTracks[0].enabled;
-                videoTracks.forEach(track => {
-                    track.enabled = newState;
-                });
-                setIsVideoOn(newState);
+    const toggleVideo = async () => {
+    if (!localStream) {
+        handleStartCall(id);
+        return;
+    }
+
+    const videoTracks = localStream.getVideoTracks();
+    const videoTrack = videoTracks[0];
+
+    if (videoTrack && videoTrack.enabled) {
+        // 🔇 Turn video OFF
+        videoTrack.enabled = false;
+        setIsVideoOn(false);
+    } else {
+        try {
+            // ✅ Replace with a new video track (turning ON)
+            const newStream = await navigator.mediaDevices.getUserMedia({ video: true });
+            const newVideoTrack = newStream.getVideoTracks()[0];
+
+            // Remove the old track and add the new one to the existing stream
+            if (videoTrack) {
+                localStream.removeTrack(videoTrack);
+                videoTrack.stop();
             }
+
+            localStream.addTrack(newVideoTrack);
+
+            // Update the video element
+            if (localVideoRef.current) {
+                localVideoRef.current.srcObject = null;
+                localVideoRef.current.srcObject = localStream;
+            }
+
+            setIsVideoOn(true);
+
+            // ✅ Start the call again when video is turned ON
+            handleStartCall(id);
+
+        } catch (err) {
+            console.error("Error restarting video:", err);
         }
-    };
+    }
+};
+
     useEffect(() => {
         // handleStartCall(id);
     }, [id]);
