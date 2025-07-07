@@ -7,7 +7,7 @@ userId: { type: mongoose.Schema.Types.ObjectId, ref: 'user', required: true },
   gender: { type: String, required: true },
   phone: { type: String, required: true },
   language: { type: String, required: true },
-  bookingReason: { type: String, required: true },
+  bookingReason: { type: [String], required: true },
   assignedTeamMember: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Team'
