@@ -366,9 +366,9 @@ const MyProfile = () => {
                                         <LuNotebookPen className='icon' /> My Appointment
                                     </li>
 
-                                    <li className={activeTab === 'addPaymentDetail' ? 'active' : ''} onClick={() => setActiveTab('addPaymentDetail')} >
+                                    {/* <li className={activeTab === 'addPaymentDetail' ? 'active' : ''} onClick={() => setActiveTab('addPaymentDetail')} >
                                         <FaCcMastercard className='icon' /> Add Payment Details
-                                    </li>
+                                    </li> */}
 
                                     <li className={activeTab === 'lifeCoachAppointment' ? 'active' : ''} onClick={() => setActiveTab('lifeCoachAppointment')}>
                                         <LuNotebookPen className='icon' /> LifeCoach Appointment
@@ -539,7 +539,7 @@ const MyProfile = () => {
                                 </div>
                             )}
 
-                            {activeTab === 'addPaymentDetail' && (
+                            {/* {activeTab === 'addPaymentDetail' && (
                                 <div className="payment_details">
                                     <div className="payment-container">
                                         <div className={`card-preview ${cardInfo.isFlipped ? "flipped" : ""}`}>
@@ -665,7 +665,7 @@ const MyProfile = () => {
                                         </table>
                                     </div>
                                 </div>
-                            )}
+                            )} */}
 
                             {activeTab === 'lifeCoachAppointment' && (
                                 <div className="appointment">

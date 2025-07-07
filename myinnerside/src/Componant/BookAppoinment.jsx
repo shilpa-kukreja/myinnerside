@@ -25,6 +25,16 @@ const parseTimeTo24Hour = (timeStr) => {
     return { hours, minutes };
 };
 
+const reasons = [
+    { label: 'My Happiness', value: 'my_happiness' },
+    { label: 'My Sorrow', value: 'my_sorrow' },
+    { label: 'Self-Confession', value: 'self-confession' },
+    { label: 'Friendly Suggestion', value: 'friendly_suggestion' },
+    { label: 'No reason, Just want to talk to someone', value: 'no_reason' },
+    { label: 'I Don’t want to Disclose', value: 'don’t_disclose' },
+
+];
+
 const BookAppointment = () => {
     const {
         setShowAppointmentForm, selectedDate, setSelectedDate,
@@ -32,11 +42,29 @@ const BookAppointment = () => {
         formData, setFormData, userInfo, getBookedSlots,
         validCoupon, discount, setDiscount, getBookedSlotss,
         token, finalPrice, setFinalPrice, originalPrice, setOriginalPrice,
-        setToken,getBookedSlotsss
+        setToken, getBookedSlotsss
     } = useContext(Context);
 
     const [bookedSlots, setBookedSlots] = useState([]);
     const now = new Date();
+
+    const handleCheckboxChange = (e) => {
+        const { value, checked } = e.target;
+        let updatedReasons = [...formData.bookingReason];
+
+        if (checked) {
+            updatedReasons.push(value);
+        } else {
+            updatedReasons = updatedReasons.filter(reason => reason !== value);
+        }
+
+        setFormData({ ...formData, bookingReason: updatedReasons });
+    };
+
+    const handleChanges = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
     const handleChange = async (e) => {
         const { name, value, type, checked } = e.target;
@@ -154,7 +182,7 @@ const BookAppointment = () => {
 
                     const verifyRes = await fetch('https://myinnerside.com/api/payment/verify-payment', {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json',Authorization: `${token}`, },
+                        headers: { 'Content-Type': 'application/json', Authorization: `${token}`, },
                         body: JSON.stringify({
                             razorpay_payment_id,
                             razorpay_order_id,
@@ -235,17 +263,17 @@ const BookAppointment = () => {
     //     }
     // };
 
-  useEffect(() => {
-    const fetchSlots = async () => {
-        if (!selectedDate) return;
-        const booked = await getBookedSlotss(selectedDate);
-        const adminbooked = await getBookedSlotsss(selectedDate);
-        console.log("Booked Slotssss:", booked, adminbooked);
-        setBookedSlots([...booked, ...adminbooked]); 
-    };
+    useEffect(() => {
+        const fetchSlots = async () => {
+            if (!selectedDate) return;
+            const booked = await getBookedSlotss(selectedDate);
+            const adminbooked = await getBookedSlotsss(selectedDate);
+            console.log("Booked Slotssss:", booked, adminbooked);
+            setBookedSlots([...booked, ...adminbooked]);
+        };
 
-    fetchSlots();
-}, [selectedDate]);
+        fetchSlots();
+    }, [selectedDate]);
 
 
 
@@ -329,10 +357,10 @@ const BookAppointment = () => {
                             <input type="checkbox" name="hideIdentity" checked={formData.hideIdentity} onChange={handleChange} />
                             Hide My Identity
                         </label>
-                        <label>
+                        {/* <label>
                             <input type="checkbox" name="usePreviousDetails" checked={formData.usePreviousDetails} onChange={handleChange} />
                             Use Previous Card Details
-                        </label>
+                        </label> */}
                     </div>
 
                     <form className='appointment_form'>
@@ -340,7 +368,7 @@ const BookAppointment = () => {
                             <label>Number</label>
                             <input type="tel" name="phone" pattern="\d{10}" maxLength="10" autoComplete='off' className='form_control' placeholder='Contact Number*' value={formData.phone} onChange={handleChange} />
                         </div>
-                        <div className="form_group w-50">
+                        <div className="form_group w-100">
                             <label>Language Preference</label>
                             <select name="language" className='form_control' required value={formData.language} onChange={handleChange}>
                                 <option value="">Choose Language </option>
@@ -348,21 +376,97 @@ const BookAppointment = () => {
                                 <option value="hindi">Hindi</option>
                             </select>
                         </div>
+                        <div className="form-group w-100">
+                            <label className="form-label">
+                                Do you want your Saarthi (Person who takes the session) to be in face to face conversation with you?
+                            </label>
+                            <div className="radio-group">
+                                <label className="radio-label">
+                                    <input
+                                        type="radio"
+                                        name="cameraoption"
+                                        value="yes"
+                                        checked={formData.cameraoption === 'yes'}
+                                        onChange={handleChanges}
+                                        required
+                                    />
+                                    YES, Camera ON
+                                </label>
+                                <label className="radio-label">
+                                    <input
+                                        type="radio"
+                                        name="cameraoption"
+                                        value="no"
+                                        checked={formData.cameraoption === 'no'}
+                                        onChange={handleChanges}
+                                        required
+                                    />
+                                    NO, Camera OFF
+                                </label>
+                            </div>
+                        </div>
 
-                        <div className="form_group w-50">
-                            <label>Select a reason to talk</label>
-                            <select name="bookingReason" className='form_control' required value={formData.bookingReason} onChange={handleChange}>
-                                <option value="">Choose a topic</option>
-                                <option value="relationship">Relationship Issues</option>
-                                <option value="stress">Mental Stress</option>
-                                <option value="loneliness">Loneliness</option>
-                                <option value="work_pressure">Work Pressure</option>
-                                <option value="anxiety">Anxiety & Overthinking</option>
-                                <option value="low_confidence">Low Confidence</option>
-                                <option value="family_conflict">Family Conflict</option>
-                                <option value="secret_sharing">Secret Sharing</option>
-                                <option value="other">Others</option>
-                            </select>
+
+
+                        <div className="form-group w-100">
+                            <label className="form-label">
+                               Do you have any gender preference for this particular session?
+                                 <br/>
+                                <span>(Preference is no a guaranteed, Subject to availability)</span>
+                            </label>
+                            <div className="radio-group">
+                                <label className="radio-label">
+                                    <input
+                                        type="radio"
+                                        name="genderoption"
+                                        value="male"
+                                        checked={formData.genderoption === 'male'}
+                                        onChange={handleChanges}
+                                        required
+                                    />
+                                    Male
+                                </label>
+                                <label className="radio-label">
+                                    <input
+                                        type="radio"
+                                        name="genderoption"
+                                        value="female"
+                                        checked={formData.genderoption === 'female'}
+                                        onChange={handleChanges}
+                                        required
+                                    />
+                                    Female
+                                </label>
+                                <label className="radio-label">
+                                    <input
+                                        type="radio"
+                                        name="genderoption"
+                                        value="anyone"
+                                        checked={formData.genderoption === 'anyone'}
+                                        onChange={handleChanges}
+                                        required
+                                    />
+                                    Anyone Assigned
+                                </label>
+                            </div>
+                        </div>
+
+                        <div className="form-group w-50">
+                            <label className="form-label">Select reason(s) to talk</label>
+                            <div className="checkbox-group">
+                                {reasons.map((reason) => (
+                                    <label key={reason.value} className="checkbox-label">
+                                        <input
+                                            type="checkbox"
+                                            name="bookingReason"
+                                            value={reason.value}
+                                            checked={formData.bookingReason.includes(reason.value)}
+                                            onChange={handleCheckboxChange}
+                                        />
+                                        {reason.label}
+                                    </label>
+                                ))}
+                            </div>
                         </div>
 
                         <div className="form_group apply_coupon w-100">
