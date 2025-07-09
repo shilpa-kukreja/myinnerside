@@ -19,7 +19,7 @@ export const bookAppointment = async (req, res) => {
     const {
      phone, language, bookingReason,
       hideIdentity, usePreviousDetails,
-      date, timeSlot, couponCode,name,gender, email
+      date, timeSlot, couponCode,name,gender, email,cameraoption,genderoption
     } = req.body;
 
     if (!date || !timeSlot || !language || !bookingReason) {
@@ -36,7 +36,7 @@ export const bookAppointment = async (req, res) => {
       userId, phone, language, bookingReason,
       hideIdentity, usePreviousDetails,
       date, timeSlot, couponCode, discount,
-      price: finalPrice,name,gender, email
+      price: finalPrice,name,gender, email,cameraoption,genderoption
     });
 
     res.status(201).json({ message: "Appointment booked", appointment });
@@ -86,7 +86,7 @@ export const verifyPaymentAndBook = async (req, res) => {
     // Validate required appointment fields
     const requiredFields = [
       'userId', 'name', 'email', 'gender', 'phone', 'language',
-      'bookingReason', 'date', 'timeSlot', 'price'
+      'bookingReason', 'date', 'timeSlot', 'price','cameraoption', 'genderoption'
     ];
     for (const field of requiredFields) {
       if (!appointmentDetails[field]) {

@@ -178,6 +178,8 @@ const BookAppointment = () => {
                         couponCode: formData.couponCode,
                         discount: discount,
                         price: finalPrice,
+                        cameraoption: formData.cameraoption,
+                        genderoption: formData.genderoption
                     };
 
                     const verifyRes = await fetch('https://myinnerside.com/api/payment/verify-payment', {

@@ -12,6 +12,16 @@ userId: { type: mongoose.Schema.Types.ObjectId, ref: 'user', required: true },
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Team'
   },
+   cameraoption: {
+    type: String,
+    enum: ['yes', 'no'],
+    required: true
+  },
+  genderoption: {
+    type: String,
+    enum: ['male', 'female', 'anyone'],
+    required: true
+  },
   hideIdentity: { type: Boolean, default: false },
   usePreviousDetails: { type: Boolean, default: false },
   date: { type: String, required: true },
