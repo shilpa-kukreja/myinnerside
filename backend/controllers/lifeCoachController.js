@@ -153,13 +153,17 @@ export const removeliofecoach= async (req, res) => {
       return res.status(404).json({ message: 'Appointment not found' });
     }
 
-    await appointment.remove();
-    res.json({ message: 'Appointment removed successfully' });
+    await lifeCoshModel.findByIdAndDelete(req.params.id); 
+    res.status(200).json({ message: 'Appointment removed successfully' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server Error' });
   }
 };
+
+
+
+
 
 
 
