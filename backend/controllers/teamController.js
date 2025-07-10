@@ -25,8 +25,8 @@ export const teamlogin = async (req, res) => {
     }
 
     // Password comparison
-    const isMatch = password === team.password; // Plain text comparison (not recommended for production)
-    // For production, use: const isMatch = await bcrypt.compare(password, team.password);
+    // const isMatch = password === team.password; 
+    const isMatch = await bcrypt.compare(password, team.password);
 
     if (!isMatch) {
       return res.status(401).json({ 
@@ -65,10 +65,34 @@ export const teamlogin = async (req, res) => {
 
 
 
+// export const createTeam = async (req, res) => {
+//   try {
+//     const imagePath = req.file ? `/uploads/team/${req.file.filename}` : "";
+//     const team = await teamModel.create({ ...req.body, image: imagePath });
+//     res.status(201).json({ success: true, team });
+//   } catch (error) {
+//     res.status(400).json({ success: false, message: error.message });
+//   }
+// };
+
 export const createTeam = async (req, res) => {
   try {
+    const { password } = req.body;
+
+    
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    
     const imagePath = req.file ? `/uploads/team/${req.file.filename}` : "";
-    const team = await teamModel.create({ ...req.body, image: imagePath });
+
+    
+    const team = await teamModel.create({
+      ...req.body,
+      password: hashedPassword,
+      image: imagePath,
+    });
+
     res.status(201).json({ success: true, team });
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });
@@ -107,6 +131,55 @@ export const deleteTeamMember = async (req, res) => {
 };
 
 
+// export const updateTeam = async (req, res) => {
+//   try {
+//     const { 
+//       name, 
+//       aliasname, 
+//       email, 
+//       password, 
+//       number, 
+//       permission, 
+//       userRole, 
+//       dob, 
+//       gender 
+//     } = req.body;
+
+//     const updateData = { 
+//       name, 
+//       aliasname, 
+//       email, 
+//       password, 
+//       number, 
+//       permission, 
+//       userRole, 
+//       dob, 
+//       gender 
+//     };
+
+//     if (req.file) {
+//       updateData.image = `/uploads/team/${req.file.filename}`;
+//       // Optionally delete old image here if needed
+//     }
+
+//     const updated = await teamModel.findByIdAndUpdate(
+//       req.params.id,
+//       updateData,
+//       { new: true, runValidators: true }
+//     );
+
+//     if (!updated) {
+//       return res.status(404).json({ success: false, message: 'Team member not found' });
+//     }
+
+//     res.status(200).json({ success: true, team: updated });
+//   } catch (error) {
+//     res.status(400).json({ success: false, message: error.message });
+//   }
+// };
+
+
+
 export const updateTeam = async (req, res) => {
   try {
     const { 
@@ -125,7 +198,6 @@ export const updateTeam = async (req, res) => {
       name, 
       aliasname, 
       email, 
-      password, 
       number, 
       permission, 
       userRole, 
@@ -133,9 +205,17 @@ export const updateTeam = async (req, res) => {
       gender 
     };
 
+    // Hash new password only if provided
+    if (password) {
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(password, salt);
+      updateData.password = hashedPassword;
+    }
+
+    // Update image if a new file is uploaded
     if (req.file) {
       updateData.image = `/uploads/team/${req.file.filename}`;
-      // Optionally delete old image here if needed
+      // Optional: delete old image from file system if needed
     }
 
     const updated = await teamModel.findByIdAndUpdate(
@@ -153,6 +233,3 @@ export const updateTeam = async (req, res) => {
     res.status(400).json({ success: false, message: error.message });
   }
 };
-
-
-
