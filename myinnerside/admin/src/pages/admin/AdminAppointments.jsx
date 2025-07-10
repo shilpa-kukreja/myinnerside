@@ -39,37 +39,78 @@ const AdminAppointments = () => {
     fetchTeams();
   }, [currentPage, searchTerm]);
 
+  // const fetchAppointments = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const { data } = await axios.get(`https://myinnerside.com/api/appointments/all`, {
+  //       params: {
+  //         page: currentPage,
+  //         limit: appointmentsPerPage,
+  //         search: searchTerm
+  //       }
+  //     });
+  //     setAppointments(data.appointments);
+  //     setTotalPages(data.totalPages);
+  //     setTotalAppointments(data.totalAppointments);
+      
+  //     // Initialize assigned team data
+  //     const initialAssigned = {};
+  //     data.appointments.forEach(app => {
+  //       if (app.assignedTeamMember) {
+  //         initialAssigned[app._id] = app.assignedTeamMember;
+  //       }
+  //     });
+  //     setAssignedTeam(initialAssigned);
+      
+  //     setLoading(false);
+  //     setRefreshing(false);
+  //   } catch (error) {
+  //     toast.error('Failed to fetch appointments');
+  //     setLoading(false);
+  //     setRefreshing(false);
+  //   }
+  // };
+
+
+
   const fetchAppointments = async () => {
-    try {
-      setLoading(true);
-      const { data } = await axios.get(`https://myinnerside.com/api/appointments/all`, {
-        params: {
-          page: currentPage,
-          limit: appointmentsPerPage,
-          search: searchTerm
-        }
-      });
-      setAppointments(data.appointments);
-      setTotalPages(data.totalPages);
-      setTotalAppointments(data.totalAppointments);
-      
-      // Initialize assigned team data
-      const initialAssigned = {};
-      data.appointments.forEach(app => {
-        if (app.assignedTeamMember) {
-          initialAssigned[app._id] = app.assignedTeamMember;
-        }
-      });
-      setAssignedTeam(initialAssigned);
-      
-      setLoading(false);
-      setRefreshing(false);
-    } catch (error) {
-      toast.error('Failed to fetch appointments');
-      setLoading(false);
-      setRefreshing(false);
-    }
-  };
+  try {
+    setLoading(true);
+    const { data } = await axios.get(`https://myinnerside.com/api/appointments/all`, {
+      params: {
+        page: currentPage,
+        limit: appointmentsPerPage,
+        search: searchTerm
+      }
+    });
+
+    setAppointments(data.appointments);
+    setTotalPages(data.totalPages);
+    setTotalAppointments(data.totalAppointments);
+
+    // Reliable assignment map from fully populated data
+    const initialAssigned = {};
+    data.appointments.forEach(app => {
+      if (
+        app.assignedTeamMember &&
+        typeof app.assignedTeamMember === 'object' &&
+        app.assignedTeamMember.name &&
+        app.assignedTeamMember.email
+      ) {
+        initialAssigned[app._id] = app.assignedTeamMember;
+      }
+    });
+    setAssignedTeam(initialAssigned);
+
+    setLoading(false);
+    setRefreshing(false);
+  } catch (error) {
+    toast.error('Failed to fetch appointments');
+    setLoading(false);
+    setRefreshing(false);
+  }
+};
+
 
   const fetchTeams = async () => {
     try {
