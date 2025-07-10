@@ -196,39 +196,39 @@ export const cancelAppointment = async (req, res) => {
 
 
 
-export const getAllapppointments= async (req, res) => {
-  try {
-    const { page = 1, limit = 10, search = '' } = req.query;
+// export const getAllapppointments= async (req, res) => {
+//   try {
+//     const { page = 1, limit = 10, search = '' } = req.query;
     
-    const query = {
-      $or: [
-        { name: { $regex: search, $options: 'i' } },
-        { email: { $regex: search, $options: 'i' } },
-        { phone: { $regex: search, $options: 'i' } },
-        { bookingReason: { $regex: search, $options: 'i' } }
-      ]
-    };
+//     const query = {
+//       $or: [
+//         { name: { $regex: search, $options: 'i' } },
+//         { email: { $regex: search, $options: 'i' } },
+//         { phone: { $regex: search, $options: 'i' } },
+//         { bookingReason: { $regex: search, $options: 'i' } }
+//       ]
+//     };
 
-    const appointments = await appointmentModel.find(query)
-      .populate('userId', 'name email')
-      .sort({ createdAt: -1 })
-      .limit(limit * 1)
-      .skip((page - 1) * limit)
-      .exec();
+//     const appointments = await appointmentModel.find(query)
+//       .populate('userId', 'name email')
+//       .sort({ createdAt: -1 })
+//       .limit(limit * 1)
+//       .skip((page - 1) * limit)
+//       .exec();
 
-    const count = await appointmentModel.countDocuments(query);
+//     const count = await appointmentModel.countDocuments(query);
 
-    res.json({
-      appointments,
-      totalPages: Math.ceil(count / limit),
-      currentPage: page,
-      totalAppointments: count
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server Error' });
-  }
-};
+//     res.json({
+//       appointments,
+//       totalPages: Math.ceil(count / limit),
+//       currentPage: page,
+//       totalAppointments: count
+//     });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: 'Server Error' });
+//   }
+// };
 
 
 // export const removeappointment= async (req, res) => {
@@ -246,6 +246,43 @@ export const getAllapppointments= async (req, res) => {
 //     res.status(500).json({ message: 'Server Error' });
 //   }
 // };
+
+
+
+export const getAllapppointments = async (req, res) => {
+  try {
+    const { page = 1, limit = 10, search = '' } = req.query;
+
+    const query = {
+      $or: [
+        { name: { $regex: search, $options: 'i' } },
+        { email: { $regex: search, $options: 'i' } },
+        { phone: { $regex: search, $options: 'i' } },
+        { bookingReason: { $regex: search, $options: 'i' } }
+      ]
+    };
+
+    const appointments = await appointmentModel.find(query)
+      .populate('userId', 'name email')
+      .populate('assignedTeamMember', 'name email number') 
+      .sort({ createdAt: -1 })
+      .limit(limit * 1)
+      .skip((page - 1) * limit)
+      .exec();
+
+    const count = await appointmentModel.countDocuments(query);
+
+    res.json({
+      appointments,
+      totalPages: Math.ceil(count / limit),
+      currentPage: Number(page),
+      totalAppointments: count
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
 
 
 
