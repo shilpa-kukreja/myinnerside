@@ -231,21 +231,39 @@ export const getAllapppointments= async (req, res) => {
 };
 
 
-export const removeappointment= async (req, res) => {
+// export const removeappointment= async (req, res) => {
+//   try {
+//     const appointment = await appointmentModel.findById(req.params.id);
+    
+//     if (!appointment) {
+//       return res.status(404).json({ message: 'Appointment not found' });
+//     }
+
+//     await appointment.remove();
+//     res.json({ message: 'Appointment removed' });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: 'Server Error' });
+//   }
+// };
+
+
+
+export const removeappointment = async (req, res) => {
   try {
     const appointment = await appointmentModel.findById(req.params.id);
-    
+
     if (!appointment) {
       return res.status(404).json({ message: 'Appointment not found' });
     }
 
-    await appointment.remove();
-    res.json({ message: 'Appointment removed' });
+    await appointmentModel.findByIdAndDelete(req.params.id); 
+    res.status(200).json({ message: 'Appointment removed successfully' });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server Error' });
+    console.error('Error deleting appointment:', error);
+    res.status(500).json({ message: 'Server Error', error: error.message });
   }
-};
+}
 
 
 
