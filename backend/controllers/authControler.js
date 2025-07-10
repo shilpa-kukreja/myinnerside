@@ -7,6 +7,7 @@ import crypto from 'crypto';
 
 
 
+
 export const register = async (req, res) => {
 
     const {email , password,  name , aliasName, contact, dob, gender } = req.body;
@@ -60,7 +61,7 @@ export const forgotPassword=async(req,res)=>{
       
           await user.save();
 
-          const resetUrl = `http://localhost:5174/reset-password/${resetToken}`;
+          const resetUrl = `https://myinnerside.com/reset-password/${resetToken}`;
           const message = `You are receiving this email because you (or someone else) has requested a password reset. Please click the link to reset your password: \n\n ${resetUrl}`;
 
           await sendEmail({
@@ -201,13 +202,18 @@ export const removeUser= async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    await user.remove();
+    await UserModel.findByIdAndDelete(req.params.id); 
     res.json({ message: 'User removed successfully' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server Error' });
   }
 };
+
+
+
+
+
 
 
 
