@@ -631,10 +631,10 @@ const BookAppointment = () => {
                         }
 
                         if (
-                            data.coupon.maxDiscountAmount &&
+                            data.coupon.discount &&
                             data.discounttype === 'percentage'
                         ) {
-                            const maxDiscount = data.coupon.maxDiscountAmount;
+                            const maxDiscount = data.coupon.discount;
                             const actualDiscount = price * data.discount / 100;
                             if (actualDiscount > maxDiscount) {
                                 discountedPrice = price - maxDiscount;

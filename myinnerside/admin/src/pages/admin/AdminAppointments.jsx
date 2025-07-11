@@ -636,16 +636,16 @@ useEffect(() => {
                         <span className="font-medium">Price:</span>
                         <span>${selectedAppointment.price.toFixed(2)}</span>
                       </div>
-                      {selectedAppointment.discount > 0 && (
+                      {/* {selectedAppointment.discount > 0 && (
                         <div className="flex justify-between mb-2">
                           <span className="font-medium">Discount:</span>
                           <span className="text-red-500">-${selectedAppointment.discount.toFixed(2)}</span>
                         </div>
-                      )}
+                      )} */}
                       <div className="flex justify-between border-t border-gray-200 pt-2">
                         <span className="font-medium">Total:</span>
                         <span className="font-bold">
-                          ${(selectedAppointment.price - selectedAppointment.discount).toFixed(2)}
+                          ${(selectedAppointment.price).toFixed(2)}
                         </span>
                       </div>
                       {selectedAppointment.couponCode && (
