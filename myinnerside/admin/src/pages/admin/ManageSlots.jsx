@@ -5,7 +5,7 @@ import { AdminContext } from '../../context/AdminContext';
 import '../../assets/Css/Appointment.css';
 
 const timeSlots = [
-    "8:00AM - 8:55AM", "9:00AM - 9:55AM",
+   "6:00AM - 6:55AM", "7:00AM - 7:55AM", "8:00AM - 8:55AM", "9:00AM - 9:55AM",
     "11:00AM - 11:55AM", "12:00PM - 12:55PM", "1:00PM - 1:55PM",
     "2:00PM - 2:55PM", "3:00PM - 3:55PM", "4:00PM - 4:55PM",
     "6:00PM - 6:55PM", "7:00PM - 7:55PM", "8:00PM - 8:55PM", "9:00PM - 9:55PM",
