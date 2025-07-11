@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
   name: { type : String, required: true },
-  aliasName:  { type : String, required: true },
+  // aliasName:  { type : String, required: true },
+  aliasName: { type: String, default: '' },
   img : { type : String, default : null },
   email:  { type : String, required: true },
   contact:  { type : String, required: true },

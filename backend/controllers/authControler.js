@@ -18,7 +18,7 @@ export const register = async (req, res) => {
             return res.status(400).json({message : "User already exist"});
         }
         const hashedPassword = await bcrypt.hash(password, 10);
-        const user = new UserModel({email , password : hashedPassword , name , aliasName, contact, dob, gender });
+        const user = new UserModel({email , password : hashedPassword , name ,aliasName: aliasName && aliasName.trim() !== '' ? aliasName : "User", contact, dob, gender });
         const saveUser = await user.save();
         const token = jwt.sign({userId : saveUser._id}, process.env.JWT_SECRET, { expiresIn : '7d'});
         res.status(201).json({token : token, user});

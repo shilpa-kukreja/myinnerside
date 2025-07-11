@@ -3,6 +3,7 @@ import Appointment from "../models/appointmentModel.js";
 import crypto from 'crypto';
 import dotenv from 'dotenv';
 import appointmentModel from "../models/appointmentModel.js";
+import nodemailer from 'nodemailer';
 dotenv.config();
 
 
@@ -61,9 +62,49 @@ export const getBookedSlots = async (req, res) => {
 
 
 
+
+const generateAppointmentEmailHTML = (appointment) => {
+  return `
+    <div style="font-family: Arial, sans-serif; line-height: 1.6;">
+      <h2 style="color: #4A90E2;">🎉 Appointment Confirmed!</h2>
+      <p>Hi <strong>${appointment.name}</strong>,</p>
+      <p>Thank you for booking your session. Here are your details:</p>
+      <ul>
+        <li><strong>Date:</strong> ${appointment.date}</li>
+        <li><strong>Time Slot:</strong> ${appointment.timeSlot}</li>
+        <li><strong>Language:</strong> ${appointment.language}</li>
+        <li><strong>Reason:</strong> ${appointment.bookingReason}</li>
+        <li><strong>Gender Preference:</strong> ${appointment.genderoption}</li>
+        <li><strong>Camera Preference:</strong> ${appointment.cameraoption}</li>
+      </ul>
+      <p>We look forward to seeing you!</p>
+      <br/>
+      <p style="font-size: 0.9rem; color: #999;">– MyInnerSide Team</p>
+    </div>
+  `;
+};
+
+
+const sendAppointmentEmail = async (to, subject, html) => {
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+
+  await transporter.sendMail({
+    from: `"MyInnerSide" <${process.env.EMAIL_USER}>`,
+    to,
+    subject,
+    html,
+  });
+};
+
 export const verifyPaymentAndBook = async (req, res) => {
   try {
-     const userId = req.userId;
+    const userId = req.userId;
     const {
       razorpay_order_id,
       razorpay_payment_id,
@@ -71,22 +112,17 @@ export const verifyPaymentAndBook = async (req, res) => {
       appointmentDetails,
     } = req.body;
 
-     
     appointmentDetails.userId = userId;
 
-    // Debug logs
-    console.log('🧾 Request Body:', req.body);
-    console.log('🔑 RAZORPAY_KEY_SECRET:', process.env.RAZORPAY_KEY_SECRET);
-
-    // Validate required Razorpay fields
+    
     if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature) {
       return res.status(400).json({ message: 'Missing Razorpay payment details' });
     }
 
-    // Validate required appointment fields
+    
     const requiredFields = [
       'userId', 'name', 'email', 'gender', 'phone', 'language',
-      'bookingReason', 'date', 'timeSlot', 'price','cameraoption', 'genderoption'
+      'bookingReason', 'date', 'timeSlot', 'price', 'cameraoption', 'genderoption'
     ];
     for (const field of requiredFields) {
       if (!appointmentDetails[field]) {
@@ -94,35 +130,31 @@ export const verifyPaymentAndBook = async (req, res) => {
       }
     }
 
-
-    // Generate signature
+   
     const generatedSignature = crypto
       .createHmac('sha256', process.env.RAZORPAY_KEY_SECRET)
       .update(`${razorpay_order_id}|${razorpay_payment_id}`)
       .digest('hex');
 
-    console.log('🔐 Generated Signature:', generatedSignature);
-    console.log('🔏 Received Signature:', razorpay_signature);
-
     if (generatedSignature !== razorpay_signature) {
       return res.status(400).json({ message: 'Payment verification failed' });
     }
 
-    // Create appointment
-    try {
-      const appointment = await Appointment.create({ ...appointmentDetails });
-      return res.status(201).json({
-        message: '✅ Payment verified and appointment booked',
-        appointment,
-      });
-    } catch (createErr) {
-      console.error('❌ Error creating appointment:', createErr.message);
-      return res.status(500).json({
-        message: 'Failed to create appointment',
-        error: createErr.message,
-      });
-    }
+    
+    const appointment = await Appointment.create({ ...appointmentDetails });
 
+    
+    const htmlContent = generateAppointmentEmailHTML(appointment);
+    await sendAppointmentEmail(appointment.email, "✅ Your Appointment is Confirmed", htmlContent);
+
+    
+    const adminEmail = process.env.ADMIN_EMAIL || "admin@myinnerside.com";
+    await sendAppointmentEmail(adminEmail, `📥 New Appointment Booked - ${appointment.name}`, htmlContent);
+
+    res.status(201).json({
+      message: '✅ Payment verified and appointment booked',
+      appointment,
+    });
   } catch (err) {
     console.error('❌ Server Error:', err.message);
     res.status(500).json({
@@ -131,6 +163,80 @@ export const verifyPaymentAndBook = async (req, res) => {
     });
   }
 };
+
+
+
+
+// export const verifyPaymentAndBook = async (req, res) => {
+//   try {
+//      const userId = req.userId;
+//     const {
+//       razorpay_order_id,
+//       razorpay_payment_id,
+//       razorpay_signature,
+//       appointmentDetails,
+//     } = req.body;
+
+     
+//     appointmentDetails.userId = userId;
+
+//     // Debug logs
+//     console.log('🧾 Request Body:', req.body);
+//     console.log('🔑 RAZORPAY_KEY_SECRET:', process.env.RAZORPAY_KEY_SECRET);
+
+//     // Validate required Razorpay fields
+//     if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature) {
+//       return res.status(400).json({ message: 'Missing Razorpay payment details' });
+//     }
+
+//     // Validate required appointment fields
+//     const requiredFields = [
+//       'userId', 'name', 'email', 'gender', 'phone', 'language',
+//       'bookingReason', 'date', 'timeSlot', 'price','cameraoption', 'genderoption'
+//     ];
+//     for (const field of requiredFields) {
+//       if (!appointmentDetails[field]) {
+//         return res.status(400).json({ message: `Missing field in appointmentDetails: ${field}` });
+//       }
+//     }
+
+
+//     // Generate signature
+//     const generatedSignature = crypto
+//       .createHmac('sha256', process.env.RAZORPAY_KEY_SECRET)
+//       .update(`${razorpay_order_id}|${razorpay_payment_id}`)
+//       .digest('hex');
+
+//     console.log('🔐 Generated Signature:', generatedSignature);
+//     console.log('🔏 Received Signature:', razorpay_signature);
+
+//     if (generatedSignature !== razorpay_signature) {
+//       return res.status(400).json({ message: 'Payment verification failed' });
+//     }
+
+//     // Create appointment
+//     try {
+//       const appointment = await Appointment.create({ ...appointmentDetails });
+//       return res.status(201).json({
+//         message: '✅ Payment verified and appointment booked',
+//         appointment,
+//       });
+//     } catch (createErr) {
+//       console.error('❌ Error creating appointment:', createErr.message);
+//       return res.status(500).json({
+//         message: 'Failed to create appointment',
+//         error: createErr.message,
+//       });
+//     }
+
+//   } catch (err) {
+//     console.error('❌ Server Error:', err.message);
+//     res.status(500).json({
+//       message: 'Server error during payment verification',
+//       error: err.message,
+//     });
+//   }
+// };
 
 
 export const resduleAppointment = async (req, res) => {
