@@ -29,8 +29,8 @@ const AdminCouponClaims = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <div className="max-w-5xl mx-auto bg-white shadow-xl rounded-lg p-6">
+    <div className=" w-[100%] min-h-screen bg-gray-100 p-6">
+      <div className="  mx-auto bg-white shadow-xl rounded-lg p-6">
         <h1 className="text-2xl font-bold text-gray-800 mb-4">
           📋 Coupon Claim List
         </h1>
