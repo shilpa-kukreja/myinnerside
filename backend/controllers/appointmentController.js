@@ -65,21 +65,96 @@ export const getBookedSlots = async (req, res) => {
 
 const generateAppointmentEmailHTML = (appointment) => {
   return `
-    <div style="font-family: Arial, sans-serif; line-height: 1.6;">
-      <h2 style="color: #4A90E2;">🎉 Appointment Confirmed!</h2>
-      <p>Hi <strong>${appointment.name}</strong>,</p>
-      <p>Thank you for booking your session. Here are your details:</p>
-      <ul>
-        <li><strong>Date:</strong> ${appointment.date}</li>
-        <li><strong>Time Slot:</strong> ${appointment.timeSlot}</li>
-        <li><strong>Language:</strong> ${appointment.language}</li>
-        <li><strong>Reason:</strong> ${appointment.bookingReason}</li>
-        <li><strong>Gender Preference:</strong> ${appointment.genderoption}</li>
-        <li><strong>Camera Preference:</strong> ${appointment.cameraoption}</li>
-      </ul>
-      <p>We look forward to seeing you!</p>
-      <br/>
-      <p style="font-size: 0.9rem; color: #999;">– MyInnerSide Team</p>
+    <div style="font-family: 'Helvetica Neue', Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #444;">
+      <!-- Header -->
+      <table width="100%" cellspacing="0" cellpadding="0" style="background-color: #5D78FF; margin-bottom: 20px;">
+        <tr>
+          <td style="padding: 25px 20px; text-align: center;">
+            <h1 style="color: white; margin: 0; font-size: 24px;">Appointment Confirmed</h1>
+          </td>
+        </tr>
+      </table>
+
+      <!-- Greeting -->
+      <table width="100%" cellspacing="0" cellpadding="0" style="margin-bottom: 15px;">
+        <tr>
+          <td style="padding: 0 20px;">
+            <p style="font-size: 16px;">Hi <strong style="color: #5D78FF;">${appointment.name}</strong>,</p>
+            <p style="font-size: 16px;">Thank you for booking your session with MyInnerSide. Below are your appointment details:</p>
+          </td>
+        </tr>
+      </table>
+
+      <!-- Appointment Details -->
+      <table width="100%" cellspacing="0" cellpadding="0" style="margin-bottom: 25px; border-collapse: collapse;">
+        <tr>
+          <td style="padding: 15px 20px; background-color: #f8f9fa; border-bottom: 1px solid #e0e0e0;">
+            <strong>Date:</strong>
+          </td>
+          <td style="padding: 15px 20px; background-color: #f8f9fa; border-bottom: 1px solid #e0e0e0;">
+            ${appointment.date}
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 15px 20px; border-bottom: 1px solid #e0e0e0;">
+            <strong>Time Slot:</strong>
+          </td>
+          <td style="padding: 15px 20px; border-bottom: 1px solid #e0e0e0;">
+            ${appointment.timeSlot}
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 15px 20px; background-color: #f8f9fa; border-bottom: 1px solid #e0e0e0;">
+            <strong>Language:</strong>
+          </td>
+          <td style="padding: 15px 20px; background-color: #f8f9fa; border-bottom: 1px solid #e0e0e0;">
+            ${appointment.language}
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 15px 20px; border-bottom: 1px solid #e0e0e0;">
+            <strong>Reason:</strong>
+          </td>
+          <td style="padding: 15px 20px; border-bottom: 1px solid #e0e0e0;">
+            ${appointment.bookingReason}
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 15px 20px; background-color: #f8f9fa; border-bottom: 1px solid #e0e0e0;">
+            <strong>Gender Preference:</strong>
+          </td>
+          <td style="padding: 15px 20px; background-color: #f8f9fa; border-bottom: 1px solid #e0e0e0;">
+            ${appointment.genderoption}
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 15px 20px;">
+            <strong>Camera Preference:</strong>
+          </td>
+          <td style="padding: 15px 20px;">
+            ${appointment.cameraoption}
+          </td>
+        </tr>
+      </table>
+
+      <!-- Closing -->
+      <table width="100%" cellspacing="0" cellpadding="0" style="margin-bottom: 20px;">
+        <tr>
+          <td style="padding: 0 20px;">
+            <p style="font-size: 16px;">We look forward to supporting you on your journey. Please don't hesitate to reach out if you have any questions.</p>
+          </td>
+        </tr>
+      </table>
+
+      <!-- Footer -->
+      <table width="100%" cellspacing="0" cellpadding="0" style="background-color: #f8f9fa; padding: 20px; text-align: center;">
+        <tr>
+          <td>
+            <p style="margin: 0; font-size: 14px; color: #777;">Warm regards,</p>
+            <p style="margin: 5px 0 0 0; font-size: 15px; color: #5D78FF; font-weight: bold;">The MyInnerSide Team</p>
+          </td>
+        </tr>
+      </table>
     </div>
   `;
 };
