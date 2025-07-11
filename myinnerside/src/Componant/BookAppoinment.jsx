@@ -615,14 +615,14 @@ const BookAppointment = () => {
                         },
                         body: JSON.stringify({
                             couponCode: code,
-                            totalAmount: originalPrice
+                            totalAmount: finalPrice
                         }),
                     });
 
                     const data = await res.json();
 
                     if (res.ok) {
-                        const price = originalPrice;
+                        const price = finalPrice;
                         let discountedPrice = price;
                         if (data.discounttype === 'percentage') {
                             discountedPrice = price - (price * data.discount / 100);
@@ -646,7 +646,7 @@ const BookAppointment = () => {
                         toast.success(`Coupon applied! ₹${price - discountedPrice} off`);
                     } else {
                         setDiscount(0);
-                        setFinalPrice(originalPrice);
+                        setFinalPrice(finalPrice);
                         toast.error(data.message);
                     }
                 } catch (err) {
@@ -655,7 +655,7 @@ const BookAppointment = () => {
                 }
             } else {
                 setDiscount(0);
-                setFinalPrice(originalPrice);
+                setFinalPrice(finalPrice);
             }
         }
     };

@@ -20,6 +20,7 @@ import TeamMemberAppointments from './pages/team/TeamMemberAppointments';
 import ManageSlots from './pages/admin/ManageSlots';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import VideoCall from './pages/team/VideoCall';
+import AdminCouponClaims from './pages/admin/AdminCouponClaims';
 
 const App = () => {
   const { aToken } = useContext(AdminContext)
@@ -42,6 +43,7 @@ const App = () => {
           <Route path="/listcoupon" element={<ListCoupon />} />
           <Route path="/manageslot" element={<ManageSlots />} />
           <Route path="/" element={<AdminDashboard/>} />
+          <Route path='/admincouponclaim' element={<AdminCouponClaims/>} />
      
 
         {/*---Team Routes----- */}

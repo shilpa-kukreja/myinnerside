@@ -281,6 +281,15 @@ const Sidebar = () => {
         </NavLink>
         )}
 
+        {
+          aToken && (
+            <NavLink to="/admincouponclaim" className={menuItemClasses}>
+              <FaUsers className="text-lg" />
+              <span>Admin Coupon Claim</span>
+            </NavLink>
+          )
+        }
+
         {/* Team Specific Menu Items */}
         {tToken && (
           <>
