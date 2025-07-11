@@ -1089,6 +1089,25 @@ input::-webkit-inner-spin-button {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.start-call-button, .join-call-button {
+  padding: 18px 18px;
+  background-color: #2ecc71 !important;
+  color: white;
+  border: none;
+  border-radius: 50%;
+   width: 60px;
+  height: 60px;
+  
+  cursor: pointer;
+  font-size: 20px;
+ 
+}
+
+.start-call-button:hover, .join-call-button:hover {
+  background-color: #27ae60;
+}
+
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
     to { opacity: 1; transform: translateX(-50%) translateY(0); }
@@ -1102,8 +1121,20 @@ input::-webkit-inner-spin-button {
     
     .call-details h2 {
         font-size: 1.1rem;
+        display: none;
+    }
+
+    .call-details p {
+        font-size: 0.85rem;
+        display: none;
     }
     
+    .start-call-button, .join-call-button{
+              width: 52px;
+            height: 52px;
+    
+
+    }
     .local-video-container {
         width: 30%;
         height: 20%;
@@ -1135,23 +1166,6 @@ input::-webkit-inner-spin-button {
 
 
 
-.start-call-button, .join-call-button {
-  padding: 18px 18px;
-  background-color: #2ecc71 !important;
-  color: white;
-  border: none;
-  border-radius: 50%;
-   width: 60px;
-  height: 60px;
-  
-  cursor: pointer;
-  font-size: 20px;
- 
-}
-
-.start-call-button:hover, .join-call-button:hover {
-  background-color: #27ae60;
-}
 
 
 
