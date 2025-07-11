@@ -70,6 +70,22 @@
    top: 36px;
  }
 
+.login_form .form_group .icon-alias {
+    position: absolute;
+    right: 10px;
+    top: 16px;
+   
+  }
+  
+  .login_form .form_group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 15px;
+    background-color: transparent;
+}
+
  .login_form .login_btn {
    padding: 10px;
    cursor: pointer;

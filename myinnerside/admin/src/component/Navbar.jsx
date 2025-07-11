@@ -162,7 +162,7 @@ const Navbar = ({ setToken }) => {
               )}
             </button>
 
-            <button
+            {/* <button
               onClick={handleInfoClick}
               className="p-2 rounded-full hover:bg-[var(--hover-color)] text-[var(--text-color)]"
               aria-label="Help and information"
@@ -184,7 +184,7 @@ const Navbar = ({ setToken }) => {
                   </span>
                 )}
               </button>
-            </div>
+            </div> */}
 
             {/* Profile Dropdown */}
             <div className="relative ml-2">

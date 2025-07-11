@@ -370,9 +370,9 @@ const MyProfile = () => {
                                         <FaCcMastercard className='icon' /> Add Payment Details
                                     </li> */}
 
-                                    <li className={activeTab === 'lifeCoachAppointment' ? 'active' : ''} onClick={() => setActiveTab('lifeCoachAppointment')}>
+                                    {/* <li className={activeTab === 'lifeCoachAppointment' ? 'active' : ''} onClick={() => setActiveTab('lifeCoachAppointment')}>
                                         <LuNotebookPen className='icon' /> LifeCoach Appointment
-                                    </li>
+                                    </li> */}
 
                                     <li className='logout_btn' onClick={handleLogOut} >
                                         <CgLogOut className='icon' /> Logout
@@ -424,7 +424,7 @@ const MyProfile = () => {
                                                 <input type="text" name='name' className={` form_control ${!isEditing ? 'cursor-disabled' : ''}`} value={userInfo.name} disabled={!isEditing} onChange={handleChange} />
                                             </div>
                                             <div className="form_group w-50">
-                                                <label> Alias Name</label>
+                                                <label>Alias(Imaginary Name)</label>
                                                 <input type="text" name='aliasName' className={` form_control ${!isEditing ? 'cursor-disabled' : ''}`} value={userInfo.aliasName} onChange={handleChange} disabled={!isEditing} />
                                             </div>
                                             <div className="form_group  w-50">
@@ -667,7 +667,7 @@ const MyProfile = () => {
                                 </div>
                             )} */}
 
-                            {activeTab === 'lifeCoachAppointment' && (
+                            {/* {activeTab === 'lifeCoachAppointment' && (
                                 <div className="appointment">
                                     <h2>Life Coach Appointment </h2>
                                     <div className="appointment_grid">
@@ -713,9 +713,9 @@ const MyProfile = () => {
                                         )}
                                     </div>
                                 </div>
-                            )}
+                            )}*/}
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
 

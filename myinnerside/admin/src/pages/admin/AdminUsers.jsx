@@ -15,33 +15,29 @@ import {
 } from '@heroicons/react/24/outline';
 
 const AdminUsers = () => {
-    const [users, setUsers] = useState([]);
+    const [allUsers, setAllUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [usersPerPage] = useState(10);
-    const [totalPages, setTotalPages] = useState(1);
-    const [totalUsers, setTotalUsers] = useState(0);
     const [selectedUser, setSelectedUser] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         fetchUsers();
-    }, [currentPage, searchTerm]);
+    }, []);
 
     const fetchUsers = async () => {
         try {
             setLoading(true);
             const { data } = await axios.get(`https://myinnerside.com/api/auth/all`, {
                 params: {
-                    page: currentPage,
-                    limit: usersPerPage,
-                    search: searchTerm
+                    page: 1,
+                    limit: 1000,
+                    search: ''
                 }
             });
-            setUsers(data.users);
-            setTotalPages(data.totalPages);
-            setTotalUsers(data.totalUsers);
+            setAllUsers(data.users || []);
             setLoading(false);
         } catch (error) {
             toast.error('Failed to fetch users');
@@ -75,6 +71,17 @@ const AdminUsers = () => {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         return new Date(dateString).toLocaleDateString(undefined, options);
     };
+
+    const filteredUsers = allUsers.filter(user =>
+        user.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.contact?.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    const indexOfLastUser = currentPage * usersPerPage;
+    const indexOfFirstUser = indexOfLastUser - usersPerPage;
+    const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
+    const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -123,8 +130,8 @@ const AdminUsers = () => {
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
-                            {users.length > 0 ? (
-                                users.map((user) => (
+                            {currentUsers.length > 0 ? (
+                                currentUsers.map((user) => (
                                     <tr key={user._id} className="hover:bg-gray-50">
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <div className="flex items-center">
@@ -199,11 +206,11 @@ const AdminUsers = () => {
                 </div>
 
                 {/* Pagination */}
-                {totalUsers > usersPerPage && (
+                {filteredUsers.length > usersPerPage && (
                     <div className="flex items-center justify-between mt-6">
                         <div className="text-sm text-gray-500">
-                            Showing {((currentPage - 1) * usersPerPage) + 1} to{' '}
-                            {Math.min(currentPage * usersPerPage, totalUsers)} of {totalUsers} users
+                            Showing {indexOfFirstUser + 1} to{' '}
+                            {Math.min(indexOfLastUser, filteredUsers.length)} of {filteredUsers.length} users
                         </div>
                         <div className="flex space-x-2">
                             <button
@@ -249,10 +256,10 @@ const AdminUsers = () => {
                 )}
             </div>
 
-            {/* User Details Modal */}
+            {/* Modal remains unchanged */}
             {isModalOpen && selectedUser && (
-                <div className="fixed inset-0  bg-opacity-50 flex items-center justify-center z-50 p-4">
-                    <div className="bg-white rounded-lg shadow-xl max-w-4xl w-[100%] max-h-[90vh] overflow-y-auto">
+                <div className="fixed inset-0 bg-opacity-50 flex items-center justify-center z-50 p-4">
+                    <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
                         <div className="p-6">
                             <div className="flex justify-between items-start mb-4">
                                 <h2 className="text-xl font-bold text-gray-800">User Details</h2>
@@ -265,7 +272,7 @@ const AdminUsers = () => {
                                     </svg>
                                 </button>
                             </div>
-
+                            {/* Modal Content */}
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                 <div className="md:col-span-1 flex flex-col items-center">
                                     {selectedUser.img ? (

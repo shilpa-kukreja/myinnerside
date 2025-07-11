@@ -19,6 +19,8 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const { token, setToken, setUserLoginData, userLoginData } = useContext(Context);
+  const [useAlias, setUseAlias] = useState(false);
+
   const navigate = useNavigate();
 
   const [loginDetail, setLoginDetails] = useState({
@@ -32,7 +34,7 @@ const Login = () => {
     confPass: ''
   });
 
-  
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -52,14 +54,14 @@ const Login = () => {
     const body = isLogin
       ? { email: loginDetail.email, password: loginDetail.pass }
       : {
-          name: loginDetail.name,
-          aliasName: loginDetail.aliasName,
-          email: loginDetail.email,
-          contact: loginDetail.contact,
-          dob: loginDetail.dob,
-          gender: loginDetail.gender,
-          password: loginDetail.pass
-        };
+        name: loginDetail.name,
+        aliasName: loginDetail.aliasName,
+        email: loginDetail.email,
+        contact: loginDetail.contact,
+        dob: loginDetail.dob,
+        gender: loginDetail.gender,
+        password: loginDetail.pass
+      };
 
     try {
       const response = await fetch(`https://myinnerside.com${url}`, {
@@ -73,8 +75,8 @@ const Login = () => {
       if (response.ok) {
         setToken(data.token);
         setUserLoginData(data.user);
- 
-        
+
+
         localStorage.setItem('token', data.token);
         alert(isLogin ? 'Login successful' : 'Registration successful');
         navigate('/');
@@ -88,7 +90,7 @@ const Login = () => {
   };
 
 
-  
+
 
   const handleForgotPassword = async () => {
     try {
@@ -118,7 +120,7 @@ const Login = () => {
             <div className="login_contant">
               <Link to="/"><img src={logo} alt="logo" width='141px' /></Link>
               <h2>{isForgot ? 'Forgot Your Password' : isLogin ? 'Login to Your Account' : 'Sign Up For Free'}</h2>
-              
+
               <div className="new_user">
                 {isForgot ? (
                   <p>Back to <span onClick={() => setIsForgot(false)}>Login</span></p>
@@ -149,11 +151,52 @@ const Login = () => {
                           <LuUserRound className='icon' />
                         </div>
 
-                        <div className="form_group">
-                          <label>Alias Name</label>
+                        {/* <div className="form_group">
+                          <label>Alias(Imaginary Name)</label>
                           <input type="text" name='aliasName' value={loginDetail.aliasName} onChange={handleChange} className='form_control' required />
                           <LuUserRound className='icon' />
+                        </div> */}
+
+                        <div className="form_group">
+                          <label>Do you want to use Alias/Imaginary Name?</label>
+                          <div className="radio-group" style={{ display: 'flex',flexDirection:"row",marginTop:"10px",gap: '1rem', marginBottom: '0.5rem' }}>
+                            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                              <input
+                                type="radio"
+                                name="useAlias"
+                                checked={useAlias}
+                                onChange={() => setUseAlias(true)}
+                              /> Yes
+                            </label>
+                            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                              <input
+                                type="radio"
+                                name="useAlias"
+                                checked={!useAlias}
+                                onChange={() => {
+                                  setUseAlias(false);
+                                  setLoginDetails(prev => ({ ...prev, aliasName: '' }));
+                                }}
+                              /> No
+                            </label>
+                          </div>
+
+                          {useAlias && (
+                            <div style={{ position: 'relative' }}>
+                              <input
+                                type="text"
+                                name='aliasName'
+                                value={loginDetail.aliasName}
+                                onChange={handleChange}
+                                className='form_control'
+                                placeholder="Enter Alias Name"
+                                required={useAlias}
+                              />
+                              <LuUserRound className='icon-alias' />
+                            </div>
+                          )}
                         </div>
+
 
                         <div className="form_group">
                           <label>Contact</label>

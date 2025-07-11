@@ -65,9 +65,9 @@ const Header = () => {
                 <li>
                   <HashLink smooth to="/#service" onClick={closeMenu} >Service</HashLink>
                 </li>
-                <li>
+                {/* <li>
                   <HashLink smooth to='/life-coach' onClick={closeMenu}> Life Coach  </HashLink>
-                </li>
+                </li> */}
                 <li>
                   <Link to="/contact-us" onClick={closeMenu} >Contact Us </Link>
                 </li>

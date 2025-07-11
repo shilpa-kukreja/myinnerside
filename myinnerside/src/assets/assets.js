@@ -13,13 +13,13 @@ export const Testimonials = [
         id: 2,
         userName: "Rohan",
         userImg: user,
-        title: " It wasn’t just a call—it was a genuine connection. For the first time, I felt truly heard and understood without any judgment. Opening up felt natural and safe. After silently carrying my thoughts for so long, this experience brought me real emotional relief and comfort."
+        title: " It wasn’t just a session—it was a genuine connection. For the first time, I felt truly heard and understood without any judgment. Opening up felt natural and safe. After silently carrying my thoughts for so long, this experience brought me real emotional relief and comfort."
     },
     {
         id: 3,
         userName: "Meera",
         userImg: user,
-         title: "I used to cry myself to sleep, feeling completely alone. Then I made one call—and everything changed. The person on the other end was incredibly patient, kind, and understanding. It felt like speaking to a longtime friend who truly cared. That call brought me the comfort I was missing."
+         title: "I used to cry myself to sleep, feeling completely alone. Then I made one session—and everything changed. The person on the other end was incredibly patient, kind, and understanding. It felt like speaking to a longtime friend who truly cared. That session brought me the comfort I was missing."
     },
     {
         id: 4,

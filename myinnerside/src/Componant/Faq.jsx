@@ -18,11 +18,11 @@ const Faq = () => {
 
   const faqData = [
     {
-      question: ' What is My Inner Side call consulting service? ',
-      answer: '  My Inner Side offers private, one-on-one calls with certified listeners who provide emotional support, helping you share thoughts and experiences without fear, pressure, or judgment.'
+      question: ' What is My Inner Side session consulting service? ',
+      answer: '  My Inner Side offers private, one-on-one sessions with certified listeners who provide emotional support, helping you share thoughts and experiences without fear, pressure, or judgment.'
     },
     {
-      question: 'Who will I be talking to during the call?',
+      question: 'Who will I be talking to during the session?',
       answer: '  You’ll be connected with a certified, trained professional who is compassionate, non-judgmental, and experienced in providing emotional support through active, empathetic listening.'
     },
     {
@@ -30,7 +30,7 @@ const Faq = () => {
       answer: ' Yes, all conversations are 100% private and secure. We prioritize your confidentiality and emotional safety, ensuring your personal experiences remain protected and respected.'
     },
     {
-      question: 'Can I choose the time for my call?',
+      question: 'Can I choose the time for my session?',
       answer: '  Absolutely. You can select a convenient time that fits your schedule, making it easy and stress-free to talk when you feel ready.'
     },
     {

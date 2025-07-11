@@ -33,11 +33,22 @@ const AdminAppointments = () => {
   const [showTeamDropdown, setShowTeamDropdown] = useState(null);
   const [assignedTeam, setAssignedTeam] = useState({});
   const [refreshing, setRefreshing] = useState(false);
+  const [allAppointments, setAllAppointments] = useState([]);
+
+  // useEffect(() => {
+  //   fetchAppointments();
+  //   fetchTeams();
+  // }, [currentPage, searchTerm]);
+
 
   useEffect(() => {
-    fetchAppointments();
-    fetchTeams();
-  }, [currentPage, searchTerm]);
+  fetchAppointments();
+}, [currentPage]);
+
+useEffect(() => {
+  fetchTeams(); 
+}, []);
+
 
   // const fetchAppointments = async () => {
   //   try {
@@ -73,22 +84,22 @@ const AdminAppointments = () => {
 
 
 
-  const fetchAppointments = async () => {
+const fetchAppointments = async () => {
   try {
     setLoading(true);
     const { data } = await axios.get(`https://myinnerside.com/api/appointments/all`, {
       params: {
         page: currentPage,
         limit: appointmentsPerPage,
-        search: searchTerm
+        search: '' // remove backend search logic
       }
     });
 
+    setAllAppointments(data.appointments);
     setAppointments(data.appointments);
     setTotalPages(data.totalPages);
     setTotalAppointments(data.totalAppointments);
 
-    // Reliable assignment map from fully populated data
     const initialAssigned = {};
     data.appointments.forEach(app => {
       if (
@@ -110,6 +121,18 @@ const AdminAppointments = () => {
     setRefreshing(false);
   }
 };
+
+
+useEffect(() => {
+  const filtered = allAppointments.filter(app =>
+    app.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    app.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    app.phone?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  setAppointments(filtered);
+  setCurrentPage(1);
+}, [searchTerm, allAppointments]);
+
 
 
   const fetchTeams = async () => {

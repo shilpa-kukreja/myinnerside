@@ -107,33 +107,78 @@ const CreateContextProvider = (props) => {
 
   const [appointments, setAppointments] = useState([]);
   const [discount, setDiscount] = useState(0);
-  const [originalPrice, setOriginalPrice] = useState(1000); // or whatever your base price is
-  const [finalPrice, setFinalPrice] = useState(originalPrice);
+  const [originalPrice, setOriginalPrice] = useState(1500);
+ const [finalPrice, setFinalPrice] = useState(999);
+  // const [originalPrice, setOriginalPrice] = useState(1000);
+   // or whatever your base price is
+  // const [finalPrice, setFinalPrice] = useState(originalPrice);
   
 
 
 
 
+
+  // const userInfo = () => {
+  //   const newAppointment = {
+
+  //     fullName: formData.fullName,
+  //     email: formData.email,
+  //     phone: formData.phone,
+  //     couponCode: formData.couponCode,
+  //     gender: formData.gender,
+  //     language: formData.language,
+  //     bookingReason: formData.bookingReason,
+  //     hideIdentity: formData.hideIdentity,
+  //     usePreviousDetails: formData.usePreviousDetails,
+  //     date: selectedDate,
+  //     slot: selectedSlot,
+  //   };
+  //   setAppointments(prev => [...prev, newAppointment]);
+
+  // };
+
+
+
   const userInfo = () => {
-    const newAppointment = {
-
-      fullName: formData.fullName,
-      email: formData.email,
-      phone: formData.phone,
-      couponCode: formData.couponCode,
-      gender: formData.gender,
-      language: formData.language,
-      bookingReason: formData.bookingReason,
-      hideIdentity: formData.hideIdentity,
-      usePreviousDetails: formData.usePreviousDetails,
-      date: selectedDate,
-      slot: selectedSlot,
-
-
-    };
-    setAppointments(prev => [...prev, newAppointment]);
-
+  const newAppointment = {
+    fullName: formData.fullName,
+    email: formData.email,
+    phone: formData.phone,
+    couponCode: formData.couponCode,
+    gender: formData.gender,
+    language: formData.language,
+    bookingReason: formData.bookingReason,
+    hideIdentity: formData.hideIdentity,
+    usePreviousDetails: formData.usePreviousDetails,
+    date: selectedDate,
+    slot: selectedSlot,
   };
+
+  setAppointments(prev => {
+    const updated = [...prev, newAppointment];
+    localStorage.setItem('appointments', JSON.stringify(updated));
+    return updated;
+  });
+};
+
+console.log("User Info:", userInfo);
+console.log("Appointments:", appointments);
+
+
+
+
+useEffect(() => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    const savedAppointments = localStorage.getItem('appointments');
+    if (savedAppointments) {
+      setAppointments(JSON.parse(savedAppointments));
+    }
+  }
+}, []);
+
+
+
 
 
  const getBookedSlots = (date) => {
@@ -212,7 +257,7 @@ useEffect(() => {
         console.error("Error fetching booked slots:", error);
       });
   }
-}, [selectedDate]); // <- Run when selectedDate changes
+}, [selectedDate , token, setToken , lifeCoachBooking ,setLifeCoachBookingList]); // <- Run when selectedDate changes
 
 
 
@@ -252,7 +297,7 @@ useEffect(() => {
         console.error("Error fetching booked slots:", error);
       });
   }
-}, []);
+}, [appointments, setAppointments,token,setToken]); // <- Run when appointments or selectedDate changes
 
 
 
@@ -398,7 +443,7 @@ useEffect(() => {
   };
 
   fetchSlots();
-}, []);
+}, [  ]); 
 
 
 

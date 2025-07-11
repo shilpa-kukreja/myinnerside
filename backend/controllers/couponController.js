@@ -1,3 +1,4 @@
+import CouponClaim from "../models/CouponClaim.js";
 import Coupon from "../models/couponModel.js";
 
 
@@ -114,6 +115,44 @@ export const getAllCoupons = async (req, res) => {
   } catch (err) {
     console.error('Error fetching coupons:', err);
     res.status(500).json({ message: 'Server error' });
+  }
+};
+
+
+
+
+
+export const getActiveCoupon = async (req, res) => {
+  try {
+    const today = new Date();
+    const coupon = await Coupon.findOne({
+      isActive: true,
+      expiryDate: { $gte: today }
+    }).sort({ createdAt: -1 });
+
+    if (!coupon) {
+      return res.status(404).json({ message: 'No active coupon found' });
+    }
+
+    res.status(200).json({ coupon });
+  } catch (err) {
+    console.error('Error fetching active coupon:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+
+export const claimCoupon = async (req, res) => {
+  try {
+    const { phone } = req.body;
+    if (!phone) return res.status(400).json({ message: 'Phone number is required' });
+
+    const claim = new CouponClaim({ phone });
+    await claim.save();
+
+    res.status(201).json({ message: 'Phone saved successfully' });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err.message });
   }
 };
 

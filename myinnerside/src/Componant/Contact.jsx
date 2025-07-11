@@ -62,7 +62,7 @@ const Contact = () => {
                 <h4>Contact Us:</h4>
                 <li>
                   <FaPhoneAlt className='icon' />
-                  <a href="tel:+9100000000">+91 00000000</a>
+                  <a href="tel:+919999887077">+91 9999887077</a>
                 </li>
               </ul>
             </div>

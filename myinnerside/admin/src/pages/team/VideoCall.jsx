@@ -26,6 +26,7 @@ const VideoCall = () => {
         toggleMic,
         toggleSpeaker,
         endCall,
+        startCall,
         callStatus,
         joinCall
     } = useVideoCall();
@@ -40,11 +41,23 @@ const VideoCall = () => {
 
 
 
-    const handleJoinCall = (appointmentId) => {
-        joinCall(appointmentId, tToken);
-        setShowCall(true);
-    };
+    // const handleJoinCall = (appointmentId) => {
+    //     joinCall(appointmentId, tToken);
+    //     setShowCall(true);
+    // };
 
+
+    
+    const handleJoinCall = (appointmentId) => {
+  // Save state to survive refresh
+  localStorage.setItem("activeCall", JSON.stringify({
+    id: appointmentId,
+    tToken: tToken
+  }));
+
+  startCall(appointmentId, tToken);
+  setShowCall(true);
+};
     const formatTime = (seconds) => {
         const hrs = Math.floor(seconds / 3600).toString().padStart(2, '0');
         const mins = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
@@ -52,11 +65,20 @@ const VideoCall = () => {
         return `${hrs}:${mins}:${secs}`;
     };
 
-    useEffect(() => {
-        if (localVideoRef.current && localStream) {
-            localVideoRef.current.srcObject = localStream;
-        }
-    }, [localStream, localVideoRef]);
+    // useEffect(() => {
+    //     if (localVideoRef.current && localStream) {
+    //         localVideoRef.current.srcObject = localStream;
+    //     }
+    // }, [localStream, localVideoRef]);
+
+
+       useEffect(() => {
+      if (localVideoRef.current && localStream) {
+        // Rebind the stream to fix the blurred/local video not showing issue
+        localVideoRef.current.srcObject = null; // Force reset
+        localVideoRef.current.srcObject = localStream;
+      }
+    }, [localStream, isVideoOn]);
 
     useEffect(() => {
         if (remoteVideoRef.current && remoteStream) {
@@ -78,11 +100,20 @@ const VideoCall = () => {
         };
     }, [showCall]);
 
-    const handleEndCall = () => {
-        endCall();
-        setShowCall(false);
-        setCallDuration(0);
-    };
+    // const handleEndCall = () => {
+    //     endCall();
+    //     setShowCall(false);
+    //     setCallDuration(0);
+    // };
+
+
+const handleEndCall = () => {
+  endCall();
+  localStorage.removeItem("activeCall"); 
+  setShowCall(false);
+  setCallDuration(0);
+  navigate('/');
+};
 
  const toggleVideo = () => {
   if (!localStream) return;
@@ -95,6 +126,34 @@ const VideoCall = () => {
   videoTrack.enabled = !videoTrack.enabled;
   setIsVideoOn(videoTrack.enabled);
 };
+
+
+
+
+// useEffect(() => {
+//   const activeCall = JSON.parse(localStorage.getItem("activeCall"));
+
+//   if (activeCall && activeCall.id) {
+//     // Auto-start the call if it was active before refresh
+//     startCall(activeCall.id, activeCall.tToken);
+//     setShowCall(true);
+//   }
+// }, []);
+
+useEffect(() => {
+  const activeCall = JSON.parse(localStorage.getItem("activeCall"));
+
+  if (activeCall && activeCall.id) {
+    const confirmResume = window.confirm("Do you want to resume your previous call?");
+    if (confirmResume) {
+      startCall(activeCall.id, activeCall.tToken);
+      setShowCall(true);
+    } else {
+      localStorage.removeItem("activeCall");
+       navigate('/'); 
+    }
+  }
+}, []);
 
     useEffect(() => {
         // handleStartCall(id);

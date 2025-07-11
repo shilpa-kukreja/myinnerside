@@ -25,10 +25,11 @@ const LifeCoachAppointmentlist = () => {
   const [totalAppointments, setTotalAppointments] = useState(0);
   const [selectedAppointment, setSelectedAppointment] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [AllAppointments, setAllAppointments] = useState([]);
 
   useEffect(() => {
     fetchAppointments();
-  }, [currentPage, searchTerm]);
+  }, [currentPage]);
 
   const fetchAppointments = async () => {
     try {
@@ -37,9 +38,10 @@ const LifeCoachAppointmentlist = () => {
         params: {
           page: currentPage,
           limit: appointmentsPerPage,
-          search: searchTerm
+           search: ''
         }
       });
+      setAllAppointments(data.appointments);
       setAppointments(data.appointments);
       setTotalPages(data.totalPages);
       setTotalAppointments(data.totalAppointments);
@@ -49,6 +51,16 @@ const LifeCoachAppointmentlist = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    const filtered = AllAppointments.filter(app =>
+      app.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      app.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      app.number?.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setAppointments(filtered);
+    setCurrentPage(1);
+  }, [searchTerm, AllAppointments]);
 
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this appointment?')) {

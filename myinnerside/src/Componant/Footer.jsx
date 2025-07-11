@@ -63,7 +63,7 @@ const Footer = () => {
                   <Link to="/cancellation-policy">Cancellation Policy</Link>
                 </li>
                  <li>
-                  <HashLink smooth to='/#faq'>Faqs</HashLink>
+                  <HashLink smooth to='/#faq'>FAQs</HashLink>
                 </li>
                 <li> <Link to='/login'>Login</Link></li>
                
@@ -75,7 +75,7 @@ const Footer = () => {
             <h4>Contact Us</h4>
 
             <ul>
-              <li> <FaPhoneAlt className='icon' /> <Link href="tel:+91 000000000">+91 00000000</Link></li>
+              <li> <FaPhoneAlt className='icon' /> <Link href="tel:+91 9999887077">+91 9999887077</Link></li>
               <li> <MdOutlineMailOutline className='icon' /> <Link href="mailto:info@gmail.com">info@gmail.com</Link> </li>
             </ul>
 
