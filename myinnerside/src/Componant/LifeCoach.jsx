@@ -280,7 +280,7 @@
 
 
 import React, { useEffect, useState, useContext } from 'react';
-import banner from '../assets/mainbanner/banner.jpeg';
+import banner from '../assets/mainbanner/lifecoachtopbanner.jpg';
 import CommonHeading from './CommonHeading';
 import dayjs from 'dayjs';
 import { Context } from '../Context/CreateContext';

@@ -15,7 +15,7 @@ import TermCondition from './Componant/TermCondition'
 import { useContext } from 'react';
 import { Context } from './Context/CreateContext';
 import Login from './Componant/Login'
- import { useLocation } from 'react-router-dom'
+ import { useLocation, matchPath } from 'react-router-dom'
  import Signup from './Componant/Signup'
  import MyProfile from './Componant/MyProfile'
  import { ToastContainer } from 'react-toastify'
@@ -33,13 +33,14 @@ const App = () => {
 
     const { showAppointmentForm } = useContext(Context);
     const location = useLocation();
+    const isVideoCallRoute = matchPath('/video-call/:id', location.pathname);
     const hideHeaderFooter =   location.pathname === '/login' 
     const hideInSignUp =   location.pathname === '/sign-up' 
-    const removeheader = location.pathname === '/video-call' 
-
+    const removeHeader = isVideoCallRoute;
+    const removeFooter = isVideoCallRoute;
     const hidePopUp =location.pathname === '/login'
     const hidePopOnMyProfile =location.pathname === '/my-profile'
-    const hidePopOnVideo =location.pathname === '/video-call'
+    const hidePopOnVideo = isVideoCallRoute;
      
 
 
@@ -50,7 +51,7 @@ const App = () => {
      <ToastContainer />
       <ScrollToTop />
      
-      { !hideHeaderFooter  && !hideInSignUp && !removeheader &&  <Header /> }
+      { !hideHeaderFooter  && !hideInSignUp && !removeHeader  &&  <Header /> }
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -63,17 +64,17 @@ const App = () => {
         <Route path='/my-profile' element={<MyProfile/>} />
         <Route  path ='/cancellation-policy' element={<CancellationPolicy />} />
         <Route  path='/life-coach' element={<LifeCoach />} />
-        <Route  path='/video-call/:id' element={<VideoCall />} />
+        <Route  path='/video-call/:id' element={ <VideoCall />} />
         
       </Routes>
 
 
 
     {showAppointmentForm && <BookAppoinment />}
-   { !hidePopUp && !hidePopOnMyProfile && !hidePopOnVideo &&   < PopUp />}
+   { !hidePopUp && !hidePopOnMyProfile && !hidePopOnVideo &&    < PopUp />}
  
 
-{!hideHeaderFooter && !hideInSignUp && !removeheader && <Footer/> }
+{!hideHeaderFooter && !hideInSignUp && !removeHeader && !removeFooter && <Footer/> }
 
 
     

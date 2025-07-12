@@ -19,6 +19,7 @@ import { FcVideoCall } from "react-icons/fc";
 import { FaVideo } from "react-icons/fa";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { FaBars } from "react-icons/fa";
 
 
 
@@ -32,12 +33,29 @@ const MyProfile = () => {
     const [showPassword, setShowPassword] = useState({});
     const [isRescheduleOpen, setIsRescheduleOpen] = useState(false);
     const [rescheduleIndex, setRescheduleIndex] = useState(null);
+    const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+    const [isMobileView, setIsMobileView] = useState(false);
  
     const [rescheduleData, setRescheduleData] = useState({
         date: new Date(),
         slot: ''
     });
 
+
+     useEffect(() => {
+        const handleResize = () => {
+            setIsMobileView(window.innerWidth <= 768);
+        };
+        
+        // Set initial value
+        handleResize();
+        
+        // Add event listener
+        window.addEventListener('resize', handleResize);
+        
+        // Cleanup
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
 
     const timeSlots = [
@@ -353,7 +371,15 @@ const MyProfile = () => {
             <div className="profile_container">
                 <div className="">
                     <div className="profile_section">
-                        <div className="aside_left">
+                         {isMobileView && (
+                            <button 
+                                className="mobile-menu-toggle" 
+                                onClick={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
+                            >
+                                <FaBars />USER MENU
+                            </button>
+                        )}
+                        <div className={`aside_left ${isMobileView ? (isMobileSidebarOpen ? 'mobile-open' : 'mobile-closed') : ''}`}>
                             <h2> <div className="icon">
                                 <FaHome size={16} /> </div> Dashboard </h2>
                             <div className='user_icons'>
@@ -381,7 +407,7 @@ const MyProfile = () => {
                             </div>
                         </div>
 
-                        <div className="profile_information">
+                        <div className='profile_information'>
                             {activeTab === 'userInfo' && (
                                 <div className='profile_form'>
                                     <div className="profile_img">
@@ -718,7 +744,14 @@ const MyProfile = () => {
                     </div> 
                 </div>
             </div>
+                
 
+                 {isMobileView && isMobileSidebarOpen && (
+            <div 
+                className="mobile-menu-overlay" 
+                onClick={() => setIsMobileSidebarOpen(false)}
+            />
+        )}
 
             {isRescheduleOpen && (
                 <div className="reshedule_container">

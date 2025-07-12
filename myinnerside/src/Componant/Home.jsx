@@ -4,7 +4,7 @@ import Slider from './Slider'
 import CommonPoints from './CommonPoints'
 import Testimonials from './Testimonials'
 import Service from './Service'
-import banner from '../assets/mainbanner/banner.jpeg'
+import banner from '../assets/mainbanner/frequentlyquestion.jpg'
 
  import Faq from './Faq'
 

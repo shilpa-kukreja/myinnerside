@@ -2,8 +2,9 @@
 import React from 'react'
 
 
-import banner1 from '../assets/mainbanner/banner1.jpeg'
-import banner2 from '../assets/mainbanner/banner2.jpeg'
+import banner1 from '../assets/mainbanner/MyinnersideGroup1.jpg'
+import banner2 from '../assets/mainbanner/MyinnersideGroup2.jpg'
+import banner3 from '../assets/mainbanner/MyinnersideGroup3.jpg'
 import '../assets/Css/Header.css'
 
 
@@ -36,6 +37,10 @@ const Slider = () => {
 
         <SwiperSlide>
           <img src={banner2} width="100%" alt="myinnerSide-banner" />
+        </SwiperSlide>
+
+         <SwiperSlide>
+          <img src={banner3} width="100%" alt="myinnerSide-banner" />
         </SwiperSlide>
       </Swiper>
       

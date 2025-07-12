@@ -1,7 +1,7 @@
 
 
 import CommonHeading from './CommonHeading'
-import servImg from '../assets/mainbanner/phone.png'
+import servImg from '../assets/mainbanner/serviceweprovide.jpg'
 import '../assets/Css/Service.css'
 import { Link } from 'react-router-dom'
 import { FaWhatsapp } from "react-icons/fa";

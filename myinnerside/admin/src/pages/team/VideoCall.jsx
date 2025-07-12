@@ -8,7 +8,7 @@ import { useContext, useState, useEffect, useRef } from 'react';
 import { useVideoCall } from '../../context/VideoCallContext';
 import { IoVolumeHigh, IoVolumeOff } from "react-icons/io5";
 
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { TeamContext } from "../../context/TeamContext";
 
 
@@ -37,6 +37,7 @@ const VideoCall = () => {
     const [callDuration, setCallDuration] = useState(0);
     const [showCall, setShowCall] = useState(false);
     const timerRef = useRef(null);
+    const navigate = useNavigate();
 
 
 
@@ -50,10 +51,10 @@ const VideoCall = () => {
     
     const handleJoinCall = (appointmentId) => {
   // Save state to survive refresh
-  localStorage.setItem("activeCall", JSON.stringify({
-    id: appointmentId,
-    tToken: tToken
-  }));
+    localStorage.setItem("activeCall", JSON.stringify({
+        id: appointmentId,
+        tToken: tToken
+    }));
 
   startCall(appointmentId, tToken);
   setShowCall(true);
@@ -112,7 +113,7 @@ const handleEndCall = () => {
   localStorage.removeItem("activeCall"); 
   setShowCall(false);
   setCallDuration(0);
-  navigate('/');
+  navigate('/team/appointments');
 };
 
  const toggleVideo = () => {

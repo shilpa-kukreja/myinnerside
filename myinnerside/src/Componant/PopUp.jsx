@@ -98,7 +98,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import popUpImg from '../assets/mainbanner/popupImg.jpeg';
+import popUpImg from '../assets/mainbanner/myinnersidepopup.jpg';
 import '../assets/Css/Appointment.css';
 
 const PopUp = () => {
@@ -179,7 +179,7 @@ const PopUp = () => {
               <div className="popup_contact_detail">
                 <div className="logo">
                   <h2>UNLOCK YOUR OFFER</h2>
-                  <p>Use Coupon: <strong>{couponCode}</strong></p>
+                  {/* <p>Use Coupon: <strong>{couponCode}</strong></p> */}
                 </div>
 
                 <form onSubmit={handleSubmit}>

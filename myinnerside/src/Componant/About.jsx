@@ -3,10 +3,10 @@ import React from 'react'
 import CommonHeading from './CommonHeading'
 import { useContext } from 'react'
 import { Context } from '../Context/CreateContext'
-import banner from '../assets/mainbanner/banner.jpeg'
+import banner from '../assets/mainbanner/abouttopbanner.png'
 import '../assets/Css/Service.css'
 import { Link } from 'react-router-dom'
-import servImg from '../assets/mainbanner/phone.png'
+import servImg from '../assets/mainbanner/aboutmyinnerside.jpg'
 const About = () => {
   const { setShowAppointmentForm } = useContext(Context);
   return (

@@ -21,16 +21,25 @@ import ManageSlots from './pages/admin/ManageSlots';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import VideoCall from './pages/team/VideoCall';
 import AdminCouponClaims from './pages/admin/AdminCouponClaims';
+import { useLocation, matchPath } from 'react-router-dom'
 
 const App = () => {
   const { aToken } = useContext(AdminContext)
   const { tToken } = useContext(TeamContext)
+
+
+  const location = useLocation();
+    const isVideoCallRoute = matchPath('/video-call/:id', location.pathname);
+
+     const removeHeader = isVideoCallRoute;
+   
   return aToken || tToken ? (
     <div>
       <ToastContainer />
-      <Navbar />
+       
+       {!removeHeader && <Navbar />}
       <div className='flex items-start'>
-        <Sidebar />
+       {!removeHeader && <Sidebar />}
         {/*---Admin Routes----- */}
         <Routes>
           <Route path="/add" element={<AddTeam />} />

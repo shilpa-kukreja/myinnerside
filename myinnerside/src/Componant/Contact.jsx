@@ -1,4 +1,4 @@
-import banner from '../assets/mainbanner/banner.jpeg';
+import banner from '../assets/mainbanner/myinnersidecontactus.jpg';
 import '../assets/Css/Contact.css';
 import { FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 import { MdOutlineMailOutline } from "react-icons/md";
