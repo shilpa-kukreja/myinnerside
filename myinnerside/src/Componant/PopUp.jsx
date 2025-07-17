@@ -107,6 +107,7 @@ const PopUp = () => {
   const [showCoupon, setShowCoupon] = useState(false);
   const [phone, setPhone] = useState('');
   const [couponCode, setCouponCode] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   // Show popup after delay
   useEffect(() => {
@@ -135,31 +136,67 @@ const PopUp = () => {
     fetchCoupon();
   }, []);
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (!phone.trim()) return;
+
+  //   try {
+  //     await fetch('https://myinnerside.com/api/coupons/claim', {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({ phone }),
+  //     });
+
+      
+  //     setShowPopup(false);
+  //     setShowCoupon(true);
+  //     document.body.style.overflow = 'auto';
+
+      
+  //     if (couponCode) {
+  //       navigator.clipboard.writeText(couponCode);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error saving phone:', error);
+  //     alert('Something went wrong.');
+  //   }
+  // };
+
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!phone.trim()) return;
+  e.preventDefault();
+  if (!phone.trim()) return;
 
-    try {
-      await fetch('https://myinnerside.com/api/coupons/claim', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phone }),
-      });
+  try {
+    const res = await fetch('https://myinnerside.com/api/coupons/claim', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone }),
+    });
 
-      
-      setShowPopup(false);
-      setShowCoupon(true);
-      document.body.style.overflow = 'auto';
+    const result = await res.json();
 
-      
-      if (couponCode) {
-        navigator.clipboard.writeText(couponCode);
+    if (!res.ok) {
+      if (res.status === 409 || result.status === 'already_claimed') {
+        setErrorMessage('This number has already claimed the coupon.');
+      } else {
+        setErrorMessage('Something went wrong. Please try again.');
       }
-    } catch (error) {
-      console.error('Error saving phone:', error);
-      alert('Something went wrong.');
+      return;
     }
-  };
+
+    setShowPopup(false);
+    setShowCoupon(true);
+    document.body.style.overflow = 'auto';
+
+    if (couponCode) {
+      navigator.clipboard.writeText(couponCode);
+    }
+  } catch (error) {
+    console.error('Error saving phone:', error);
+    setErrorMessage('Something went wrong. Please try again.');
+  }
+};
 
   const handleClose = () => {
     setShowPopup(false);
@@ -198,6 +235,8 @@ const PopUp = () => {
                     By submitting this form you accept our{' '}
                     <Link to="/privacy-policy" onClick={handleClose}>Privacy Policy</Link>.
                   </p>
+                  {errorMessage && <p className="error-message">{errorMessage}</p>}
+
                   <button type="submit">CLAIM DISCOUNT</button>
                 </form>
               </div>

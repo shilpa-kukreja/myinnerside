@@ -142,19 +142,46 @@ export const getActiveCoupon = async (req, res) => {
 };
 
 
+// export const claimCoupon = async (req, res) => {
+//   try {
+//     const { phone } = req.body;
+//     if (!phone) return res.status(400).json({ message: 'Phone number is required' });
+
+//     const claim = new CouponClaim({ phone });
+//     await claim.save();
+
+//     res.status(201).json({ message: 'Phone saved successfully' });
+//   } catch (err) {
+//     res.status(500).json({ message: 'Server error', error: err.message });
+//   }
+// };
+
 export const claimCoupon = async (req, res) => {
   try {
     const { phone } = req.body;
-    if (!phone) return res.status(400).json({ message: 'Phone number is required' });
+    if (!phone) {
+      return res.status(400).json({ message: 'Phone number is required' });
+    }
 
+    // Check if already claimed
+    const existing = await CouponClaim.findOne({ phone });
+    if (existing) {
+      return res.status(409).json({
+        status: 'already_claimed',
+        message: 'This phone number has already claimed the coupon.',
+      });
+    }
+
+    // Save new claim
     const claim = new CouponClaim({ phone });
     await claim.save();
 
-    res.status(201).json({ message: 'Phone saved successfully' });
+    res.status(201).json({ message: 'Coupon claimed successfully' });
   } catch (err) {
     res.status(500).json({ message: 'Server error', error: err.message });
   }
 };
+
 
 
 export const getAllClaims = async (req, res) => {
