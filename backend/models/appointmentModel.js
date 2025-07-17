@@ -5,7 +5,6 @@ userId: { type: mongoose.Schema.Types.ObjectId, ref: 'user', required: true },
  name:{ type: String, required: true },
   email: { type: String, required: true }, 
   gender: { type: String, required: true },
-  phone: { type: String, required: true },
   language: { type: String, required: true },
   bookingReason: { type: [String], required: true },
   assignedTeamMember: {
@@ -13,6 +12,11 @@ userId: { type: mongoose.Schema.Types.ObjectId, ref: 'user', required: true },
     ref: 'Team'
   },
    cameraoption: {
+    type: String,
+    enum: ['yes', 'no'],
+    required: true
+  },
+  sarthithought: {
     type: String,
     enum: ['yes', 'no'],
     required: true
