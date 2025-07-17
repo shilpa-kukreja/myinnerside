@@ -1014,7 +1014,7 @@ const BookAppointment = () => {
                                     className="submit-btn"
                                     onClick={() => {
                                         // Validate required fields
-                                        if (!formData.phone || !formData.language ||
+                                        if ( !formData.language ||
                                             !formData.cameraoption || !formData.genderoption || !formData.sarthithought ||
                                             formData.bookingReason.length === 0) {
                                             toast.error("Please fill all required fields");
