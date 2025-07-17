@@ -602,63 +602,130 @@ const BookAppointment = () => {
         const { name, value, type, checked } = e.target;
         setFormData(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
 
-        if (name === 'couponCode') {
-            const code = value.trim().toUpperCase();
-            setFormData(prev => ({ ...prev, couponCode: code }));
+    //     if (name === 'couponCode') {
+    //         const code = value.trim().toUpperCase();
+    //         setFormData(prev => ({ ...prev, couponCode: code }));
 
-            if (code.length >= 3) {
-                try {
-                    const res = await fetch('https://myinnerside.com/api/coupons/apply', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            couponCode: code,
-                            totalAmount: finalPrice
-                        }),
-                    });
+    //         if (code.length >= 3) {
+    //             try {
+    //                 const res = await fetch('https://myinnerside.com/api/coupons/apply', {
+    //                     method: 'POST',
+    //                     headers: {
+    //                         'Content-Type': 'application/json',
+    //                     },
+    //                     body: JSON.stringify({
+    //                         couponCode: code,
+    //                         totalAmount: finalPrice
+    //                     }),
+    //                 });
 
-                    const data = await res.json();
+    //                 const data = await res.json();
 
-                    if (res.ok) {
-                        const price = finalPrice;
-                        let discountedPrice = price;
-                        if (data.discounttype === 'percentage') {
-                            discountedPrice = price - (price * data.discount / 100);
-                        } else if (data.discounttype === 'flat') {
-                            discountedPrice = price - data.discount;
-                        }
+    //                 if (res.ok) {
+    //                     const price = finalPrice;
+    //                     let discountedPrice = price;
+    //                     if (data.discounttype === 'percentage') {
+    //                         discountedPrice = price - (price * data.discount / 100);
+    //                     } else if (data.discounttype === 'flat') {
+    //                         discountedPrice = price - data.discount;
+    //                     }
 
-                        if (
-                            data.coupon.discount &&
-                            data.discounttype === 'percentage'
-                        ) {
-                            const maxDiscount = data.coupon.discount;
-                            const actualDiscount = price * data.discount / 100;
-                            if (actualDiscount > maxDiscount) {
-                                discountedPrice = price - maxDiscount;
-                            }
-                        }
+    //                     if (
+    //                         data.coupon.discount &&
+    //                         data.discounttype === 'percentage'
+    //                     ) {
+    //                         const maxDiscount = data.coupon.discount;
+    //                         const actualDiscount = price * data.discount / 100;
+    //                         if (actualDiscount > maxDiscount) {
+    //                             discountedPrice = price - maxDiscount;
+    //                         }
+    //                     }
 
-                        setDiscount(data.discount);
-                        setFinalPrice(Math.max(discountedPrice, 0));
-                        toast.success(`Coupon applied! ₹${price - discountedPrice} off`);
-                    } else {
-                        setDiscount(0);
-                        setFinalPrice(finalPrice);
-                        toast.error(data.message);
-                    }
-                } catch (err) {
-                    console.error(err);
-                    toast.error("Failed to validate coupon");
-                }
-            } else {
-                setDiscount(0);
-                setFinalPrice(finalPrice);
+    //                     setDiscount(data.discount);
+    //                     setFinalPrice(Math.max(discountedPrice, 0));
+    //                     toast.success(`Coupon applied! ₹${price - discountedPrice} off`);
+    //                 } else {
+    //                     setDiscount(0);
+    //                     setFinalPrice(finalPrice);
+    //                     toast.error(data.message);
+    //                 }
+    //             } catch (err) {
+    //                 console.error(err);
+    //                 toast.error("Failed to validate coupon");
+    //             }
+    //         } else {
+    //             setDiscount(0);
+    //             setFinalPrice(finalPrice);
+    //         }
+    //     }
+    // };
+             
+
+    if (name === 'couponCode') {
+    const code = value.trim().toUpperCase();
+    setFormData(prev => ({ ...prev, couponCode: code }));
+
+    // ✅ Already applied check
+    if (couponApplied && code === formData.couponCode) {
+        toast.info("You already applied this coupon");
+        return;
+    }
+
+    // ✅ Ignore if code is too short
+    if (code.length < 3) {
+        setDiscount(0);
+        setFinalPrice(finalPrice);
+        return;
+    }
+
+    try {
+        const res = await fetch('https://myinnerside.com/api/coupons/apply', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                couponCode: code,
+                totalAmount: finalPrice
+            }),
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+            const price = finalPrice;
+            let discountedPrice = price;
+
+            if (data.discounttype === 'percentage') {
+                discountedPrice = price - (price * data.discount / 100);
+            } else if (data.discounttype === 'flat') {
+                discountedPrice = price - data.discount;
             }
+
+            if (data.coupon?.discount && data.discounttype === 'percentage') {
+                const maxDiscount = data.coupon.discount;
+                const actualDiscount = price * data.discount / 100;
+                if (actualDiscount > maxDiscount) {
+                    discountedPrice = price - maxDiscount;
+                }
+            }
+
+            setDiscount(data.discount);
+            setFinalPrice(Math.max(discountedPrice, 0));
+            setCouponApplied(true); // ✅ Mark as applied
+            toast.success(`Coupon applied! ₹${price - discountedPrice} off`);
+        } else {
+            setDiscount(0);
+            setFinalPrice(finalPrice);
+            toast.error(data.message);
         }
+    } catch (err) {
+        console.error(err);
+        toast.error("Failed to validate coupon");
+    }
+}
     };
+
 
     const discountPercentage = discount
         ? Math.round((discount / originalPrice) * 100)

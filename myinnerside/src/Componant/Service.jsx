@@ -22,7 +22,7 @@ const Service = () => {
                     <div className='right_section'>
                         <h3> Heartfelt Listening, Real Human Connection</h3>
                         <p>
-                           We offer one-on-one session consultations with certified professionals who truly listen. Share your thoughts, feelings, or life experiences in a safe, private space , Judgement-free , Emotional, Supportive.
+                           We offer one-on-one session consultations with certified professionals who truly listen. Share your thoughts, feelings, or life experiences in a safe & private space - Judgement-free , Emotional & Supportive.
                         </p>
                         {/* <div className='calling_btn'>
                             <button className='whatsapp-btn'>

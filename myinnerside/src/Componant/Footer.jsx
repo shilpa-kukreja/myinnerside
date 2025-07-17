@@ -21,7 +21,7 @@ const Footer = () => {
           <div className="footer_links">
             <Link to='/'> <img src={logo} width='150px' alt="img" /></Link>
             <p>
-              A secure, judgment-free space where men can talk openly, connect emotionally, and feel truly heard — anytime, anywhere.
+              A secure, judgment-free space where person can talk openly, connect emotionally, and feel truly heard — anytime, anywhere.
             </p>
           </div>
           <div className="footer_links">
