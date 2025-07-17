@@ -2,7 +2,7 @@
 
  
  
- import banner from '../assets/mainbanner/banner.jpeg'
+import banner from '../assets/mainbanner/abouttopbanner.png'
  import '../assets/Css/Service.css'
  const  TermCondition = () => {
    return (

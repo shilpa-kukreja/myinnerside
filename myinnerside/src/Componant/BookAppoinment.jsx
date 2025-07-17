@@ -535,7 +535,7 @@ import { useNavigate } from 'react-router-dom';
 
 const timeSlots = [
     "6:00AM - 6:55AM", "7:00AM - 7:55AM",
-    "8:00AM - 8:55AM", "9:00AM - 9:55AM",
+    "8:00AM - 8:55AM", "9:00AM - 9:55AM","10:00AM - 10:55AM",
     "11:00AM - 11:55AM", "12:00PM - 12:55PM", "1:00PM - 1:55PM",
     "2:00PM - 2:55PM", "3:00PM - 3:55PM", "4:00PM - 4:55PM",
     "6:00PM - 6:55PM", "7:00PM - 7:55PM", "8:00PM - 8:55PM", "9:00PM - 9:55PM",
@@ -693,7 +693,6 @@ const BookAppointment = () => {
                         name: userLoginData.name,
                         email: userLoginData.email,
                         gender: userLoginData.gender,
-                        phone: formData.phone,
                         language: formData.language,
                         bookingReason: formData.bookingReason,
                         hideIdentity: formData.hideIdentity,
@@ -704,7 +703,8 @@ const BookAppointment = () => {
                         discount: discount,
                         price: finalPrice,
                         cameraoption: formData.cameraoption,
-                        genderoption: formData.genderoption
+                        genderoption: formData.genderoption,
+                        sarthithought: formData.sarthithought
                     };
 
                     const verifyRes = await fetch('https://myinnerside.com/api/payment/verify-payment', {
@@ -818,12 +818,7 @@ const BookAppointment = () => {
                         </div>
                     )}
 
-                    <div className='hide_identity'>
-                        <label>
-                            <input type="checkbox" name="hideIdentity" checked={formData.hideIdentity} onChange={handleChange} />
-                            Hide My Identity
-                        </label>
-                    </div>
+                    
 
                     <button
                         className="fill-details-btn"
@@ -832,6 +827,12 @@ const BookAppointment = () => {
 
                         <span className="btn-text">Fill Details</span>
                     </button>
+                    <div className='hide_identity'>
+                        <label>
+                            <input type="checkbox" name="hideIdentity" checked={formData.hideIdentity} onChange={handleChange} />
+                            Would you be comfortable in revealing your Original Identity like your personal details?
+                        </label>
+                    </div>
 
                     {showQuestionnairePopup && (
                         <div className="questionnaire-popup">
@@ -840,11 +841,11 @@ const BookAppointment = () => {
 
 
                                 <button className="close-btn" onClick={() => setShowQuestionnairePopup(false)}>✕</button>
-                                <h3>Session Details</h3>
-                                <p>Please provide these details to complete your booking</p>
+                                <h3>Session Questionnaire</h3>
+                                <p>Details you provide here is particularly for this session.</p>
 
                                 <div className="questionnaire-form">
-                                    <div className="form_group w-100">
+                                    {/* <div className="form_group w-100"   >
                                         <label>Number</label>
                                         <input
                                             type="tel"
@@ -856,9 +857,10 @@ const BookAppointment = () => {
                                             placeholder='Contact Number*'
                                             value={formData.phone}
                                             onChange={handleChange}
-                                            required
+                                            required 
                                         />
-                                    </div>
+                                    </div> */}
+                                    {/* language */}
 
                                     <div className="form_group w-100">
                                         <label>Language Preference</label>
@@ -870,11 +872,13 @@ const BookAppointment = () => {
                                             onChange={handleChange}
                                         >
                                             <option value="">Choose Language</option>
-                                            <option value="english">English</option>
-                                            <option value="hindi">Hindi</option>
+                                            <option value="hindi"> Native (Hindi)</option>
+                                            <option value="english"> Foreign( English)</option>
+                                            <option value="other"> 	Any of the Above</option>
                                         </select>
                                     </div>
-
+                                     
+                                              {/* camra on/off  */}
                                     <div className="form-group w-100">
                                         <label className="form-label">
                                             Do you want your Saarthi (Person who takes the session) to be in face to face conversation with you?
@@ -904,6 +908,26 @@ const BookAppointment = () => {
                                             </label>
                                         </div>
                                     </div>
+
+                                     {/* reason */}
+                                     <div className="form-group w-100">
+                                        <label className="form-label">Select reason(s) to talk</label>
+                                        <div className="checkbox-group">
+                                            {reasons.map((reason) => (
+                                                <label key={reason.value} className="checkbox-label">
+                                                    <input
+                                                        type="checkbox"
+                                                        name="bookingReason"
+                                                        value={reason.value}
+                                                        checked={formData.bookingReason.includes(reason.value)}
+                                                        onChange={handleCheckboxChange}
+                                                    />
+                                                    {reason.label}
+                                                </label>
+                                            ))}
+                                        </div>
+                                    </div>
+
 
                                     <div className="form-group w-100">
                                         <label className="form-label">
@@ -947,24 +971,43 @@ const BookAppointment = () => {
                                             </label>
                                         </div>
                                     </div>
+                                    
 
-                                    <div className="form-group w-100">
-                                        <label className="form-label">Select reason(s) to talk</label>
-                                        <div className="checkbox-group">
-                                            {reasons.map((reason) => (
-                                                <label key={reason.value} className="checkbox-label">
-                                                    <input
-                                                        type="checkbox"
-                                                        name="bookingReason"
-                                                        value={reason.value}
-                                                        checked={formData.bookingReason.includes(reason.value)}
-                                                        onChange={handleCheckboxChange}
-                                                    />
-                                                    {reason.label}
-                                                </label>
-                                            ))}
+                                     <div className="form-group w-100">
+                                         <label className="form-label">
+                                         Do you allow Saarthi to intervene on your wrong thoughts and give you the right advice.
+                                        </label>
+                                        <div className="radio-group">
+                                            <label className="radio-label">
+                                                <input
+                                                    type="radio"
+                                                    name="sarthithought"
+                                                    value="yes"
+                                                    checked={formData.sarthithought === 'yes'}
+                                                    onChange={handleChanges}
+                                                    required
+                                                />
+                                                YES
+                                            </label>
+                                            <label className="radio-label">
+                                                <input
+                                                    type="radio"
+                                                    name="sarthithought"
+                                                    value="no"
+                                                    checked={formData.sarthithought === 'no'}
+                                                    onChange={handleChanges}
+                                                    required
+                                                />
+                                                NO
+                                            </label>
                                         </div>
                                     </div>
+
+
+
+
+                                   
+                                    
                                 </div>
 
                                 <button
@@ -972,7 +1015,7 @@ const BookAppointment = () => {
                                     onClick={() => {
                                         // Validate required fields
                                         if (!formData.phone || !formData.language ||
-                                            !formData.cameraoption || !formData.genderoption ||
+                                            !formData.cameraoption || !formData.genderoption || !formData.sarthithought ||
                                             formData.bookingReason.length === 0) {
                                             toast.error("Please fill all required fields");
                                             return;
@@ -1012,9 +1055,15 @@ const BookAppointment = () => {
 
 
 
-                                    ₹{finalPrice} {' '}
+                                    {/* ₹{finalPrice} {' '} */}
 
                                 </div>
+
+                                 <div className="ribbon">
+                                     ₹{finalPrice} only {' '}
+                                 </div>
+
+
                                 <button
                                     className='form_btn'
                                     type="submit"

@@ -2,11 +2,16 @@
 import React from 'react'
 
 
-import banner1 from '../assets/mainbanner/MyinnersideGroup1.jpg'
-import banner2 from '../assets/mainbanner/MyinnersideGroup2.jpg'
-import banner3 from '../assets/mainbanner/MyinnersideGroup3.jpg'
-import '../assets/Css/Header.css'
+// import banner1 from '../assets/mainbanner/MyinnersideGroup1.jpg'
+// import banner2 from '../assets/mainbanner/MyinnersideGroup2.jpg'
+// import banner3 from '../assets/mainbanner/MyinnersideGroup3.jpg'
 
+
+import banner1 from '../assets/mainbanner/banner-1.jpg'
+
+import banner2 from '../assets/mainbanner/banner-2.jpg'
+import banner3 from '../assets/mainbanner/banner-3.jpg'
+import '../assets/Css/Header.css'
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css'; // core Swiper styles

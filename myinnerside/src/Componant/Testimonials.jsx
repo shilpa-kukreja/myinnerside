@@ -40,7 +40,8 @@ const Testimonials = () => {
                     <div className="testimonial_left">
 
                         <h2>Love from our customers</h2>
-                        <span>2K  reviews</span>
+                        {/* <span>2K  reviews</span> */}
+                        <span></span>
                         <div className="social_icon">
                             <p>
                                 Let's Get Social  <FaHeart color='red' />

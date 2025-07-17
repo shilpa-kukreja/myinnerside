@@ -4,6 +4,15 @@ import CommonHeading from './CommonHeading'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 
+
+ import icon1 from '../assets/Image/icon/icon1.png'
+  import  call from '../assets/Image/icon/calls-completed.png'
+ import daily from '../assets/Image/icon/daily-callers.png'
+ import happy from '../assets/Image/icon/happy-users.png'
+ import slot from '../assets/Image/icon/slot-booked.png'
+ import top from '../assets/Image/icon/top-rated.png'
+
+ 
 import 'swiper/css'
 
 import '../assets/Css/Header.css'
@@ -12,43 +21,39 @@ import '../assets/Css/Header.css'
 const CommonPoints = () => {
     const points = [
         {
-            icon: 'https://www.yesmadam.com/_next/image?url=https%3A%2F%2Fcdn.yesmadam.com%2Fimages%2Flive%2Fwebsite%2Fimages%2Freact%2Fpublic-assets%2Fgirl.png&w=96&q=75',
-            title: '3000+',
+            icon: daily ,
+            title: '20',
             subtitle: 'Daily Callers',
         },
         {
-            icon: 'https://www.yesmadam.com/_next/image?url=https%3A%2F%2Fcdn.yesmadam.com%2Fimages%2Flive%2Fwebsite%2Fimages%2Freact%2Fpublic-assets%2Fgirl.png&w=96&q=75',
-            title: '12K+',
+            icon: slot ,
+            title: '8',
             subtitle: 'Slots Booked',
         },
         {
-            icon:'https://www.yesmadam.com/_next/image?url=https%3A%2F%2Fcdn.yesmadam.com%2Fimages%2Flive%2Fwebsite%2Fimages%2Freact%2Fpublic-assets%2Fgirl.png&w=96&q=75',
-            title: '10k+',
+            icon: call ,
+            title: '7500',
             subtitle: 'Calls  Completed',
         },
         {
-            icon:'https://www.yesmadam.com/_next/image?url=https%3A%2F%2Fcdn.yesmadam.com%2Fimages%2Flive%2Fwebsite%2Fimages%2Freact%2Fpublic-assets%2Fgirl.png&w=96&q=75',
+           icon: happy ,
             title: '1000+',
             subtitle: 'Happy Users',
         },
         {
-            icon:'https://www.yesmadam.com/_next/image?url=https%3A%2F%2Fcdn.yesmadam.com%2Fimages%2Flive%2Fwebsite%2Fimages%2Freact%2Fpublic-assets%2Fgirl.png&w=96&q=75',
+             icon: top ,
             title: '4.5+',
             subtitle: 'India’s Top Rated Calling web',
         },
-        {
-            icon:'https://www.yesmadam.com/_next/image?url=https%3A%2F%2Fcdn.yesmadam.com%2Fimages%2Flive%2Fwebsite%2Fimages%2Freact%2Fpublic-assets%2Fgirl.png&w=96&q=75',
-            title: '25+',
-            subtitle: 'Cities Covered',
-        },
+      
     ]
 
     return (
 
          <div className="points_section">
 
-    
         <div className='container'>
+
             <CommonHeading title="Your Journey to Connection" />
 
             <div className="my-10">
@@ -66,7 +71,7 @@ const CommonPoints = () => {
                         <SwiperSlide key={id}>
                             <div className="points_icon">
                                 <div className='icon_img'>
-                                     {item.icon && <img src={item.icon} width="50" alt={item.title} />}
+                                     {item.icon && <img src={item.icon}  alt={item.title} />}
                                 </div>
                                 <h4 className='title'>{item.title}</h4>
                                 <p className='subtitle'>{item.subtitle}</p>

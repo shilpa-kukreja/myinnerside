@@ -73,7 +73,7 @@
   color: #000;
   border-radius: 5px;
 }
-.hide_identity{  display: flex; flex-wrap: wrap; margin: 20px 0;}
+.hide_identity{  display: flex; flex-wrap: wrap; }
 .hide_identity label{ width: 100%; margin-bottom: 5px; cursor: pointer; display: inline-block;}
 
 .appointment_form .form_group textarea::placeholder {
@@ -132,20 +132,22 @@
 }
 
 .discount_btn .ribbon {
-  background-color: #4d3ccf;
+  border: 2px dotted #000;
   border-radius: 10px;
+  background-color: #6b63ff;
   color: #fff;
   padding: 10px 12px;
-  border: none;
+  /* border: none; */
   position: relative;
   overflow: hidden;
+  align-items: center;
   z-index: 1;
   display: flex;
-  gap: 5px;
+  gap: 10px;
 }
 
 .discount_btn .ribbon span {
-  color: #ff8c8c;
+  color: #fff;
 }
 
 
@@ -384,12 +386,15 @@
 }
 
 .coupon_code {
-  padding: 30px;
+  padding: 20px;
   text-align: center;
 }
+.coupon_code h2{ margin-bottom: 20px;}
 
+.coupon_code p{ line-height: 30px; }
+.coupon_code .icon{  color: #c22fb3;}
 .coupon_code strong {
-  border: 2px solid #000;
+  border: 2px dashed #c22fb3!important;
   padding: 5px;
   border: dashed;
 }
@@ -730,7 +735,9 @@
     width: 100%;
     padding: 10px;
     margin-top: 5px;
+    color:#938787!important;
 }
+
 
 .questionnaire-form .radio-group,
 .questionnaire-form .checkbox-group {
@@ -791,6 +798,7 @@
     position: relative;
     overflow: hidden;
     margin: 15px 0;
+    margin-top: 35px;
     width: 100%;
     max-width: 220px;
 }
@@ -849,8 +857,8 @@
 .original-price{
 
   text-decoration: line-through;
-  color: #999;
-  font-size: 14px;
+  color: #fff;
+  font-size: 16px;
   margin-left: 10px;
 }
 

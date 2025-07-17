@@ -96,9 +96,9 @@
    color: #fff;
    border: none;
  }
-
+ .login_form .login_btn :active{ border: 1px solid #ccc;}
  .login_form .login_btn:hover {
-   background-color: #4578f0;
+   background-color: #1b54da;
  }
 
  .login_form .form_group label {

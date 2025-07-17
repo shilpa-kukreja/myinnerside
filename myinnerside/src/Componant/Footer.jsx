@@ -75,8 +75,8 @@ const Footer = () => {
             <h4>Contact Us</h4>
 
             <ul>
-              <li> <FaPhoneAlt className='icon' /> <Link href="tel:+91 9999887077">+91 9999887077</Link></li>
-              <li> <MdOutlineMailOutline className='icon' /> <Link href="mailto:info@gmail.com">info@gmail.com</Link> </li>
+              <li> <FaPhoneAlt className='icon' /> <a href="tel:+91 9999887077">+91 9999887077</a></li>
+              <li> <MdOutlineMailOutline className='icon' /> <a href="mailto:care@myinnerside.com">care@myinnerside.com</a> </li>
             </ul>
 
             <div className="social_icon">
@@ -95,7 +95,7 @@ const Footer = () => {
         </div>
         <div className='copyright_section'>
              <p>
-              Copyright &copy; MyInnerSide. All Right Reserved.
+              Copyright &copy; <Link to='/'> MyInnerSide.</Link> All Right Reserved.
              </p>
         </div>
       </div>

@@ -88,7 +88,6 @@ const CreateContextProvider = (props) => {
 
 
   const [formData, setFormData] = useState({
-    phone: '',
     language: '',
     bookingReason: [],
     cameraoption:'',
@@ -96,6 +95,7 @@ const CreateContextProvider = (props) => {
     couponCode: '',
     hideIdentity: false,
     usePreviousDetails: false,
+    sarthithought: '',
   });
 
 

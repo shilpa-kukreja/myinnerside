@@ -56,7 +56,7 @@ const Contact = () => {
                 <h4>Email Us:</h4>
                 <li>
                   <MdOutlineMailOutline className='icon' />
-                  <a href="mailto:info@email.com">info@email.com</a>
+                  <a href="mailto:care@myinnerside.com">care@myinnerside.com</a>
                 </li>
 
                 <h4>Contact Us:</h4>

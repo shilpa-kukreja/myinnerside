@@ -50,7 +50,7 @@ const Faq = () => {
           <div className="col-half  faqs_title ">
 
             <h2>Any Questions?</h2>
-            <h2>We Got You.</h2>
+            <h3>We Got You.</h3>
             <p>
              At My Inner Side, we understand that reaching out can feel overwhelming, especially when you're already feeling alone. Our FAQ section is here to help you feel more confident and informed about the support we offer. Whether you’re wondering how our service works, who you'll be speaking to, or how your privacy is protected, we’ve answered the most common questions with clarity and care. Our goal is to make your experience simple, safe, and comforting from the very first step. If you still have questions, feel free to contact us anytime—we're always here to listen.
             </p>

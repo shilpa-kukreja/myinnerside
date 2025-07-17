@@ -100,6 +100,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import popUpImg from '../assets/mainbanner/myinnersidepopup.jpg';
 import '../assets/Css/Appointment.css';
+import { IoGiftSharp } from "react-icons/io5";
 
 const PopUp = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -209,7 +210,7 @@ const PopUp = () => {
         <div className="popup_overlay">
           <div className="coupon_popup">
             <div className="coupon_code">
-              <h2>🎉 Congratulations!</h2>
+              <h2> <IoGiftSharp className='icon' /> Congratulations!</h2>
               <p>Your coupon <strong>{couponCode}</strong> has been copied to clipboard.</p>
               <button onClick={() => setShowCoupon(false)}>Close</button>
             </div>
