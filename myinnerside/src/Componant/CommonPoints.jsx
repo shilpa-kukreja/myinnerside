@@ -22,12 +22,12 @@ const CommonPoints = () => {
     const points = [
         {
             icon: daily ,
-            title: '20',
+            title: '100',
             subtitle: 'Daily Callers',
         },
         {
             icon: slot ,
-            title: '8',
+            title: '8000',
             subtitle: 'Slots Booked',
         },
         {
