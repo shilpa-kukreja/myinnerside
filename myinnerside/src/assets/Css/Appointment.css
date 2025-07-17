@@ -422,6 +422,33 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+  
+  .discount_btn .ribbon {
+    width: 48%;
+    text-align: center;
+  }
+  
+
+  .discount_btn{
+    display: flex;
+    align-items: center;
+    width: 100%;
+   flex-wrap: wrap;
+   gap: 10px;
+  
+  }
+
+  .appointment_form .form_btn{
+    width: 100%;
+  }
+
+
+
+  }
+  
+
+
 
 
 
