@@ -571,6 +571,7 @@ const BookAppointment = () => {
     const [bookedSlots, setBookedSlots] = useState([]);
     const [showQuestionnairePopup, setShowQuestionnairePopup] = useState(false);
     const [couponApplied, setCouponApplied] = useState(false);
+    const typingTimeoutRef = useRef(null);
 
     const now = new Date();
     const navigate = useNavigate();
@@ -603,71 +604,74 @@ const BookAppointment = () => {
     const handleChange = async (e) => {
         const { name, value, type, checked } = e.target;
         setFormData(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
-
-        if (name === 'couponCode') {
+if (name === 'couponCode') {
     const code = value.trim().toUpperCase();
+
     setFormData(prev => ({ ...prev, couponCode: code }));
 
-    if (couponApplied) {
-        toast.info("Coupon already applied.");
-        return;
+    if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current);
     }
 
-    if (code.length >= 3) {
-        try {
-            const res = await fetch('https://myinnerside.com/api/coupons/apply', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    couponCode: code,
-                    totalAmount: finalPrice
-                }),
-            });
-
-            const data = await res.json();
-
-            if (res.ok) {
-                const price = finalPrice;
-                let discountedPrice = price;
-
-                if (data.discounttype === 'percentage') {
-                    discountedPrice = price - (price * data.discount / 100);
-                } else if (data.discounttype === 'flat') {
-                    discountedPrice = price - data.discount;
-                }
-
-                // Cap the discount if max discount exists
-                if (
-                    data.coupon?.discount &&
-                    data.discounttype === 'percentage'
-                ) {
-                    const maxDiscount = data.coupon.discount;
-                    const actualDiscount = price * data.discount / 100;
-                    if (actualDiscount > maxDiscount) {
-                        discountedPrice = price - maxDiscount;
-                    }
-                }
-
-                setDiscount(data.discount);
-                setFinalPrice(Math.max(discountedPrice, 0));
-                setCouponApplied(true); // ✅ Mark as applied
-                toast.success(`Coupon applied! ₹${price - discountedPrice} off`);
-            } else {
-                setDiscount(0);
-                setFinalPrice(finalPrice);
-                toast.error(data.message);
-            }
-        } catch (err) {
-            console.error(err);
-            toast.error("Failed to validate coupon");
+    typingTimeoutRef.current = setTimeout(async () => {
+        if (couponApplied) {
+            toast.info("You already applied this coupon.");
+            return;
         }
-    } else {
-        setDiscount(0);
-        setFinalPrice(originalPrice);
-    }
+
+        if (code.length >= 3) {
+            try {
+                const res = await fetch('https://myinnerside.com/api/coupons/apply', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        couponCode: code,
+                        totalAmount: finalPrice
+                    }),
+                });
+
+                const data = await res.json();
+
+                if (res.ok) {
+                    const price = finalPrice;
+                    let discountedPrice = price;
+
+                    if (data.discounttype === 'percentage') {
+                        discountedPrice = price - (price * data.discount / 100);
+                    } else if (data.discounttype === 'flat') {
+                        discountedPrice = price - data.discount;
+                    }
+
+                    if (
+                        data.coupon?.discount &&
+                        data.discounttype === 'percentage'
+                    ) {
+                        const maxDiscount = data.coupon.discount;
+                        const actualDiscount = price * data.discount / 100;
+                        if (actualDiscount > maxDiscount) {
+                            discountedPrice = price - maxDiscount;
+                        }
+                    }
+
+                    setDiscount(data.discount);
+                    setFinalPrice(Math.max(discountedPrice, 0));
+                    setCouponApplied(true);
+                    toast.success(`Coupon applied! ₹${price - discountedPrice} off`);
+                } else {
+                    setDiscount(0);
+                    setFinalPrice(originalPrice);
+                    toast.error(data.message);
+                }
+            } catch (err) {
+                console.error(err);
+                toast.error("Failed to validate coupon");
+            }
+        }
+    }, 500); 
 }
+
 
     };
 
