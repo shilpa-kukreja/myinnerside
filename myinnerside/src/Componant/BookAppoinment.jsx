@@ -1069,7 +1069,7 @@ const BookAppointment = () => {
                                     type="submit"
                                     onClick={handleRazorpayPayment}
                                     disabled={
-                                        !formData.phone ||
+                                        
                                         !formData.language ||
                                         !formData.cameraoption ||
                                         !formData.genderoption ||
