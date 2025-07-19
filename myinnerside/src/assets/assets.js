@@ -1,17 +1,17 @@
 
 
-import user from '../assets/mainbanner/myinnersidetestimonial1.jpg'
-import user1 from '../assets/mainbanner/myinnersidetestimonial2.jpg'
-import user2 from '../assets/mainbanner/myinnersidetestimonial4.jpg'
-import user3 from '../assets/mainbanner/myinnersidetestimonial3.jpg'
-import user4 from '../assets/mainbanner/myinnersidetestimonial5.jpg'
+// import user from '../assets/mainbanner/myinnersidetestimonial1.jpg'
+// import user1 from '../assets/mainbanner/myinnersidetestimonial2.jpg'
+// import user2 from '../assets/mainbanner/myinnersidetestimonial4.jpg'
+// import user3 from '../assets/mainbanner/myinnersidetestimonial3.jpg'
+// import user4 from '../assets/mainbanner/myinnersidetestimonial5.jpg'
 
 
-import rohan from '../assets/Image/testimonial/02.jpg'
-import vikram from '../assets/Image/testimonial/03.jpg'
-import satyam from '../assets/Image/testimonial/04.jpg'
-import ananya from '../assets/Image/testimonial/05.jpg'
-import meera from '../assets/Image/testimonial/06.jpg'
+import rohan from '../assets/mainbanner/myinnersidetestimonial1.png'
+import vikram from '../assets/mainbanner/myinnersidetestimonial2.png'
+import satyam from '../assets/mainbanner/myinnersidetestimonial3.png'
+import ananya from '../assets/mainbanner/myinnersidetestimonial4.png'
+import meera from '../assets/mainbanner/myinnersidetestimonial5.png'
 
 
 

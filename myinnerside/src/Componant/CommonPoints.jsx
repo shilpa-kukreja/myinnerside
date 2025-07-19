@@ -6,11 +6,11 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 
  import icon1 from '../assets/Image/icon/icon1.png'
-  import  call from '../assets/Image/icon/calls-completed.png'
- import daily from '../assets/Image/icon/daily-callers.png'
- import happy from '../assets/Image/icon/happy-users.png'
- import slot from '../assets/Image/icon/slot-booked.png'
- import top from '../assets/Image/icon/top-rated.png'
+import banner1 from '../assets/mainbanner/connectionimg1.png'
+import banner2 from '../assets/mainbanner/connectionimg2.png'
+import banner3 from '../assets/mainbanner/connectionimg4.png'
+import banner4 from '../assets/mainbanner/connectionimg3.png'
+import banner5 from '../assets/mainbanner/connectionimg5.png'
 
  
 import 'swiper/css'
@@ -21,27 +21,27 @@ import '../assets/Css/Header.css'
 const CommonPoints = () => {
     const points = [
         {
-            icon: daily ,
+            icon: banner1, 
             title: '100',
             subtitle: 'Daily Callers',
         },
         {
-            icon: slot ,
+            icon: banner2, 
             title: '8000',
             subtitle: 'Slots Booked',
         },
         {
-            icon: call ,
+            icon: banner4,
             title: '7500',
             subtitle: 'Calls  Completed',
         },
         {
-           icon: happy ,
+           icon: banner3,
             title: '1000+',
             subtitle: 'Happy Users',
         },
         {
-             icon: top ,
+             icon: banner5,
             title: '4.5+',
             subtitle: 'India’s Top Rated Calling web',
         },
