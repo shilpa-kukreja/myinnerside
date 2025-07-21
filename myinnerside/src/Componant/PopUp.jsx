@@ -114,7 +114,7 @@ const PopUp = () => {
     const timer = setTimeout(() => {
       setShowPopup(true);
       document.body.style.overflow = 'hidden';
-    }, 5000);
+    }, 30000);
     return () => clearTimeout(timer);
   }, []);
 

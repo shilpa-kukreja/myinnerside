@@ -23,7 +23,7 @@ const CommonPoints = () => {
         {
             icon: banner1, 
             title: '100',
-            subtitle: 'Daily Callers',
+            subtitle: 'Daily Sessions',
         },
         {
             icon: banner2, 
@@ -33,7 +33,7 @@ const CommonPoints = () => {
         {
             icon: banner4,
             title: '7500',
-            subtitle: 'Calls  Completed',
+            subtitle: 'Sessions  Completed',
         },
         {
            icon: banner3,

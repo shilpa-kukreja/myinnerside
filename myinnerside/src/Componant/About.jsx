@@ -54,7 +54,7 @@ const About = () => {
                 <p className='para'>
                   In everybody’s Life at certain point, time comes when person wants to talk to someone. Someone they don’t know. A person who doesn’t judge them as per his/her standards. Sometimes people want to talk to people they love or they are friends with. But in today’s world everybody is not very fortunate to have one or the one they can trust. Hence, we come into picture.
                 </p>
-                <p className='para'> My Inner Side, a service offered by Swarnim Bharat with an idea of giving that privacy to the customers where they feel comfortable to discuss what they are not able to discuss with the people they know personally. We provide sessions where they can vent their Heart Out. We keep details and sessions confidential to protect our client’s identity and emotions shared.</p>
+                <p className='para'> <b>My Inner Side</b>, a service offered by <b>Swarnim Bharat</b> with an idea of giving that privacy to the customers where they feel comfortable to discuss what they are not able to discuss with the people they know personally. We provide sessions where they can vent their Heart Out. We keep details and sessions confidential to protect our client’s identity and emotions shared.</p>
                 <p className='para'>
                   We refer our Executives as Saarthi.   <b>Saarthi means Companion Or someone who guides and leads you to your destination.</b> Our professionals are handpicked after a series of tests and are very well trained on emotional aspects. We only hire people with a Golden Heart because every emotion that comes along our clients brings in lots of responsibility on our shoulders.
                 </p>
