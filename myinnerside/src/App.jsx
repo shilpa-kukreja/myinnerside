@@ -22,6 +22,7 @@ import Login from './Componant/Login'
  import CancellationPolicy from './Componant/CancellationPolicy'
 import LifeCoach from './Componant/LifeCoach'
 import VideoCall from './Componant/VideoCall'
+import ResetPassword from './Componant/ResetPassword'
 
 
 const App = () => {
@@ -61,6 +62,7 @@ const App = () => {
         <Route path='/term-condition' element={<TermCondition/>} />
         <Route path='/login' element={    <Login/>} />
         <Route path='/sign-up' element={<Signup/>} />
+        <Route path="/reset-password/:token" element={<ResetPassword/>} />
         <Route path='/my-profile' element={<MyProfile/>} />
         <Route  path ='/cancellation-policy' element={<CancellationPolicy />} />
         <Route  path='/life-coach' element={<LifeCoach />} />
