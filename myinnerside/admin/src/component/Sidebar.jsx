@@ -90,10 +90,10 @@ const Sidebar = () => {
               openMenus.category ? 'max-h-40' : 'max-h-0'
             }`}>
               <div className="py-1 pl-2">
-                <NavLink to="/add" className={dropdownItemClasses}>
+                <NavLink to="/admin/add" className={dropdownItemClasses}>
                   <span>Add Team</span>
                 </NavLink>
-                <NavLink to="/list" className={dropdownItemClasses}>
+                <NavLink to="/admin/list" className={dropdownItemClasses}>
                   <span>List Team</span>
                 </NavLink>
               </div>
@@ -222,10 +222,10 @@ const Sidebar = () => {
               openMenus.coupons ? 'max-h-40' : 'max-h-0'
             }`}>
               <div className="py-1 pl-2">
-                <NavLink to="/addcoupon" className={dropdownItemClasses}>
+                <NavLink to="/admin/addcoupon" className={dropdownItemClasses}>
                   <span>Add Coupons</span>
                 </NavLink>
-                <NavLink to="/listcoupon" className={dropdownItemClasses}>
+                <NavLink to="/admin/listcoupon" className={dropdownItemClasses}>
                   <span>List Coupons</span>
                 </NavLink>
               </div>
@@ -234,7 +234,7 @@ const Sidebar = () => {
         )}
 
         {/* Order Items - Visible to both */}
-       {aToken && (  <NavLink to="/listappointment" className={menuItemClasses}>
+       {aToken && (  <NavLink to="/admin/listappointment" className={menuItemClasses}>
           <FaShoppingBag className="text-lg" />
           <span>Appointments List</span>
         </NavLink>
@@ -248,7 +248,7 @@ const Sidebar = () => {
                 openMenus.blogs ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:bg-blue-50 hover:text-blue-600'
               }`}
             >
-              <NavLink to='/lifecoach' className="flex items-center gap-4">
+              <NavLink to='/admin/lifecoach' className="flex items-center gap-4">
                 <FaShoppingBag className="text-lg" />
                 <span className="text-sm font-medium">LifeCoach Appointment</span>
               </NavLink>
@@ -260,7 +260,7 @@ const Sidebar = () => {
 
         {/* Manage Users - Only for Admin */}
         {aToken && (
-          <NavLink to="/user" className={menuItemClasses}>
+          <NavLink to="/admin/user" className={menuItemClasses}>
             <FaUsers className="text-lg" />
             <span>Manage Users</span>
           </NavLink>
@@ -268,14 +268,14 @@ const Sidebar = () => {
 
          {/* Manage Slot - Only for Admin */}
         {aToken && (
-          <NavLink to="/manageslot" className={menuItemClasses}>
+          <NavLink to="/admin/manageslot" className={menuItemClasses}>
             <FaUsers className="text-lg" />
             <span>Manage Slot</span>
           </NavLink>
         )}
 
         {/* Contacts - Visible to both */}
-        {aToken && (  <NavLink to="/listcontact" className={menuItemClasses}>
+        {aToken && (  <NavLink to="/admin/listcontact" className={menuItemClasses}>
           <FiMail className="text-lg" />
           <span>Contacts</span>
         </NavLink>
@@ -283,7 +283,7 @@ const Sidebar = () => {
 
         {
           aToken && (
-            <NavLink to="/admincouponclaim" className={menuItemClasses}>
+            <NavLink to="/admin/admincouponclaim" className={menuItemClasses}>
               <FaUsers className="text-lg" />
               <span>Admin Coupon Claim</span>
             </NavLink>

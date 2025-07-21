@@ -42,17 +42,17 @@ const App = () => {
        {!removeHeader && <Sidebar />}
         {/*---Admin Routes----- */}
         <Routes>
-          <Route path="/add" element={<AddTeam />} />
-          <Route path="/list" element={<ListTeam />} />
-          <Route path="/listcontact" element={<AdminContacts />} />
-          <Route path="/listappointment" element={<AdminAppointments />} />
-          <Route path="/lifecoach" element={<LifeCoachAppointmentlist />} />
-          <Route path="/user" element={<AdminUsers />} />
-          <Route path="/addcoupon" element={<AddCoupon />} />
-          <Route path="/listcoupon" element={<ListCoupon />} />
-          <Route path="/manageslot" element={<ManageSlots />} />
-          <Route path="/" element={<AdminDashboard/>} />
-          <Route path='/admincouponclaim' element={<AdminCouponClaims/>} />
+          <Route path="/admin/add" element={<AddTeam />} />
+          <Route path="/admin/list" element={<ListTeam />} />
+          <Route path="/admin/listcontact" element={<AdminContacts />} />
+          <Route path="/admin/listappointment" element={<AdminAppointments />} />
+          <Route path="/admin/lifecoach" element={<LifeCoachAppointmentlist />} />
+          <Route path="/admin/user" element={<AdminUsers />} />
+          <Route path="/admin/addcoupon" element={<AddCoupon />} />
+          <Route path="/admin/listcoupon" element={<ListCoupon />} />
+          <Route path="/admin/manageslot" element={<ManageSlots />} />
+          <Route path="/admin/" element={<AdminDashboard/>} />
+          <Route path='/admin/admincouponclaim' element={<AdminCouponClaims/>} />
      
 
         {/*---Team Routes----- */}
