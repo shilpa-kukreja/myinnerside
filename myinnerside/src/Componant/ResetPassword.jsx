@@ -132,9 +132,9 @@ const ResetPassword = () => {
                 </div>
             </div>
 
-            <div className="signin_cont_right">
+            {/* <div className="signin_cont_right">
                 <img src={img1} alt="img" />
-            </div>
+            </div> */}
         </div>
 
 
