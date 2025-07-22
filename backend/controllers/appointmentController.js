@@ -49,7 +49,7 @@ export const bookAppointment = async (req, res) => {
 export const getBookedSlots = async (req, res) => {
   try {
     const userId = req.userId;
-     const appointments = await appointmentModel.find({userId});
+     const appointments = await Appointment.find({userId});
     if (!appointments || appointments.length === 0) {
       return res.status(404).json({ message: "No booked slots found." });
       }
