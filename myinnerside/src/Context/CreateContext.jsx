@@ -101,7 +101,7 @@ const CreateContextProvider = (props) => {
 
   const [userLoginData, setUserLoginData] = useState({})
    const [token, setToken] = useState("");
-   console.log(userLoginData)
+  //  console.log(userLoginData)
   // console.log(formData)
 
 
@@ -161,8 +161,8 @@ const CreateContextProvider = (props) => {
   });
 };
 
-console.log("User Info:", userInfo);
-console.log("Appointments:", appointments);
+// console.log("User Info:", userInfo);
+// console.log("Appointments:", appointments);
 
 
 
@@ -202,7 +202,7 @@ useEffect(() => {
 
   if (!token && storedToken) {
     setToken(storedToken);
-    console.log("Token from localStorage:", storedToken);
+    // console.log("Token from localStorage:", storedToken);
 
     axios.post(
       "https://myinnerside.com/api/auth/user",
@@ -215,7 +215,7 @@ useEffect(() => {
     )
       .then((response) => {
         setUserLoginData(response.data.user);
-        console.log("User data:", response.data.user);
+        // console.log("User data:", response.data.user);
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
@@ -231,8 +231,8 @@ useEffect(() => {
   }
 
   if (selectedDate && storedToken) {
-    console.log("Token from localStorage:", storedToken);
-    console.log("Selected Date:", selectedDate);
+    // console.log("Token from localStorage:", storedToken);
+    // console.log("Selected Date:", selectedDate);
 
     axios
       .post(
@@ -269,8 +269,8 @@ useEffect(() => {
     setToken(storedToken);
   }
 
-  console.log("Token from localStorage:", storedToken);
-  console.log("Selected Date:", selectedDate);
+  // console.log("Token from localStorage:", storedToken);
+  // console.log("Selected Date:", selectedDate);
 
   if (selectedDate) {
     axios
@@ -297,7 +297,7 @@ useEffect(() => {
         console.error("Error fetching booked slots:", error);
       });
   }
-}, [appointments, setAppointments,token,setToken]); // <- Run when appointments or selectedDate changes
+}, [ setAppointments,token,setToken]); // <- Run when appointments or selectedDate changes
 
 
 
@@ -320,8 +320,11 @@ const getBookedSlotss = async (selectedDate) => {
         Authorization: `${token}`,
       },
     });
+    
 
     const data = await response.json();
+
+    console.log("Response:", selectedDate , data);
     if (data.success) {
       // ✅ Filter only booked slots for the selectedDate
       const selectedDay = dayjs(selectedDate).format("YYYY-MM-DD");

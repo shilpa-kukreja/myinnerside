@@ -758,6 +758,7 @@ if (name === 'couponCode') {
         const fetchSlots = async () => {
             if (!selectedDate) return;
             const booked = await getBookedSlotss(selectedDate);
+            console.log("Booked Slots:", booked);
             const adminbooked = await getBookedSlotsss(selectedDate);
             setBookedSlots([...booked, ...adminbooked]);
         };
@@ -803,6 +804,7 @@ if (name === 'couponCode') {
                                 const isBooked = bookedSlots.includes(slot);
                                 const isTimeOver = isSlotOver(slot);
                                 const isDisabled = isBooked || isTimeOver;
+                                console.log("Booked Slotsss:", bookedSlots , "Slot:", slot, "isBooked:", isBooked, "isTimeOver:", isTimeOver);
 
                                 return (
                                     <div
