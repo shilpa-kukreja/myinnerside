@@ -29,7 +29,7 @@ const AdminCouponClaims = () => {
     claim.phone.toLowerCase().includes(search.trim().toLowerCase())
   );
 
-  // Pagination logic
+  
   const totalPages = Math.ceil(filtered.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
