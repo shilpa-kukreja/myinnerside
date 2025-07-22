@@ -8,7 +8,7 @@ export const getBookedSlots = async (req, res) => {
     
     // Format the date to match your database format (YYYY-MM-DD)
     const startOfTomorrow = new Date(today);
-    startOfTomorrow.setDate(today.getDate() + 1);
+    startOfTomorrow.setDate(today.getDate());
     const startOfTomorrowStr = startOfTomorrow.toISOString().split('T')[0];
 
     console.log("Start of Tomorrow (string):", startOfTomorrowStr);
