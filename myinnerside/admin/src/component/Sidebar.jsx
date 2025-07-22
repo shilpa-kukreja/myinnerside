@@ -293,7 +293,7 @@ const Sidebar = () => {
         {/* Team Specific Menu Items */}
         {tToken && (
           <>
-            <NavLink  to="/team/appointments"  className={menuItemClasses}>
+            <NavLink  to="/admin/team/appointments"  className={menuItemClasses}>
               <FaHeadset className="text-lg" />
               <span>My Apponitments</span>
             </NavLink>
