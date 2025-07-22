@@ -58,7 +58,7 @@ const App = () => {
         {/*---Team Routes----- */}
         
           <Route
-            path="/admin/team/appointments"
+            path="/admin/appointmentss"
             element={
             
                 <TeamMemberAppointments />
