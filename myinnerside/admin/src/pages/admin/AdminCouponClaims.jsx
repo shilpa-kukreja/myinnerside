@@ -1,10 +1,11 @@
-
 import { useEffect, useState } from 'react';
 import moment from 'moment';
 
 const AdminCouponClaims = () => {
   const [claims, setClaims] = useState([]);
   const [search, setSearch] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
 
   useEffect(() => {
     const fetchClaims = async () => {
@@ -25,26 +26,39 @@ const AdminCouponClaims = () => {
   }, []);
 
   const filtered = claims.filter(claim =>
-    claim.phone.includes(search.trim())
+    claim.phone.toLowerCase().includes(search.trim().toLowerCase())
   );
 
-  return (
-    <div className=" w-[100%] min-h-screen bg-gray-100 p-6">
-      <div className="  mx-auto bg-white shadow-xl rounded-lg p-6">
-        <h1 className="text-2xl font-bold text-gray-800 mb-4">
-          📋 Coupon Claim List
-        </h1>
+  // Pagination logic
+  const totalPages = Math.ceil(filtered.length / itemsPerPage);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filtered.slice(indexOfFirstItem, indexOfLastItem);
 
-        <div className="flex justify-between items-center mb-4">
+  const handlePageChange = (pageNumber) => {
+    if (pageNumber >= 1 && pageNumber <= totalPages) {
+      setCurrentPage(pageNumber);
+    }
+  };
+
+  return (
+    <div className="w-full min-h-screen bg-gray-100 p-6">
+      <div className="mx-auto bg-white shadow-xl rounded-lg p-6">
+        <h1 className="text-2xl font-bold text-gray-800 mb-4">📋 Coupon Claim List</h1>
+
+        <div className="flex justify-between items-center mb-4 flex-wrap gap-4">
           <input
             type="text"
             placeholder="Search by phone number..."
             className="border border-gray-300 rounded-md px-4 py-2 w-72"
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              setCurrentPage(1); // Reset to page 1 on search
+            }}
           />
           <div className="text-gray-600">
-            Total: <strong>{filtered.length}</strong>
+            Showing <strong>{currentItems.length}</strong> of <strong>{filtered.length}</strong> claims
           </div>
         </div>
 
@@ -58,10 +72,10 @@ const AdminCouponClaims = () => {
               </tr>
             </thead>
             <tbody>
-              {filtered.length > 0 ? (
-                filtered.map((claim, index) => (
+              {currentItems.length > 0 ? (
+                currentItems.map((claim, index) => (
                   <tr key={claim._id} className="border-b border-gray-100 hover:bg-gray-50">
-                    <td className="py-2 px-4">{index + 1}</td>
+                    <td className="py-2 px-4">{indexOfFirstItem + index + 1}</td>
                     <td className="py-2 px-4">{claim.phone}</td>
                     <td className="py-2 px-4 text-sm text-gray-600">
                       {moment(claim.createdAt).format('DD MMM YYYY, hh:mm A')}
@@ -78,6 +92,41 @@ const AdminCouponClaims = () => {
             </tbody>
           </table>
         </div>
+
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <div className="flex justify-center items-center mt-6 space-x-2 flex-wrap">
+            <button
+              className="px-3 py-1 border rounded-md text-sm hover:bg-gray-200 disabled:opacity-50"
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              ⬅ Prev
+            </button>
+
+            {Array.from({ length: totalPages }, (_, i) => (
+              <button
+                key={i + 1}
+                className={`px-3 py-1 border rounded-md text-sm ${
+                  currentPage === i + 1
+                    ? 'bg-blue-500 text-white'
+                    : 'hover:bg-gray-200'
+                }`}
+                onClick={() => handlePageChange(i + 1)}
+              >
+                {i + 1}
+              </button>
+            ))}
+
+            <button
+              className="px-3 py-1 border rounded-md text-sm hover:bg-gray-200 disabled:opacity-50"
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+            >
+              Next ➡
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
