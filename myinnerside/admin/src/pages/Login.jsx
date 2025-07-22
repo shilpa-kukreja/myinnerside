@@ -35,7 +35,7 @@ const Login = () => {
           navigate('/admin/dashboard'); // 👈 Admin goes to homepage
         } else {
           setTToken(data.token);
-          navigate('/team/appointments'); // 👈 Team user goes to appointments page
+          navigate('/admin/team/appointments'); // 👈 Team user goes to appointments page
         }
 
         // toast.success('Login successful');
