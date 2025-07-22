@@ -51,7 +51,7 @@ const App = () => {
           <Route path="/admin/addcoupon" element={<AddCoupon />} />
           <Route path="/admin/listcoupon" element={<ListCoupon />} />
           <Route path="/admin/manageslot" element={<ManageSlots />} />
-          <Route path="/admin/" element={<AdminDashboard/>} />
+          <Route path="/admin/dashboard" element={<AdminDashboard/>} />
           <Route path='/admin/admincouponclaim' element={<AdminCouponClaims/>} />
      
 

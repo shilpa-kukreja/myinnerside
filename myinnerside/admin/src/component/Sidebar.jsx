@@ -61,7 +61,7 @@ const Sidebar = () => {
 
       <nav className="flex-1 flex flex-col px-2 py-4 space-y-1 overflow-y-auto">
         {/* Dashboard - Visible to both */}
-       {aToken && (  <NavLink to="/admin/" className={menuItemClasses}>
+       {aToken && (  <NavLink to="/admin/dashboard" className={menuItemClasses}>
           <FiHome className="text-lg" />
           <span>Dashboard</span>
         </NavLink>
