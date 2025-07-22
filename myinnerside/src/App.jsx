@@ -23,6 +23,7 @@ import Login from './Componant/Login'
 import LifeCoach from './Componant/LifeCoach'
 import VideoCall from './Componant/VideoCall'
 import ResetPassword from './Componant/ResetPassword'
+import Error404 from './Componant/Error404'
 
 
 const App = () => {
@@ -67,6 +68,7 @@ const App = () => {
         <Route  path ='/cancellation-policy' element={<CancellationPolicy />} />
         <Route  path='/life-coach' element={<LifeCoach />} />
         <Route  path='/video-call/:id' element={ <VideoCall />} />
+         <Route path="*" element={<Error404/>} />
         
       </Routes>
 
