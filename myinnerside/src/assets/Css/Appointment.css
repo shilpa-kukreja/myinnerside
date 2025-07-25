@@ -895,3 +895,263 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Base Styles */
+.coupon-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.coupon-modal {
+  width: 100%;
+  max-width: 400px;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  position: relative;
+  animation: slideUp 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+/* Header Styles */
+.coupon-header {
+  background: linear-gradient(135deg, #8A2BE2, #DA70D6);
+  padding: 30px 20px;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.gift-icon-container {
+  width: 70px;
+  height: 70px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+  backdrop-filter: blur(5px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.gift-icon {
+  font-size: 32px;
+  color: white;
+  animation: pulse 2s infinite;
+}
+
+.coupon-header h2 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.coupon-header p {
+  margin: 8px 0 0;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* Confetti Decorations */
+.confetti {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  animation: confettiFall 5s linear infinite;
+}
+
+.confetti-1 {
+  top: -10px;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.confetti-2 {
+  top: -10px;
+  left: 50%;
+  animation-delay: 1s;
+}
+
+.confetti-3 {
+  top: -10px;
+  left: 80%;
+  animation-delay: 2s;
+}
+
+/* Body Styles */
+.coupon-body {
+  padding: 25px;
+  text-align: center;
+}
+
+.coupon-instruction {
+  color: #666;
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+
+.coupon-code-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  position: relative;
+}
+
+.coupon-code {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #8A2BE2;
+  padding: 12px 20px;
+  border: 2px dashed #8A2BE2;
+  border-radius: 8px;
+  background: rgba(138, 43, 226, 0.05);
+  transition: all 0.3s ease;
+}
+
+.copy-button {
+  margin-left: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f0e6ff;
+  border: none;
+  color: #8A2BE2;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.copy-button:hover {
+  background: #8A2BE2;
+  color: white;
+  transform: scale(1.1);
+}
+
+.copy-icon {
+  font-size: 18px;
+}
+
+.tooltip {
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.copy-button:hover .tooltip {
+  opacity: 1;
+}
+
+.coupon-validity {
+  color: #888;
+  font-size: 13px;
+  margin-top: 15px;
+}
+
+/* Footer Styles */
+.coupon-footer {
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #eee;
+}
+
+.close-button {
+  padding: 12px 30px;
+  background: linear-gradient(135deg, #8A2BE2, #DA70D6);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+}
+
+.close-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(138, 43, 226, 0.4);
+}
+
+.close-button:active {
+  transform: translateY(0);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(400px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+
+
+

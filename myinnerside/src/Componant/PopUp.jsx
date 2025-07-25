@@ -34,7 +34,7 @@
 
 //     return (
 //         <>
-        
+
 //         {showPopup && (
 //                 <div className="popup_overlay">
 //                     <div className='popup_container'>
@@ -101,6 +101,7 @@ import { Link } from 'react-router-dom';
 import popUpImg from '../assets/mainbanner/myinnersidepopup.jpg';
 import '../assets/Css/Appointment.css';
 import { IoGiftSharp } from "react-icons/io5";
+import { FiCopy } from 'react-icons/fi'
 
 const PopUp = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -147,12 +148,12 @@ const PopUp = () => {
   //       body: JSON.stringify({ phone }),
   //     });
 
-      
+
   //     setShowPopup(false);
   //     setShowCoupon(true);
   //     document.body.style.overflow = 'auto';
 
-      
+
   //     if (couponCode) {
   //       navigator.clipboard.writeText(couponCode);
   //     }
@@ -164,39 +165,39 @@ const PopUp = () => {
 
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  if (!phone.trim()) return;
+    e.preventDefault();
+    if (!phone.trim()) return;
 
-  try {
-    const res = await fetch('https://myinnerside.com/api/coupons/claim', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ phone }),
-    });
+    try {
+      const res = await fetch('https://myinnerside.com/api/coupons/claim', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone }),
+      });
 
-    const result = await res.json();
+      const result = await res.json();
 
-    if (!res.ok) {
-      if (res.status === 409 || result.status === 'already_claimed') {
-        setErrorMessage('This number has already claimed the coupon.');
-      } else {
-        setErrorMessage('Something went wrong. Please try again.');
+      if (!res.ok) {
+        if (res.status === 409 || result.status === 'already_claimed') {
+          setErrorMessage('This number has already claimed the coupon.');
+        } else {
+          setErrorMessage('Something went wrong. Please try again.');
+        }
+        return;
       }
-      return;
-    }
 
-    setShowPopup(false);
-    setShowCoupon(true);
-    document.body.style.overflow = 'auto';
+      setShowPopup(false);
+      setShowCoupon(true);
+      document.body.style.overflow = 'auto';
 
-    if (couponCode) {
-      navigator.clipboard.writeText(couponCode);
+      if (couponCode) {
+        navigator.clipboard.writeText(couponCode);
+      }
+    } catch (error) {
+      console.error('Error saving phone:', error);
+      setErrorMessage('Something went wrong. Please try again.');
     }
-  } catch (error) {
-    console.error('Error saving phone:', error);
-    setErrorMessage('Something went wrong. Please try again.');
-  }
-};
+  };
 
   const handleClose = () => {
     setShowPopup(false);
@@ -246,15 +247,53 @@ const PopUp = () => {
       )}
 
       {showCoupon && (
-        <div className="popup_overlay">
-          <div className="coupon_popup">
-            <div className="coupon_code">
-              <h2> <IoGiftSharp className='icon' /> Congratulations!</h2>
-              <p>Your coupon <strong>{couponCode}</strong> has been copied to clipboard.</p>
-              <button onClick={() => setShowCoupon(false)}>Close</button>
-            </div>
-          </div>
-        </div>
+       <div className="coupon-overlay">
+  <div className="coupon-modal">
+    {/* Header with decorative elements */}
+    <div className="coupon-header">
+      <div className="gift-icon-container">
+        <IoGiftSharp className="gift-icon" />
+      </div>
+      <div className="confetti confetti-1"></div>
+      <div className="confetti confetti-2"></div>
+      <div className="confetti confetti-3"></div>
+      <h2>Congratulations!</h2>
+      <p>Here's your special discount</p>
+    </div>
+
+    {/* Coupon Code Section */}
+    <div className="coupon-body">
+      <p className="coupon-instruction">Your coupon code has been generated</p>
+      
+      <div className="coupon-code-container">
+        <span className="coupon-code">{couponCode}</span>
+        <button 
+          className="copy-button"
+          onClick={() => {
+            navigator.clipboard.writeText(couponCode);
+            // You can add a toast notification here
+          }}
+          aria-label="Copy coupon code"
+        >
+          <FiCopy className="copy-icon" />
+          <span className="tooltip">Click to copy</span>
+        </button>
+      </div>
+
+      {/* <p className="coupon-validity">Valid until {validDate}</p> */}
+    </div>
+
+    {/* Footer with action button */}
+    <div className="coupon-footer">
+      <button 
+        className="close-button"
+        onClick={() => setShowCoupon(false)}
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</div>
       )}
     </>
   );

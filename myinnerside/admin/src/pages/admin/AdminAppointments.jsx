@@ -610,6 +610,29 @@ useEffect(() => {
                           <span className="ml-2 capitalize">{selectedAppointment.language}</span>
                         </div>
                       </div>
+
+                       <div className="mb-3">
+                        <div className="flex items-center">
+                          <span className="font-medium">Genderoption:</span>
+                          <span className="ml-2 capitalize">{selectedAppointment.genderoption}</span>
+                        </div>
+                      </div>
+
+                      <div className="mb-3">
+                        <div className="flex items-center">
+                          <span className="font-medium">Cameraoption:</span>
+                          <span className="ml-2 capitalize">{selectedAppointment.cameraoption}</span>
+                        </div>
+                      </div>
+
+
+                      <div className="mb-3">
+                        <div className="flex items-center">
+                          <span className="font-medium">Sarthithought:</span>
+                          <span className="ml-2 capitalize">{selectedAppointment.sarthithought}</span>
+                        </div>
+                      </div>
+                      
                       <div className="mb-3">
                         <div className="flex items-center">
                           <span className="font-medium">Hide Identity:</span>

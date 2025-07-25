@@ -116,6 +116,8 @@ const VideoCall = () => {
         navigate('/admin/appointmentss');
     };
 
+    
+
     const toggleVideo = () => {
         if (!localStream) return;
 
