@@ -159,7 +159,7 @@ useEffect(() => {
 
 
     useEffect(() => {
-        // handleStartCall(id);
+        handleStartCall(id);
     }, [id]);
 
     return (
