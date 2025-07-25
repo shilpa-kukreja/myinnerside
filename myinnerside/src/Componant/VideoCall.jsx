@@ -288,12 +288,9 @@ const VideoCall = () => {
                     disabled={callStatus === 'active'}
                     aria-label={callStatus === 'active' ? "Call in progress" : "Start call"}
                 >
-                    {callStatus === 'active' ? (
-                        <span>Call in progress...</span>
-                    ) : (
-                        <span>Start Call</span>
-                    )}
+                    <MdOutlineCallEnd className='icon' />
                 </button>
+
             </div>
 
             {/* {showCall && <VideoCalls />} */}
