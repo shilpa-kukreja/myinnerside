@@ -210,6 +210,23 @@
 
 
 
+.start-call-button.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: #ccc;
+}
+
+.start-call-button.disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+
+
+
+
+
+
 
 
 

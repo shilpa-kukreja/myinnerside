@@ -45,15 +45,15 @@ const VideoCall = () => {
 
 
     const handleStartCall = (appointmentId) => {
-  // Save state to survive refresh
-  localStorage.setItem("activeCall", JSON.stringify({
-    id: appointmentId,
-    token: token
-  }));
+        // Save state to survive refresh
+        localStorage.setItem("activeCall", JSON.stringify({
+            id: appointmentId,
+            token: token
+        }));
 
-  startCall(appointmentId, token);
-  setShowCall(true);
-};
+        startCall(appointmentId, token);
+        setShowCall(true);
+    };
 
 
 
@@ -65,12 +65,12 @@ const VideoCall = () => {
     };
 
     useEffect(() => {
-  if (localVideoRef.current && localStream) {
-    // Rebind the stream to fix the blurred/local video not showing issue
-    localVideoRef.current.srcObject = null; // Force reset
-    localVideoRef.current.srcObject = localStream;
-  }
-}, [localStream, isVideoOn]);
+        if (localVideoRef.current && localStream) {
+            // Rebind the stream to fix the blurred/local video not showing issue
+            localVideoRef.current.srcObject = null; // Force reset
+            localVideoRef.current.srcObject = localStream;
+        }
+    }, [localStream, isVideoOn]);
 
 
     useEffect(() => {
@@ -99,68 +99,68 @@ const VideoCall = () => {
     //     setCallDuration(0);
     // };
 
-//     const handleEndCall = () => {
-//     endCall();                  
-//     setShowCall(false);         
-//     setCallDuration(0);         
-//     navigate('/');              
-// };
+    //     const handleEndCall = () => {
+    //     endCall();                  
+    //     setShowCall(false);         
+    //     setCallDuration(0);         
+    //     navigate('/');              
+    // };
 
 
-const handleEndCall = () => {
-  endCall();
-  localStorage.removeItem("activeCall"); // Clear call session
-  setShowCall(false);
-  setCallDuration(0);
-  navigate('/');
-};
+    const handleEndCall = () => {
+        endCall();
+        localStorage.removeItem("activeCall"); // Clear call session
+        setShowCall(false);
+        setCallDuration(0);
+        navigate('/');
+    };
 
 
-const toggleVideo = () => {
-  if (!localStream) return;
+    const toggleVideo = () => {
+        if (!localStream) return;
 
-  const videoTracks = localStream.getVideoTracks();
-  if (videoTracks.length === 0) return;
+        const videoTracks = localStream.getVideoTracks();
+        if (videoTracks.length === 0) return;
 
-  const videoTrack = videoTracks[0];
+        const videoTrack = videoTracks[0];
 
-  videoTrack.enabled = !videoTrack.enabled;
-  setIsVideoOn(videoTrack.enabled);
-};
-
-
-// useEffect(() => {
-//   const activeCall = JSON.parse(localStorage.getItem("activeCall"));
-
-//   if (activeCall && activeCall.id) {
-//     // Auto-start the call if it was active before refresh
-//     startCall(activeCall.id, activeCall.token);
-//     setShowCall(true);
-//   }
-// }, []);
+        videoTrack.enabled = !videoTrack.enabled;
+        setIsVideoOn(videoTrack.enabled);
+    };
 
 
-useEffect(() => {
-  const activeCall = JSON.parse(localStorage.getItem("activeCall"));
+    // useEffect(() => {
+    //   const activeCall = JSON.parse(localStorage.getItem("activeCall"));
 
-  if (activeCall && activeCall.id) {
-    const confirmResume = window.confirm("Do you want to resume your previous call?");
-    if (confirmResume) {
-      startCall(activeCall.id, activeCall.token);
-      setShowCall(true);
-    } else {
-      localStorage.removeItem("activeCall"); 
-      navigate('/'); 
-    }
-  }
-}, []);
-
-
+    //   if (activeCall && activeCall.id) {
+    //     // Auto-start the call if it was active before refresh
+    //     startCall(activeCall.id, activeCall.token);
+    //     setShowCall(true);
+    //   }
+    // }, []);
 
 
     useEffect(() => {
-        handleStartCall(id);
-    }, [id]);
+        const activeCall = JSON.parse(localStorage.getItem("activeCall"));
+
+        if (activeCall && activeCall.id) {
+            const confirmResume = window.confirm("Do you want to resume your previous call?");
+            if (confirmResume) {
+                startCall(activeCall.id, activeCall.token);
+                setShowCall(true);
+            } else {
+                localStorage.removeItem("activeCall");
+                navigate('/');
+            }
+        }
+    }, []);
+
+
+
+
+    // useEffect(() => {
+    //     handleStartCall(id);
+    // }, [id]);
 
     return (
         <div className="video-call-container">
@@ -275,12 +275,24 @@ useEffect(() => {
                 >
                     <MdOutlineCallEnd className='icon' />
                 </button>
-                <button
+                {/* <button
                     className="start-call-button join-call-button"
                     onClick={() => handleStartCall(id)}
                     aria-label="End call"
                 >
                     <MdOutlineCallEnd className='icon' />
+                </button> */}
+                <button
+                    className={`start-call-button join-call-button ${callStatus === 'active' ? 'disabled' : ''}`}
+                    onClick={() => callStatus !== 'active' && handleStartCall(id)}
+                    disabled={callStatus === 'active'}
+                    aria-label={callStatus === 'active' ? "Call in progress" : "Start call"}
+                >
+                    {callStatus === 'active' ? (
+                        <span>Call in progress...</span>
+                    ) : (
+                        <span>Start Call</span>
+                    )}
                 </button>
             </div>
 
