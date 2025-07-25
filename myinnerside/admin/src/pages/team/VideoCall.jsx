@@ -151,7 +151,7 @@ const VideoCall = () => {
                 setShowCall(true);
             } else {
                 localStorage.removeItem("activeCall");
-                navigate('/');
+                navigate('/admin/appointmentss');
             }
         }
     }, []);

@@ -112,7 +112,7 @@ const VideoCall = () => {
         localStorage.removeItem("activeCall"); // Clear call session
         setShowCall(false);
         setCallDuration(0);
-        navigate('/');
+        navigate('/my-profile');
     };
 
 
