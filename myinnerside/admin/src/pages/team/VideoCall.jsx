@@ -113,7 +113,7 @@ const VideoCall = () => {
         localStorage.removeItem("activeCall");
         setShowCall(false);
         setCallDuration(0);
-        navigate('/team/appointments');
+        navigate('admin/appointmentss');
     };
 
     const toggleVideo = () => {
