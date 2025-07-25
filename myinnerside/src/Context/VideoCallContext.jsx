@@ -20,28 +20,37 @@ export const VideoCallProvider = ({ children }) => {
   const remoteVideoRef = useRef(null);
 
   const initializeSocket = (token) => {
-    socketRef.current = io('https://myinnerside.com', {
-      auth: { token },
-      transports: ['websocket'], 
-      
+  socketRef.current = io('https://myinnerside.com', {
+    auth: { token },
+    transports: ['websocket'],
+  });
 
-    }
-  );
+  socketRef.current.on('connect', () => {
+    console.log('✅ Connected to signaling server');
+  });
 
-  console.log( socketRef.current)
+  socketRef.current.on('error', (error) => {
+    console.error('❌ Socket error:', error);
+    setCallStatus('error');
+  });
 
-    socketRef.current.on('connect', () => {
-      console.log('Connected to signaling server');
-    });
+  // 👇 Add this: Listen for incoming call requests
+  socketRef.current.on('call-request', (data) => {
+    console.log('📞 New call request received:', data);
+    // Optional: Update UI state to show incoming call
+    // setIncomingCall(data);
+  });
 
-    socketRef.current.on('error', (error) => {
-      console.error('Socket error:', error);
-      setCallStatus('error');
-    });
+  // 👇 Optional: Listen for when someone joins the call
+  socketRef.current.on('user-joined', (userId) => {
+    console.log(`👤 User ${userId} joined the call`);
+  });
 
-
-    
-  };
+  // 👇 Optional: Listen for when someone leaves the call
+  socketRef.current.on('user-left', (userId) => {
+    console.log(`👤 User ${userId} left the call`);
+  });
+};
 
   const startCall = async (appointmentId, token) => {
    
